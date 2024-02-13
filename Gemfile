@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 group :jekyll_plugins do
+    gem 'json'
     gem 'yajl-ruby'
     gem 'classifier-reborn'
     gem 'jekyll'
