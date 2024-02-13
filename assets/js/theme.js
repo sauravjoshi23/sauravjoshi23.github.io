@@ -1,13 +1,15 @@
+"use strict";
+
 // Has to be in the head tag, otherwise a flicker effect will occur.
 
-let toggleTheme = theme => {
+var toggleTheme = function toggleTheme(theme) {
   if (theme == "dark") {
     setTheme("light");
   } else {
     setTheme("dark");
   }
 };
-let setTheme = theme => {
+var setTheme = function setTheme(theme) {
   transTheme();
   if (theme) {
     document.documentElement.setAttribute("data-theme", theme);
@@ -23,13 +25,13 @@ let setTheme = theme => {
     });
   }
 };
-let transTheme = () => {
+var transTheme = function transTheme() {
   document.documentElement.classList.add("transition");
-  window.setTimeout(() => {
+  window.setTimeout(function () {
     document.documentElement.classList.remove("transition");
   }, 500);
 };
-let initTheme = theme => {
+var initTheme = function initTheme(theme) {
   if (theme == null) {
     var userPref = window.matchMedia;
     if (userPref && userPref('(prefers-color-scheme: dark)').matches) {

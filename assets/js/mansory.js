@@ -1,3 +1,5 @@
+"use strict";
+
 $(document).ready(function () {
   // Init Masonry
   var $grid = $('.grid').masonry({
