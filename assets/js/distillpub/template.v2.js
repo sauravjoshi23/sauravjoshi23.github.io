@@ -17,30 +17,30 @@
   // See the License for the specific language governing permissions and
   // limitations under the License.
 
-  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  const months = ['Jan.', 'Feb.', 'March', 'April', 'May', 'June', 'July', 'Aug.', 'Sept.', 'Oct.', 'Nov.', 'Dec.'];
-  const zeroPad = n => n < 10 ? '0' + n : n;
+  var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  var months = ['Jan.', 'Feb.', 'March', 'April', 'May', 'June', 'July', 'Aug.', 'Sept.', 'Oct.', 'Nov.', 'Dec.'];
+  var zeroPad = n => n < 10 ? '0' + n : n;
 
-  const RFC = function(date) {
-    const day = days[date.getDay()].substring(0, 3);
-    const paddedDate = zeroPad(date.getDate());
-    const month = months[date.getMonth()].substring(0,3);
-    const year = date.getFullYear().toString();
-    const hours = date.getUTCHours().toString();
-    const minutes = date.getUTCMinutes().toString();
-    const seconds = date.getUTCSeconds().toString();
+  var RFC = function(date) {
+    var day = days[date.getDay()].substring(0, 3);
+    var paddedDate = zeroPad(date.getDate());
+    var month = months[date.getMonth()].substring(0,3);
+    var year = date.getFullYear().toString();
+    var hours = date.getUTCHours().toString();
+    var minutes = date.getUTCMinutes().toString();
+    var seconds = date.getUTCSeconds().toString();
     return `${day}, ${paddedDate} ${month} ${year} ${hours}:${minutes}:${seconds} Z`;
   };
 
-  const objectFromMap = function(map) {
-    const object = Array.from(map).reduce((object, [key, value]) => (
+  var objectFromMap = function(map) {
+    var object = Array.from(map).reduce((object, [key, value]) => (
       Object.assign(object, { [key]: value }) // Be careful! Maps can have non-String keys; object literals can't.
     ), {});
     return object;
   };
 
-  const mapFromObject = function(object) {
-    const map = new Map();
+  var mapFromObject = function(object) {
+    var map = new Map();
     for (var property in object) {
       if (object.hasOwnProperty(property)) {
         map.set(property, object[property]);
@@ -68,13 +68,13 @@
 
     // 'Chris'
     get firstName() {
-      const names = this.name.split(' ');
+      var names = this.name.split(' ');
       return names.slice(0, names.length - 1).join(' ');
     }
 
     // 'Olah'
     get lastName() {
-      const names = this.name.split(' ');
+      var names = this.name.split(' ');
       return names[names.length -1];
     }
   }
@@ -258,7 +258,7 @@
     }
 
     get volume() {
-      const volume = this.publishedYear - 2015;
+      var volume = this.publishedYear - 2015;
       if (volume < 1) {
         throw new Error('Invalid publish date detected during computing volume');
       }
@@ -300,7 +300,7 @@
 
     get bibliographyEntries() {
       return new Map(this.citations.map( citationKey => {
-        const entry = this.bibliography.get(citationKey);
+        var entry = this.bibliography.get(citationKey);
         return [citationKey, entry];
       }));
     }
@@ -318,7 +318,7 @@
     }
 
     static fromObject(source) {
-      const frontMatter = new FrontMatter();
+      var frontMatter = new FrontMatter();
       Object.assign(frontMatter, source);
       return frontMatter;
     }
@@ -364,15 +364,15 @@
   // See the License for the specific language governing permissions and
   // limitations under the License.
 
-  const Mutating = (superclass) => {
+  var Mutating = (superclass) => {
     return class extends superclass {
 
       constructor() {
         super();
 
         // set up mutation observer
-        const options = {childList: true, characterData: true, subtree: true};
-        const observer = new MutationObserver( () => {
+        var options = {childList: true, characterData: true, subtree: true};
+        var observer = new MutationObserver( () => {
           observer.disconnect();
           this.renderIfPossible();
           observer.observe(this, options);
@@ -419,11 +419,11 @@
 
   /*global ShadyCSS*/
 
-  const Template = (name, templateString, useShadow = true) => {
+  var Template = (name, templateString, useShadow = true) => {
 
     return (superclass) => {
 
-      const template = document.createElement('template');
+      var template = document.createElement('template');
       template.innerHTML = templateString;
 
       if (useShadow && 'ShadyCSS' in window) {
@@ -498,16 +498,16 @@
 
   /*global katex */
 
-  const findEndOfMath = function(delimiter, text, startIndex) {
+  var findEndOfMath = function(delimiter, text, startIndex) {
     // Adapted from
     // https://github.com/Khan/perseus/blob/master/src/perseus-markdown.jsx
     let index = startIndex;
     let braceLevel = 0;
 
-    const delimLength = delimiter.length;
+    var delimLength = delimiter.length;
 
     while (index < text.length) {
-      const character = text[index];
+      var character = text[index];
 
       if (
         braceLevel <= 0 &&
@@ -528,12 +528,12 @@
     return -1;
   };
 
-  const splitAtDelimiters = function(startData, leftDelim, rightDelim, display) {
-    const finalData = [];
+  var splitAtDelimiters = function(startData, leftDelim, rightDelim, display) {
+    var finalData = [];
 
     for (let i = 0; i < startData.length; i++) {
       if (startData[i].type === "text") {
-        const text = startData[i].data;
+        var text = startData[i].data;
 
         let lookingForLeft = true;
         let currIndex = 0;
@@ -598,10 +598,10 @@
     return finalData;
   };
 
-  const splitWithDelimiters = function(text, delimiters) {
+  var splitWithDelimiters = function(text, delimiters) {
     let data = [{ type: "text", data: text }];
     for (let i = 0; i < delimiters.length; i++) {
-      const delimiter = delimiters[i];
+      var delimiter = delimiters[i];
       data = splitAtDelimiters(
         data,
         delimiter.left,
@@ -615,16 +615,16 @@
   /* Note: optionsCopy is mutated by this method. If it is ever exposed in the
    * API, we should copy it before mutating.
    */
-  const renderMathInText = function(text, optionsCopy) {
-    const data = splitWithDelimiters(text, optionsCopy.delimiters);
-    const fragment = document.createDocumentFragment();
+  var renderMathInText = function(text, optionsCopy) {
+    var data = splitWithDelimiters(text, optionsCopy.delimiters);
+    var fragment = document.createDocumentFragment();
 
     for (let i = 0; i < data.length; i++) {
       if (data[i].type === "text") {
         fragment.appendChild(document.createTextNode(data[i].data));
       } else {
-        const tag = document.createElement("d-math");
-        const math = data[i].data;
+        var tag = document.createElement("d-math");
+        var math = data[i].data;
         // Override any display mode defined in the settings with that
         // defined by the text itself
         optionsCopy.displayMode = data[i].display;
@@ -651,20 +651,20 @@
     return fragment;
   };
 
-  const renderElem = function(elem, optionsCopy) {
+  var renderElem = function(elem, optionsCopy) {
     for (let i = 0; i < elem.childNodes.length; i++) {
-      const childNode = elem.childNodes[i];
+      var childNode = elem.childNodes[i];
       if (childNode.nodeType === 3) {
         // Text node
-        const text = childNode.textContent;
+        var text = childNode.textContent;
         if (optionsCopy.mightHaveMath(text)) {
-          const frag = renderMathInText(text, optionsCopy);
+          var frag = renderMathInText(text, optionsCopy);
           i += frag.childNodes.length - 1;
           elem.replaceChild(frag, childNode);
         }
       } else if (childNode.nodeType === 1) {
         // Element node
-        const shouldRender =
+        var shouldRender =
           optionsCopy.ignoredTags.indexOf(childNode.nodeName.toLowerCase()) ===
           -1;
 
@@ -676,7 +676,7 @@
     }
   };
 
-  const defaultAutoRenderOptions = {
+  var defaultAutoRenderOptions = {
     delimiters: [
       { left: "$$", right: "$$", display: true },
       { left: "\\[", right: "\\]", display: true },
@@ -700,17 +700,17 @@
     }
   };
 
-  const renderMathInElement = function(elem, options) {
+  var renderMathInElement = function(elem, options) {
     if (!elem) {
       throw new Error("No element provided to render");
     }
 
-    const optionsCopy = Object.assign({}, defaultAutoRenderOptions, options);
-    const delimiterStrings = optionsCopy.delimiters.flatMap(d => [
+    var optionsCopy = Object.assign({}, defaultAutoRenderOptions, options);
+    var delimiterStrings = optionsCopy.delimiters.flatMap(d => [
       d.left,
       d.right
     ]);
-    const mightHaveMath = text =>
+    var mightHaveMath = text =>
       delimiterStrings.some(d => text.indexOf(d) !== -1);
     optionsCopy.mightHaveMath = mightHaveMath;
     renderElem(elem, optionsCopy);
@@ -718,10 +718,10 @@
 
   // Copyright 2018 The Distill Template Authors
 
-  const katexJSURL = 'https://distill.pub/third-party/katex/katex.min.js';
-  const katexCSSTag = '<link rel="stylesheet" href="https://distill.pub/third-party/katex/katex.min.css" crossorigin="anonymous">';
+  var katexJSURL = 'https://distill.pub/third-party/katex/katex.min.js';
+  var katexCSSTag = '<link rel="stylesheet" href="https://distill.pub/third-party/katex/katex.min.css" crossorigin="anonymous">';
 
-  const T = Template('d-math', `
+  var T = Template('d-math', `
 ${katexCSSTag}
 <style>
 
@@ -764,8 +764,8 @@ ${math}
 
     static katexLoadedCallback() {
       // render all d-math tags
-      const mathTags = document.querySelectorAll('d-math');
-      for (const mathTag of mathTags) {
+      var mathTags = document.querySelectorAll('d-math');
+      for (var mathTag of mathTags) {
         mathTag.renderContent();
       }
       // transform inline delimited math to d-math tags
@@ -778,7 +778,7 @@ ${math}
       // css tag can use this convenience function
       document.head.insertAdjacentHTML('beforeend', katexCSSTag);
       // script tag has to be created to work properly
-      const scriptTag = document.createElement('script');
+      var scriptTag = document.createElement('script');
       scriptTag.src = katexJSURL;
       scriptTag.async = true;
       scriptTag.onload = DMath.katexLoadedCallback;
@@ -789,7 +789,7 @@ ${math}
     }
 
     get options() {
-      const localOptions = { displayMode: this.hasAttribute('block') };
+      var localOptions = { displayMode: this.hasAttribute('block') };
       return Object.assign(localOptions, DMath.katexOptions);
     }
 
@@ -802,7 +802,7 @@ ${math}
 
     renderContent() {
       if (typeof katex !== 'undefined') {
-        const container = this.root.querySelector('#katex-container');
+        var container = this.root.querySelector('#katex-container');
         katex.render(this.textContent, container, this.options);
       }
     }
@@ -828,12 +828,12 @@ ${math}
   // limitations under the License.
 
   function collect_citations(dom = document) {
-    const citations = new Set();
-    const citeTags = dom.querySelectorAll("d-cite");
-    for (const tag of citeTags) {
-      const keyString = tag.getAttribute("key") || tag.getAttribute("bibtex-key");
-      const keys = keyString.split(",").map(k => k.trim());
-      for (const key of keys) {
+    var citations = new Set();
+    var citeTags = dom.querySelectorAll("d-cite");
+    for (var tag of citeTags) {
+      var keyString = tag.getAttribute("key") || tag.getAttribute("bibtex-key");
+      var keys = keyString.split(",").map(k => k.trim());
+      for (var key of keys) {
         citations.add(key);
       }
     }
@@ -1016,8 +1016,8 @@ ${math}
     // We now encourage using an array for affiliations containing objects with
     // properties "name" and "url".
     for (let author of frontMatter.authors) {
-      const hasOldStyle = Boolean(author.affiliation);
-      const hasNewStyle = Boolean(author.affiliations);
+      var hasOldStyle = Boolean(author.affiliation);
+      var hasNewStyle = Boolean(author.affiliations);
       if (!hasOldStyle) continue;
       if (hasNewStyle) {
         console.warn(`Author ${author.author} has both old-style ("affiliation" & "affiliationURL") and new style ("affiliations") affiliation information!`);
@@ -1033,12 +1033,12 @@ ${math}
   }
 
   function parseFrontmatter(element) {
-    const scriptTag = element.firstElementChild;
+    var scriptTag = element.firstElementChild;
     if (scriptTag) {
-      const type = scriptTag.getAttribute('type');
+      var type = scriptTag.getAttribute('type');
       if (type.split('/')[1] == 'json') {
-        const content = scriptTag.textContent;
-        const parsed = JSON.parse(content);
+        var content = scriptTag.textContent;
+        var parsed = JSON.parse(content);
         return _moveLegacyAffiliationFormatIntoArray(parsed);
       } else {
         console.error('Distill only supports JSON frontmatter tags anymore; no more YAML.');
@@ -1056,11 +1056,11 @@ ${math}
     constructor() {
       super();
 
-      const options = {childList: true, characterData: true, subtree: true};
-      const observer = new MutationObserver( (entries) => {
-        for (const entry of entries) {
+      var options = {childList: true, characterData: true, subtree: true};
+      var observer = new MutationObserver( (entries) => {
+        for (var entry of entries) {
           if (entry.target.nodeName === 'SCRIPT' || entry.type === 'characterData') {
-            const data = parseFrontmatter(this);
+            var data = parseFrontmatter(this);
             this.notify(data);
           }
         }
@@ -1069,8 +1069,8 @@ ${math}
     }
 
     notify(data) {
-      const options = { detail: data, bubbles: true };
-      const event = new CustomEvent('onFrontMatterChanged', options);
+      var options = { detail: data, bubbles: true };
+      var event = new CustomEvent('onFrontMatterChanged', options);
       document.dispatchEvent(event);
     }
 
@@ -1100,8 +1100,8 @@ ${math}
   // if authors, no byline -> add byline
 
   function optionalComponents(dom, data) {
-    const body = dom.body;
-    const article = body.querySelector('d-article');
+    var body = dom.body;
+    var article = body.querySelector('d-article');
 
     // If we don't have an article tag, something weird is going on—giving up.
     if (!article) {
@@ -1132,11 +1132,11 @@ ${math}
       title.insertBefore(h1, title.firstChild);
     }
 
-    const hasPassword = typeof data.password !== 'undefined';
+    var hasPassword = typeof data.password !== 'undefined';
     let interstitial = body.querySelector('d-interstitial');
     if (hasPassword && !interstitial) {
-      const inBrowser = typeof window !== 'undefined';
-      const onLocalhost = inBrowser && window.location.hostname.includes('localhost');
+      var inBrowser = typeof window !== 'undefined';
+      var onLocalhost = inBrowser && window.location.hostname.includes('localhost');
       if (!inBrowser || !onLocalhost) {
         interstitial = dom.createElement('d-interstitial');
         interstitial.password = data.password;
@@ -1168,9 +1168,9 @@ ${math}
 
   // Copyright 2018 The Distill Template Authors
 
-  const frontMatter = new FrontMatter();
+  var frontMatter = new FrontMatter();
 
-  const Controller = {
+  var Controller = {
     frontMatter: frontMatter,
     waitingOn: {
       bibliography: [],
@@ -1178,7 +1178,7 @@ ${math}
     },
     listeners: {
       onCiteKeyCreated(event) {
-        const [citeTag, keys] = event.detail;
+        var [citeTag, keys] = event.detail;
 
         // ensure we have citations
         if (!frontMatter.citationsCollected) {
@@ -1198,38 +1198,38 @@ ${math}
           return;
         }
 
-        const numbers = keys.map(key => frontMatter.citations.indexOf(key));
+        var numbers = keys.map(key => frontMatter.citations.indexOf(key));
         citeTag.numbers = numbers;
-        const entries = keys.map(key => frontMatter.bibliography.get(key));
+        var entries = keys.map(key => frontMatter.bibliography.get(key));
         citeTag.entries = entries;
       },
 
       onCiteKeyChanged() {
-        // const [citeTag, keys] = event.detail;
+        // var [citeTag, keys] = event.detail;
 
         // update citations
         frontMatter.citations = collect_citations();
         frontMatter.citationsCollected = true;
-        for (const waitingCallback of Controller.waitingOn.citations.slice()) {
+        for (var waitingCallback of Controller.waitingOn.citations.slice()) {
           waitingCallback();
         }
 
         // update bibliography
-        const citationListTag = document.querySelector("d-citation-list");
-        const bibliographyEntries = new Map(
+        var citationListTag = document.querySelector("d-citation-list");
+        var bibliographyEntries = new Map(
           frontMatter.citations.map(citationKey => {
             return [citationKey, frontMatter.bibliography.get(citationKey)];
           })
         );
         citationListTag.citations = bibliographyEntries;
 
-        const citeTags = document.querySelectorAll("d-cite");
-        for (const citeTag of citeTags) {
+        var citeTags = document.querySelectorAll("d-cite");
+        for (var citeTag of citeTags) {
           console.log(citeTag);
-          const keys = citeTag.keys;
-          const numbers = keys.map(key => frontMatter.citations.indexOf(key));
+          var keys = citeTag.keys;
+          var numbers = keys.map(key => frontMatter.citations.indexOf(key));
           citeTag.numbers = numbers;
-          const entries = keys.map(key => frontMatter.bibliography.get(key));
+          var entries = keys.map(key => frontMatter.bibliography.get(key));
           citeTag.entries = entries;
         }
       },
@@ -1239,13 +1239,13 @@ ${math}
       },
 
       onBibliographyChanged(event) {
-        const citationListTag = document.querySelector("d-citation-list");
+        var citationListTag = document.querySelector("d-citation-list");
 
-        const bibliography = event.detail;
+        var bibliography = event.detail;
 
         frontMatter.bibliography = bibliography;
         frontMatter.bibliographyParsed = true;
-        for (const waitingCallback of Controller.waitingOn.bibliography.slice()) {
+        for (var waitingCallback of Controller.waitingOn.bibliography.slice()) {
           waitingCallback();
         }
 
@@ -1263,7 +1263,7 @@ ${math}
         if (citationListTag.hasAttribute("distill-prerendered")) {
           console.debug("Citation list was prerendered; not updating it.");
         } else {
-          const entries = new Map(
+          var entries = new Map(
             frontMatter.citations.map(citationKey => {
               return [citationKey, frontMatter.bibliography.get(citationKey)];
             })
@@ -1273,20 +1273,20 @@ ${math}
       },
 
       onFootnoteChanged() {
-        // const footnote = event.detail;
+        // var footnote = event.detail;
         //TODO: optimize to only update current footnote
-        const footnotesList = document.querySelector("d-footnote-list");
+        var footnotesList = document.querySelector("d-footnote-list");
         if (footnotesList) {
-          const footnotes = document.querySelectorAll("d-footnote");
+          var footnotes = document.querySelectorAll("d-footnote");
           footnotesList.footnotes = footnotes;
         }
       },
 
       onFrontMatterChanged(event) {
-        const data = event.detail;
+        var data = event.detail;
         mergeFromYMLFrontmatter(frontMatter, data);
 
-        const interstitial = document.querySelector("d-interstitial");
+        var interstitial = document.querySelector("d-interstitial");
         if (interstitial) {
           if (typeof frontMatter.password !== "undefined") {
             interstitial.password = frontMatter.password;
@@ -1295,16 +1295,16 @@ ${math}
           }
         }
 
-        const prerendered = document.body.hasAttribute("distill-prerendered");
+        var prerendered = document.body.hasAttribute("distill-prerendered");
         if (!prerendered && domContentLoaded()) {
           optionalComponents(document, frontMatter);
 
-          const appendix = document.querySelector("distill-appendix");
+          var appendix = document.querySelector("distill-appendix");
           if (appendix) {
             appendix.frontMatter = frontMatter;
           }
 
-          const byline = document.querySelector("d-byline");
+          var byline = document.querySelector("d-byline");
           if (byline) {
             byline.frontMatter = frontMatter;
           }
@@ -1333,28 +1333,28 @@ ${math}
           console.debug("Runlevel 4: Controller running DOMContentLoaded");
         }
 
-        const frontMatterTag = document.querySelector("d-front-matter");
+        var frontMatterTag = document.querySelector("d-front-matter");
         if (frontMatterTag) {
-          const data = parseFrontmatter(frontMatterTag);
+          var data = parseFrontmatter(frontMatterTag);
           Controller.listeners.onFrontMatterChanged({ detail: data });
         }
 
         // Resolving "citations" dependency due to initial DOM load
         frontMatter.citations = collect_citations();
         frontMatter.citationsCollected = true;
-        for (const waitingCallback of Controller.waitingOn.citations.slice()) {
+        for (var waitingCallback of Controller.waitingOn.citations.slice()) {
           waitingCallback();
         }
 
         if (frontMatter.bibliographyParsed) {
-          for (const waitingCallback of Controller.waitingOn.bibliography.slice()) {
+          for (var waitingCallback of Controller.waitingOn.bibliography.slice()) {
             waitingCallback();
           }
         }
 
-        const footnotesList = document.querySelector("d-footnote-list");
+        var footnotesList = document.querySelector("d-footnote-list");
         if (footnotesList) {
-          const footnotes = document.querySelectorAll("d-footnote");
+          var footnotes = document.querySelectorAll("d-footnote");
           footnotesList.footnotes = footnotes;
         }
       }
@@ -1375,19 +1375,19 @@ ${math}
 
   // Copyright 2018 The Distill Template Authors
 
-  const styles = base + layout + title + byline + article + math + print;
+  var styles = base + layout + title + byline + article + math + print;
 
   function makeStyleTag(dom) {
 
-    const styleTagId = 'distill-prerendered-styles';
-    const prerenderedTag = dom.getElementById(styleTagId);
+    var styleTagId = 'distill-prerendered-styles';
+    var prerenderedTag = dom.getElementById(styleTagId);
     if (!prerenderedTag) {
-      const styleTag = dom.createElement('style');
+      var styleTag = dom.createElement('style');
       styleTag.id = styleTagId;
       styleTag.type = 'text/css';
-      const cssTextTag = dom.createTextNode(styles);
+      var cssTextTag = dom.createTextNode(styles);
       styleTag.appendChild(cssTextTag);
-      const firstScriptTag = dom.head.querySelector('script');
+      var firstScriptTag = dom.head.querySelector('script');
       dom.head.insertBefore(styleTag, firstScriptTag);
     }
 
@@ -1409,7 +1409,7 @@ ${math}
 
   function addPolyfill(polyfill, polyfillLoadedCallback) {
     console.debug('Runlevel 0: Polyfill required: ' + polyfill.name);
-    const script = document.createElement('script');
+    var script = document.createElement('script');
     script.src = polyfill.url;
     script.async = false;
     if (polyfillLoadedCallback) {
@@ -1421,7 +1421,7 @@ ${math}
     document.head.appendChild(script);
   }
 
-  const polyfills = [
+  var polyfills = [
     {
       name: 'WebComponents',
       support: function() {
@@ -1451,7 +1451,7 @@ ${math}
 
     static load(callback) {
       // Define an intermediate callback that checks if all is loaded.
-      const polyfillLoaded = function(polyfill) {
+      var polyfillLoaded = function(polyfill) {
         polyfill.loaded = true;
         console.debug('Runlevel 0: Polyfill has finished loading: ' + polyfill.name);
         // console.debug(window[polyfill.name]);
@@ -1463,7 +1463,7 @@ ${math}
         }
       };
       // Add polyfill script tags
-      for (const polyfill of Polyfills.neededPolyfills) {
+      for (var polyfill of Polyfills.neededPolyfills) {
         addPolyfill(polyfill, polyfillLoaded);
       }
     }
@@ -1490,18 +1490,18 @@ ${math}
   // See the License for the specific language governing permissions and
   // limitations under the License.
 
-  // const marginSmall = 16;
-  // const marginLarge = 3 * marginSmall;
-  // const margin = marginSmall + marginLarge;
-  // const gutter = marginSmall;
-  // const outsetAmount = margin / 2;
-  // const numCols = 4;
-  // const numGutters = numCols - 1;
-  // const columnWidth = (768 - 2 * marginLarge - numGutters * gutter) / numCols;
+  // var marginSmall = 16;
+  // var marginLarge = 3 * marginSmall;
+  // var margin = marginSmall + marginLarge;
+  // var gutter = marginSmall;
+  // var outsetAmount = margin / 2;
+  // var numCols = 4;
+  // var numGutters = numCols - 1;
+  // var columnWidth = (768 - 2 * marginLarge - numGutters * gutter) / numCols;
   //
-  // const screenwidth = 768;
-  // const pageWidth = screenwidth - 2 * marginLarge;
-  // const bodyWidth = pageWidth - columnWidth - gutter;
+  // var screenwidth = 768;
+  // var pageWidth = screenwidth - 2 * marginLarge;
+  // var bodyWidth = pageWidth - columnWidth - gutter;
 
   function body(selector) {
     return `${selector} {
@@ -1512,7 +1512,7 @@ ${math}
 
   // Copyright 2018 The Distill Template Authors
 
-  const T$1 = Template('d-abstract', `
+  var T$1 = Template('d-abstract', `
 <style>
   :host {
     font-size: 1.25rem;
@@ -1538,7 +1538,7 @@ ${math}
 
   // Copyright 2018 The Distill Template Authors
 
-  const T$2 = Template('d-appendix', `
+  var T$2 = Template('d-appendix', `
 <style>
 
 d-appendix {
@@ -1620,7 +1620,7 @@ d-appendix > distill-appendix {
   // import { Template } from '../mixins/template';
   // import { Controller } from '../controller';
 
-  const isOnlyWhitespace = /^\s*$/;
+  var isOnlyWhitespace = /^\s*$/;
 
   class Article extends HTMLElement {
     static get is() { return 'd-article'; }
@@ -1629,14 +1629,14 @@ d-appendix > distill-appendix {
       super();
 
       new MutationObserver( (mutations) => {
-        for (const mutation of mutations) {
-          for (const addedNode of mutation.addedNodes) {
+        for (var mutation of mutations) {
+          for (var addedNode of mutation.addedNodes) {
             switch (addedNode.nodeName) {
             case '#text': { // usually text nodes are only linebreaks.
-              const text = addedNode.nodeValue;
+              var text = addedNode.nodeValue;
               if (!isOnlyWhitespace.test(text)) {
                 console.warn('Use of unwrapped text in distill articles is discouraged as it breaks layout! Please wrap any text in a <span> or <p> tag. We found the following text: ' + text);
-                const wrapper = document.createElement('span');
+                var wrapper = document.createElement('span');
                 wrapper.innerHTML = addedNode.nodeValue;
                 addedNode.parentNode.insertBefore(wrapper, addedNode);
                 addedNode.parentNode.removeChild(addedNode);
@@ -1965,11 +1965,11 @@ d-appendix > distill-appendix {
   }
 
   function parseBibtex(bibtex) {
-    const bibliography = new Map();
-    const parsedEntries = bibtexParse.toJSON(bibtex);
-    for (const entry of parsedEntries) {
+    var bibliography = new Map();
+    var parsedEntries = bibtexParse.toJSON(bibtex);
+    for (var entry of parsedEntries) {
       // normalize tags; note entryTags is an object, not Map
-      for (const [key, value] of Object.entries(entry.entryTags)) {
+      for (var [key, value] of Object.entries(entry.entryTags)) {
         entry.entryTags[key.toLowerCase()] = normalizeTag(value);
       }
       entry.entryTags.type = entry.entryType;
@@ -2000,9 +2000,9 @@ d-appendix > distill-appendix {
       super();
 
       // set up mutation observer
-      const options = {childList: true, characterData: true, subtree: true};
-      const observer = new MutationObserver( (entries) => {
-        for (const entry of entries) {
+      var options = {childList: true, characterData: true, subtree: true};
+      var observer = new MutationObserver( (entries) => {
+        for (var entry of entries) {
           if (entry.target.nodeName === 'SCRIPT' || entry.type === 'characterData') {
             this.parseIfPossible();
           }
@@ -2018,17 +2018,17 @@ d-appendix > distill-appendix {
     }
 
     parseIfPossible() {
-      const scriptTag = this.querySelector('script');
+      var scriptTag = this.querySelector('script');
       if (!scriptTag) return;
       if (scriptTag.type == 'text/bibtex') {
-        const newBibtex = scriptTag.textContent;
+        var newBibtex = scriptTag.textContent;
         if (this.bibtex !== newBibtex) {
           this.bibtex = newBibtex;
-          const bibliography = parseBibtex(this.bibtex);
+          var bibliography = parseBibtex(this.bibtex);
           this.notify(bibliography);
         }
       } else if (scriptTag.type == 'text/json') {
-        const bibliography = new Map(JSON.parse(scriptTag.textContent));
+        var bibliography = new Map(JSON.parse(scriptTag.textContent));
         this.notify(bibliography);
       } else {
         console.warn('Unsupported bibliography script tag type: ' + scriptTag.type);
@@ -2036,8 +2036,8 @@ d-appendix > distill-appendix {
     }
 
     notify(bibliography) {
-      const options = { detail: bibliography, bubbles: true };
-      const event = new CustomEvent('onBibliographyChanged', options);
+      var options = { detail: bibliography, bubbles: true };
+      var event = new CustomEvent('onBibliographyChanged', options);
       this.dispatchEvent(event);
     }
 
@@ -2048,7 +2048,7 @@ d-appendix > distill-appendix {
     }
 
     receivedBibtex(event) {
-      const bibliography = parseBibtex(event.target.response);
+      var bibliography = parseBibtex(event.target.response);
       this.notify(bibliography);
     }
 
@@ -2121,7 +2121,7 @@ d-appendix > distill-appendix {
 
   // Copyright 2018 The Distill Template Authors
 
-  const T$3 = Template(
+  var T$3 = Template(
     "d-cite",
     `
 <style>
@@ -2207,8 +2207,8 @@ ul li:last-of-type {
     //TODO This causes an infinite loop on firefox with polyfills.
     // This is only needed for interactive editing so no priority.
     // disconnectedCallback() {
-    // const options = { detail: [this, this.keys], bubbles: true };
-    // const event = new CustomEvent('onCiteKeyRemoved', options);
+    // var options = { detail: [this, this.keys], bubbles: true };
+    // var event = new CustomEvent('onCiteKeyRemoved', options);
     // document.dispatchEvent(event);
     // }
 
@@ -2219,10 +2219,10 @@ ul li:last-of-type {
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
-      const eventName = oldValue ? "onCiteKeyChanged" : "onCiteKeyCreated";
-      const keys = newValue.split(",").map(k => k.trim());
-      const options = { detail: [this, keys], bubbles: true };
-      const event = new CustomEvent(eventName, options);
+      var eventName = oldValue ? "onCiteKeyChanged" : "onCiteKeyCreated";
+      var keys = newValue.split(",").map(k => k.trim());
+      var options = { detail: [this, keys], bubbles: true };
+      var event = new CustomEvent(eventName, options);
       document.dispatchEvent(event);
     }
 
@@ -2235,7 +2235,7 @@ ul li:last-of-type {
     }
 
     get keys() {
-      const result = this.key.split(",");
+      var result = this.key.split(",");
       console.log(result);
       return result;
     }
@@ -2253,10 +2253,10 @@ ul li:last-of-type {
 
     displayNumbers(numbers) {
       if (!this.innerSpan) return;
-      const numberStrings = numbers.map(index => {
+      var numberStrings = numbers.map(index => {
         return index == -1 ? "?" : index + 1 + "";
       });
-      const textContent = "[" + numberStrings.join(", ") + "]";
+      var textContent = "[" + numberStrings.join(", ") + "]";
       this.innerSpan.textContent = textContent;
     }
 
@@ -2282,7 +2282,7 @@ ul li:last-of-type {
 
   // Copyright 2018 The Distill Template Authors
 
-  const styles$1 = `
+  var styles$1 = `
 d-citation-list {
   contain: style;
 }
@@ -2303,11 +2303,11 @@ d-citation-list .references .title {
       if (list) {
         list.innerHTML = '';
       } else {
-        const stylesTag = dom.createElement('style');
+        var stylesTag = dom.createElement('style');
         stylesTag.innerHTML = styles$1;
         element.appendChild(stylesTag);
 
-        const heading = dom.createElement('h3');
+        var heading = dom.createElement('h3');
         heading.id = 'references';
         heading.textContent = 'References';
         element.appendChild(heading);
@@ -2318,8 +2318,8 @@ d-citation-list .references .title {
         element.appendChild(list);
       }
 
-      for (const [key, entry] of entries) {
-        const listItem = dom.createElement('li');
+      for (var [key, entry] of entries) {
+        var listItem = dom.createElement('li');
         listItem.id = key;
         listItem.innerHTML = bibliography_cite(entry);
         list.appendChild(listItem);
@@ -4175,7 +4175,7 @@ d-citation-list .references .title {
 
   // Copyright 2018 The Distill Template Authors
 
-  const T$4 = Template('d-code', `
+  var T$4 = Template('d-code', `
 <style>
 
 code {
@@ -4210,24 +4210,24 @@ ${css}
         console.warn('You need to provide a language attribute to your <d-code> block to let us know how to highlight your code; e.g.:\n <d-code language="python">zeros = np.zeros(shape)</d-code>.');
         return;
       }
-      const language = prism.languages[this.languageName];
+      var language = prism.languages[this.languageName];
       if (language == undefined) {
         console.warn(`Distill does not yet support highlighting your code block in "${this.languageName}'.`);
         return;
       }
 
       let content = this.textContent;
-      const codeTag = this.shadowRoot.querySelector('#code-container');
+      var codeTag = this.shadowRoot.querySelector('#code-container');
 
       if (this.hasAttribute('block')) {
         // normalize the tab indents
         content = content.replace(/\n/, '');
-        const tabs = content.match(/\s*/);
+        var tabs = content.match(/\s*/);
         content = content.replace(new RegExp('\n' + tabs, 'g'), '\n');
         content = content.trim();
         // wrap code block in pre tag if needed
         if (codeTag.parentNode instanceof ShadowRoot) {
-          const preTag = document.createElement('pre');
+          var preTag = document.createElement('pre');
           this.shadowRoot.removeChild(codeTag);
           preTag.appendChild(codeTag);
           this.shadowRoot.appendChild(preTag);
@@ -4243,7 +4243,7 @@ ${css}
 
   // Copyright 2018 The Distill Template Authors
 
-  const T$5 = Template('d-footnote', `
+  var T$5 = Template('d-footnote', `
 <style>
 
 d-math[block] {
@@ -4290,20 +4290,20 @@ span {
     constructor() {
       super();
 
-      const options = {childList: true, characterData: true, subtree: true};
-      const observer = new MutationObserver(this.notify);
+      var options = {childList: true, characterData: true, subtree: true};
+      var observer = new MutationObserver(this.notify);
       observer.observe(this, options);
     }
 
     notify() {
-      const options = { detail: this, bubbles: true };
-      const event = new CustomEvent('onFootnoteChanged', options);
+      var options = { detail: this, bubbles: true };
+      var event = new CustomEvent('onFootnoteChanged', options);
       document.dispatchEvent(event);
     }
 
     connectedCallback() {
       // listen and notify about changes to slotted content
-      // const slot = this.shadowRoot.querySelector('#slot');
+      // var slot = this.shadowRoot.querySelector('#slot');
       // console.warn(slot.textContent);
       // slot.addEventListener('slotchange', this.notify);
       this.hoverBox = this.root.querySelector('d-hover-box');
@@ -4312,15 +4312,15 @@ span {
       });
       // create numeric ID
       Footnote.currentFootnoteId += 1;
-      const IdString = Footnote.currentFootnoteId.toString();
+      var IdString = Footnote.currentFootnoteId.toString();
       this.root.host.id = 'd-footnote-' + IdString;
 
       // set up hidden hover box
-      const id = 'dt-fn-hover-box-' + IdString;
+      var id = 'dt-fn-hover-box-' + IdString;
       this.hoverBox.id = id;
 
       // set up visible footnote marker
-      const span = this.root.querySelector('#fn-');
+      var span = this.root.querySelector('#fn-');
       span.setAttribute('id', 'fn-' + IdString);
       span.setAttribute('data-hover-ref', id);
       span.textContent = IdString;
@@ -4332,7 +4332,7 @@ span {
 
   // Copyright 2018 The Distill Template Authors
 
-  const T$6 = Template('d-footnote-list', `
+  var T$6 = Template('d-footnote-list', `
 <style>
 
 d-footnote-list {
@@ -4375,13 +4375,13 @@ d-footnote-list a.footnote-backlink {
         // ensure footnote list is visible
         this.root.style.display = '';
 
-        for (const footnote of footnotes) {
+        for (var footnote of footnotes) {
           // construct and append list item to show footnote
-          const listItem = document.createElement('li');
+          var listItem = document.createElement('li');
           listItem.id = footnote.id + '-listing';
           listItem.innerHTML = footnote.innerHTML;
 
-          const backlink = document.createElement('a');
+          var backlink = document.createElement('a');
           backlink.setAttribute('class', 'footnote-backlink');
           backlink.textContent = '[↩]';
           backlink.href = '#' + footnote.id;
@@ -4399,7 +4399,7 @@ d-footnote-list a.footnote-backlink {
 
   // Copyright 2018 The Distill Template Authors
 
-  const T$7 = Template('d-hover-box', `
+  var T$7 = Template('d-hover-box', `
 <style>
 
 :host {
@@ -4512,7 +4512,7 @@ d-footnote-list a.footnote-backlink {
 
     showAtNode(node) {
       // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
-      const bbox = node.getBoundingClientRect();
+      var bbox = node.getBoundingClientRect();
       this.show([node.offsetLeft + bbox.width, node.offsetTop + bbox.height]);
     }
 
@@ -4557,7 +4557,7 @@ d-footnote-list a.footnote-backlink {
 
   // Copyright 2018 The Distill Template Authors
 
-  const T$8 = Template('d-references', `
+  var T$8 = Template('d-references', `
 <style>
 d-references {
   display: block;
@@ -4590,8 +4590,8 @@ d-references {
     connectedCallback() {
       if (!this.getAttribute('prerendered')) {
         window.onload = () => {
-          const article = document.querySelector('d-article');
-          const headings = article.querySelectorAll('h2, h3');
+          var article = document.querySelector('d-article');
+          var headings = article.querySelectorAll('h2, h3');
           renderTOC(this, headings);
         };
       }
@@ -4627,14 +4627,14 @@ d-references {
   <h2>Table of contents</h2>
   <ul>`;
 
-    for (const el of headings) {
+    for (var el of headings) {
       // should element be included in TOC?
-      const isInTitle = el.parentElement.tagName == 'D-TITLE';
-      const isException = el.getAttribute('no-toc');
+      var isInTitle = el.parentElement.tagName == 'D-TITLE';
+      var isException = el.getAttribute('no-toc');
       if (isInTitle || isException) continue;
       // create TOC entry
-      const title = el.textContent;
-      const link = '#' + el.getAttribute('id');
+      var title = el.textContent;
+      var link = '#' + el.getAttribute('id');
 
       let newLine = '<li>' + '<a href="' + link + '">' + title + '</a>' + '</li>';
       if (el.tagName == 'H3') {
@@ -4701,7 +4701,7 @@ d-references {
       // console.log("Checking to run readyQueue, length: " + Figure.readyQueue.length + ", scrolling: " + Figure.isScrolling);
       // if (Figure.isScrolling) return;
       // console.log("Running ready Queue");
-      const figure = Figure.readyQueue
+      var figure = Figure.readyQueue
         .sort((a,b) => a._seenOnScreen - b._seenOnScreen )
         .filter((figure) => !figure._ready)
         .pop();
@@ -4740,19 +4740,19 @@ d-references {
         // if (!('IntersectionObserver' in window)) {
         //   throw new Error('no interscetionobbserver!');
         // }
-        const viewportHeight = window.innerHeight;
-        const margin = Math.floor(2 * viewportHeight);
-        const options = {rootMargin: margin + 'px 0px ' + margin + 'px 0px', threshold: 0.01};
-        const callback = Figure.didObserveMarginIntersection;
-        const observer = new IntersectionObserver(callback, options);
+        var viewportHeight = window.innerHeight;
+        var margin = Math.floor(2 * viewportHeight);
+        var options = {rootMargin: margin + 'px 0px ' + margin + 'px 0px', threshold: 0.01};
+        var callback = Figure.didObserveMarginIntersection;
+        var observer = new IntersectionObserver(callback, options);
         Figure._marginObserver = observer;
       }
       return Figure._marginObserver;
     }
 
     static didObserveMarginIntersection(entries) {
-      for (const entry of entries) {
-        const figure = entry.target;
+      for (var entry of entries) {
+        var figure = entry.target;
         if (entry.isIntersecting && !figure._ready) {
           Figure.addToReadyQueue(figure);
         }
@@ -4771,8 +4771,8 @@ d-references {
     }
 
     static didObserveDirectIntersection(entries) {
-      for (const entry of entries) {
-        const figure = entry.target;
+      for (var entry of entries) {
+        var figure = entry.target;
         if (entry.isIntersecting) {
           figure._seenOnScreen = new Date();
           // if (!figure._ready) { figure.ready(); }
@@ -4806,21 +4806,21 @@ d-references {
       // debugger
       this._ready = true;
       Figure.marginObserver.unobserve(this);
-      const event = new CustomEvent('ready');
+      var event = new CustomEvent('ready');
       this.dispatchEvent(event);
     }
 
     onscreen() {
       this._onscreen = true;
       this._offscreen = false;
-      const event = new CustomEvent('onscreen');
+      var event = new CustomEvent('onscreen');
       this.dispatchEvent(event);
     }
 
     offscreen() {
       this._onscreen = false;
       this._offscreen = true;
-      const event = new CustomEvent('offscreen');
+      var event = new CustomEvent('offscreen');
       this.dispatchEvent(event);
     }
 
@@ -4830,7 +4830,7 @@ d-references {
 
     Figure.isScrolling = false;
     let timeout;
-    const resetTimer = () => {
+    var resetTimer = () => {
       Figure.isScrolling = true;
       clearTimeout(timeout);
       timeout = setTimeout(() => {
@@ -4847,8 +4847,8 @@ d-references {
   // This overlay is not secure.
   // It is only meant as a social deterrent.
 
-  const productionHostname = 'distill.pub';
-  const T$9 = Template('d-interstitial', `
+  var productionHostname = 'distill.pub';
+  var T$9 = Template('d-interstitial', `
 <style>
 
 .overlay {
@@ -4957,13 +4957,13 @@ p small {
       if (this.shouldRemoveSelf()) {
         this.parentElement.removeChild(this);
       } else {
-        const passwordInput = this.root.querySelector('#interstitial-password-input');
+        var passwordInput = this.root.querySelector('#interstitial-password-input');
         passwordInput.oninput = (event) => this.passwordChanged(event);
       }
     }
 
     passwordChanged(event) {
-      const entered = event.target.value;
+      var entered = event.target.value;
       if (entered === this.password) {
         console.log('Correct password entered.');
         this.parentElement.removeChild(this);
@@ -4992,8 +4992,8 @@ p small {
     }
 
     localStorageIdentifier() {
-      const prefix = 'distill-drafts';
-      const suffix = 'interstitial-password-correct';
+      var prefix = 'distill-drafts';
+      var suffix = 'interstitial-password-correct';
       return prefix + (window ? window.location.pathname : '-') + suffix
     }
 
@@ -8601,7 +8601,7 @@ p small {
 
   // Copyright 2018 The Distill Template Authors
 
-  const T$a = Template('d-slider', `
+  var T$a = Template('d-slider', `
 <style>
   :host {
     position: relative;
@@ -8702,7 +8702,7 @@ p small {
   // If the slider has a visible label, it is referenced by aria-labelledby on the slider element. Otherwise, the slider element has a label provided by aria-label.
   // If the slider is vertically oriented, it has aria-orientation set to vertical. The default value of aria-orientation for a slider is horizontal.
 
-  const keyCodes = {
+  var keyCodes = {
     left: 37,
     up: 38,
     right: 39,
@@ -8853,9 +8853,9 @@ p small {
     }
 
     dragUpdate() {
-      const bbox = this.background.getBoundingClientRect();
-      const x = event.x;
-      const width = bbox.width;
+      var bbox = this.background.getBoundingClientRect();
+      var x = event.x;
+      var width = bbox.width;
       this.update(this.scale.invert(x / width));
     }
 
@@ -8879,18 +8879,18 @@ p small {
 
     // Dispatches only on a committed change (basically only on mouseup).
     dispatchChange() {
-      const e = new Event('change');
+      var e = new Event('change');
       this.dispatchEvent(e, {});
     }
 
     // Dispatches on each value change.
     dispatchInput() {
-      const e = new Event('input');
+      var e = new Event('input');
       this.dispatchEvent(e, {});
     }
 
     renderTicks() {
-      const ticksContainer = this.root.querySelector('.ticks');
+      var ticksContainer = this.root.querySelector('.ticks');
       if (this.ticks !== false) {
         let tickData = [];
         if (this.ticks > 0) {
@@ -8901,7 +8901,7 @@ p small {
           tickData = range(this.min, this.max + 1e-6, this.step);
         }
         tickData.forEach(d => {
-          const tick = document.createElement('div');
+          var tick = document.createElement('div');
           tick.classList.add('tick');
           tick.style.left = this.scale(d) * 100 + '%';
           ticksContainer.appendChild(tick);
@@ -8914,7 +8914,7 @@ p small {
 
   var logo = "<svg viewBox=\"-607 419 64 64\">\n  <path d=\"M-573.4,478.9c-8,0-14.6-6.4-14.6-14.5s14.6-25.9,14.6-40.8c0,14.9,14.6,32.8,14.6,40.8S-565.4,478.9-573.4,478.9z\"/>\n</svg>\n";
 
-  const headerTemplate = `
+  var headerTemplate = `
 <style>
 distill-header {
   position: relative;
@@ -8994,7 +8994,7 @@ distill-header .nav a {
 
   // Copyright 2018 The Distill Template Authors
 
-  const T$b = Template('distill-header', headerTemplate, false);
+  var T$b = Template('distill-header', headerTemplate, false);
 
   class DistillHeader extends T$b(HTMLElement) {
 
@@ -9002,7 +9002,7 @@ distill-header .nav a {
 
   // Copyright 2018 The Distill Template Authors
 
-  const styles$2 = `
+  var styles$2 = `
 <style>
   distill-appendix {
     contain: layout style;
@@ -9045,7 +9045,7 @@ distill-header .nav a {
     `;
     }
 
-    const journal = frontMatter.journal;
+    var journal = frontMatter.journal;
     if (typeof journal !== 'undefined' && journal.title === 'Distill') {
       html += `
     <h3 id="reuse">Reuse</h3>
@@ -9076,7 +9076,7 @@ distill-header .nav a {
 
   }
 
-  const footerTemplate = `
+  var footerTemplate = `
 <style>
 
 :host {
@@ -9151,7 +9151,7 @@ distill-header .nav a {
 
   // Copyright 2018 The Distill Template Authors
 
-  const T$c = Template('distill-footer', footerTemplate);
+  var T$c = Template('distill-footer', footerTemplate);
 
   class DistillFooter extends T$c(HTMLElement) {
 
@@ -9161,7 +9161,7 @@ distill-header .nav a {
 
   let templateIsLoading = false;
   let runlevel = 0;
-  const initialize = function() {
+  var initialize = function() {
     if (window.distill.runlevel < 1) {
       throw new Error("Insufficient Runlevel for Distill Template!");
     }
@@ -9184,7 +9184,7 @@ distill-header .nav a {
 
     /* 3. Register Controller listener functions */
     /* Needs to happen before components to their connected callbacks have a controller to talk to. */
-    for (const [functionName, callback] of Object.entries(Controller.listeners)) {
+    for (var [functionName, callback] of Object.entries(Controller.listeners)) {
       if (typeof callback === "function") {
         document.addEventListener(functionName, callback);
       } else {
@@ -9196,19 +9196,19 @@ distill-header .nav a {
     window.distill.runlevel += 1;
 
     /* 4. Register components */
-    const components = [
+    var components = [
       Abstract, Appendix, Article, Bibliography, Byline, Cite, CitationList, Code,
       Footnote, FootnoteList, FrontMatter$1, HoverBox, Title, DMath, References, TOC, Figure,
       Slider, Interstitial
     ];
 
-    const distillComponents = [DistillHeader, DistillAppendix, DistillFooter];
+    var distillComponents = [DistillHeader, DistillAppendix, DistillFooter];
 
     if (window.distill.runlevel < 2) {
       throw new Error("Insufficient Runlevel for adding custom elements!");
     }
-    const allComponents = components.concat(distillComponents);
-    for (const component of allComponents) {
+    var allComponents = components.concat(distillComponents);
+    for (var component of allComponents) {
       console.debug("Runlevel 2: Registering custom element: " + component.is);
       customElements.define(component.is, component);
     }

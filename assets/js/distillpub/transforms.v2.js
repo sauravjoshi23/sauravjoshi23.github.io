@@ -20,30 +20,30 @@
   // See the License for the specific language governing permissions and
   // limitations under the License.
 
-  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  const months = ['Jan.', 'Feb.', 'March', 'April', 'May', 'June', 'July', 'Aug.', 'Sept.', 'Oct.', 'Nov.', 'Dec.'];
-  const zeroPad = n => n < 10 ? '0' + n : n;
+  var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  var months = ['Jan.', 'Feb.', 'March', 'April', 'May', 'June', 'July', 'Aug.', 'Sept.', 'Oct.', 'Nov.', 'Dec.'];
+  var zeroPad = n => n < 10 ? '0' + n : n;
 
-  const RFC = function(date) {
-    const day = days[date.getDay()].substring(0, 3);
-    const paddedDate = zeroPad(date.getDate());
-    const month = months[date.getMonth()].substring(0,3);
-    const year = date.getFullYear().toString();
-    const hours = date.getUTCHours().toString();
-    const minutes = date.getUTCMinutes().toString();
-    const seconds = date.getUTCSeconds().toString();
+  var RFC = function(date) {
+    var day = days[date.getDay()].substring(0, 3);
+    var paddedDate = zeroPad(date.getDate());
+    var month = months[date.getMonth()].substring(0,3);
+    var year = date.getFullYear().toString();
+    var hours = date.getUTCHours().toString();
+    var minutes = date.getUTCMinutes().toString();
+    var seconds = date.getUTCSeconds().toString();
     return `${day}, ${paddedDate} ${month} ${year} ${hours}:${minutes}:${seconds} Z`;
   };
 
-  const objectFromMap = function(map) {
-    const object = Array.from(map).reduce((object, [key, value]) => (
+  var objectFromMap = function(map) {
+    var object = Array.from(map).reduce((object, [key, value]) => (
       Object.assign(object, { [key]: value }) // Be careful! Maps can have non-String keys; object literals can't.
     ), {});
     return object;
   };
 
-  const mapFromObject = function(object) {
-    const map = new Map();
+  var mapFromObject = function(object) {
+    var map = new Map();
     for (var property in object) {
       if (object.hasOwnProperty(property)) {
         map.set(property, object[property]);
@@ -71,13 +71,13 @@
 
     // 'Chris'
     get firstName() {
-      const names = this.name.split(' ');
+      var names = this.name.split(' ');
       return names.slice(0, names.length - 1).join(' ');
     }
 
     // 'Olah'
     get lastName() {
-      const names = this.name.split(' ');
+      var names = this.name.split(' ');
       return names[names.length -1];
     }
   }
@@ -261,7 +261,7 @@
     }
 
     get volume() {
-      const volume = this.publishedYear - 2015;
+      var volume = this.publishedYear - 2015;
       if (volume < 1) {
         throw new Error('Invalid publish date detected during computing volume');
       }
@@ -303,7 +303,7 @@
 
     get bibliographyEntries() {
       return new Map(this.citations.map( citationKey => {
-        const entry = this.bibliography.get(citationKey);
+        var entry = this.bibliography.get(citationKey);
         return [citationKey, entry];
       }));
     }
@@ -321,7 +321,7 @@
     }
 
     static fromObject(source) {
-      const frontMatter = new FrontMatter();
+      var frontMatter = new FrontMatter();
       Object.assign(frontMatter, source);
       return frontMatter;
     }
@@ -372,8 +372,8 @@
     // We now encourage using an array for affiliations containing objects with
     // properties "name" and "url".
     for (let author of frontMatter.authors) {
-      const hasOldStyle = Boolean(author.affiliation);
-      const hasNewStyle = Boolean(author.affiliations);
+      var hasOldStyle = Boolean(author.affiliation);
+      var hasNewStyle = Boolean(author.affiliations);
       if (!hasOldStyle) continue;
       if (hasNewStyle) {
         console.warn(`Author ${author.author} has both old-style ("affiliation" & "affiliationURL") and new style ("affiliations") affiliation information!`);
@@ -389,12 +389,12 @@
   }
 
   function parseFrontmatter(element) {
-    const scriptTag = element.firstElementChild;
+    var scriptTag = element.firstElementChild;
     if (scriptTag) {
-      const type = scriptTag.getAttribute('type');
+      var type = scriptTag.getAttribute('type');
       if (type.split('/')[1] == 'json') {
-        const content = scriptTag.textContent;
-        const parsed = JSON.parse(content);
+        var content = scriptTag.textContent;
+        var parsed = JSON.parse(content);
         return _moveLegacyAffiliationFormatIntoArray(parsed);
       } else {
         console.error('Distill only supports JSON frontmatter tags anymore; no more YAML.');
@@ -408,12 +408,12 @@
   // Copyright 2018 The Distill Template Authors
 
   function ExtractFrontmatter(dom, data) {
-    const frontMatterTag = dom.querySelector('d-front-matter');
+    var frontMatterTag = dom.querySelector('d-front-matter');
     if (!frontMatterTag) {
       console.warn('No front matter tag found!');
       return;
     }
-    const extractedData = parseFrontmatter(frontMatterTag);
+    var extractedData = parseFrontmatter(frontMatterTag);
     mergeFromYMLFrontmatter(data, extractedData);
   }
 
@@ -738,11 +738,11 @@
   }
 
   function parseBibtex(bibtex) {
-    const bibliography = new Map();
-    const parsedEntries = bibtexParse.toJSON(bibtex);
-    for (const entry of parsedEntries) {
+    var bibliography = new Map();
+    var parsedEntries = bibtexParse.toJSON(bibtex);
+    for (var entry of parsedEntries) {
       // normalize tags; note entryTags is an object, not Map
-      for (const [key, value] of Object.entries(entry.entryTags)) {
+      for (var [key, value] of Object.entries(entry.entryTags)) {
         entry.entryTags[key.toLowerCase()] = normalizeTag(value);
       }
       entry.entryTags.type = entry.entryType;
@@ -766,10 +766,10 @@
   // Copyright 2018 The Distill Template Authors
 
   function parseBibliography(element) {
-    const scriptTag = element.firstElementChild;
+    var scriptTag = element.firstElementChild;
     if (scriptTag && scriptTag.tagName === 'SCRIPT') {
       if (scriptTag.type == 'text/bibtex') {
-        const bibtex = element.firstElementChild.textContent;
+        var bibtex = element.firstElementChild.textContent;
         return parseBibtex(bibtex);
       } else if (scriptTag.type == 'text/json') {
         return new Map(JSON.parse(scriptTag.textContent));
@@ -784,18 +784,18 @@
   // Copyright 2018 The Distill Template Authors
 
   function ExtractBibliography(dom, data) {
-    const bibliographyTag = dom.querySelector('d-bibliography');
+    var bibliographyTag = dom.querySelector('d-bibliography');
     if (!bibliographyTag) {
       console.warn('No bibliography tag found!');
       return;
     }
 
-    const src = bibliographyTag.getAttribute('src');
+    var src = bibliographyTag.getAttribute('src');
     if (src) {
-      const path = data.inputDirectory + '/' + src;
-      const text = fs.readFileSync(path, 'utf-8');
-      const bibliography = parseBibtex(text);
-      const scriptTag = dom.createElement('script');
+      var path = data.inputDirectory + '/' + src;
+      var text = fs.readFileSync(path, 'utf-8');
+      var bibliography = parseBibtex(text);
+      var scriptTag = dom.createElement('script');
       scriptTag.type = 'text/json';
       scriptTag.textContent = JSON.stringify([...bibliography]);
       bibliographyTag.appendChild(scriptTag);
@@ -820,12 +820,12 @@
   // limitations under the License.
 
   function collect_citations(dom = document) {
-    const citations = new Set();
-    const citeTags = dom.querySelectorAll("d-cite");
-    for (const tag of citeTags) {
-      const keyString = tag.getAttribute("key") || tag.getAttribute("bibtex-key");
-      const keys = keyString.split(",").map(k => k.trim());
-      for (const key of keys) {
+    var citations = new Set();
+    var citeTags = dom.querySelectorAll("d-cite");
+    for (var tag of citeTags) {
+      var keyString = tag.getAttribute("key") || tag.getAttribute("bibtex-key");
+      var keys = keyString.split(",").map(k => k.trim());
+      for (var key of keys) {
         citations.add(key);
       }
     }
@@ -966,9 +966,9 @@
   // Copyright 2018 The Distill Template Authors
 
   function ExtractCitations(dom, data) {
-    const citations = new Set(data.citations);
-    const newCitations = collect_citations(dom);
-    for (const citation of newCitations) {
+    var citations = new Set(data.citations);
+    var newCitations = collect_citations(dom);
+    for (var citation of newCitations) {
       citations.add(citation);
     }
     data.citations = Array.from(citations);
@@ -990,7 +990,7 @@
 
   function HTML(dom) {
 
-    const head = dom.querySelector('head');
+    var head = dom.querySelector('head');
 
     // set language to 'en'
     if (!dom.querySelector('html').getAttribute('lang')) {
@@ -999,14 +999,14 @@
 
     // set charset to 'utf-8'
     if (!dom.querySelector('meta[charset]')) {
-      const meta = dom.createElement('meta');
+      var meta = dom.createElement('meta');
       meta.setAttribute('charset', 'utf-8');
       head.appendChild(meta);
     }
 
     // set viewport
     if (!dom.querySelector('meta[name=viewport]')) {
-      const meta = dom.createElement('meta');
+      var meta = dom.createElement('meta');
       meta.setAttribute('name', 'viewport');
       meta.setAttribute('content', 'width=device-width, initial-scale=1');
       head.appendChild(meta);
@@ -1061,7 +1061,7 @@
   // Copyright 2018 The Distill Template Authors
 
   function Byline(dom, data) {
-    const byline = dom.querySelector('d-byline');
+    var byline = dom.querySelector('d-byline');
     if (byline) {
       byline.innerHTML = bylineTemplate(data);
     }
@@ -1091,8 +1091,8 @@
   // if authors, no byline -> add byline
 
   function OptionalComponents(dom, data) {
-    const body = dom.body;
-    const article = body.querySelector('d-article');
+    var body = dom.body;
+    var article = body.querySelector('d-article');
 
     // If we don't have an article tag, something weird is going on—giving up.
     if (!article) {
@@ -1123,11 +1123,11 @@
       title.insertBefore(h1, title.firstChild);
     }
 
-    const hasPassword = typeof data.password !== 'undefined';
+    var hasPassword = typeof data.password !== 'undefined';
     let interstitial = body.querySelector('d-interstitial');
     if (hasPassword && !interstitial) {
-      const inBrowser = typeof window !== 'undefined';
-      const onLocalhost = inBrowser && window.location.hostname.includes('localhost');
+      var inBrowser = typeof window !== 'undefined';
+      var onLocalhost = inBrowser && window.location.hostname.includes('localhost');
       if (!inBrowser || !onLocalhost) {
         interstitial = dom.createElement('d-interstitial');
         interstitial.password = data.password;
@@ -11936,16 +11936,16 @@
 
   /*global katex */
 
-  const findEndOfMath = function(delimiter, text, startIndex) {
+  var findEndOfMath = function(delimiter, text, startIndex) {
     // Adapted from
     // https://github.com/Khan/perseus/blob/master/src/perseus-markdown.jsx
     let index = startIndex;
     let braceLevel = 0;
 
-    const delimLength = delimiter.length;
+    var delimLength = delimiter.length;
 
     while (index < text.length) {
-      const character = text[index];
+      var character = text[index];
 
       if (
         braceLevel <= 0 &&
@@ -11966,12 +11966,12 @@
     return -1;
   };
 
-  const splitAtDelimiters = function(startData, leftDelim, rightDelim, display) {
-    const finalData = [];
+  var splitAtDelimiters = function(startData, leftDelim, rightDelim, display) {
+    var finalData = [];
 
     for (let i = 0; i < startData.length; i++) {
       if (startData[i].type === "text") {
-        const text = startData[i].data;
+        var text = startData[i].data;
 
         let lookingForLeft = true;
         let currIndex = 0;
@@ -12036,10 +12036,10 @@
     return finalData;
   };
 
-  const splitWithDelimiters = function(text, delimiters) {
+  var splitWithDelimiters = function(text, delimiters) {
     let data = [{ type: "text", data: text }];
     for (let i = 0; i < delimiters.length; i++) {
-      const delimiter = delimiters[i];
+      var delimiter = delimiters[i];
       data = splitAtDelimiters(
         data,
         delimiter.left,
@@ -12053,16 +12053,16 @@
   /* Note: optionsCopy is mutated by this method. If it is ever exposed in the
    * API, we should copy it before mutating.
    */
-  const renderMathInText = function(text, optionsCopy) {
-    const data = splitWithDelimiters(text, optionsCopy.delimiters);
-    const fragment = document.createDocumentFragment();
+  var renderMathInText = function(text, optionsCopy) {
+    var data = splitWithDelimiters(text, optionsCopy.delimiters);
+    var fragment = document.createDocumentFragment();
 
     for (let i = 0; i < data.length; i++) {
       if (data[i].type === "text") {
         fragment.appendChild(document.createTextNode(data[i].data));
       } else {
-        const tag = document.createElement("d-math");
-        const math = data[i].data;
+        var tag = document.createElement("d-math");
+        var math = data[i].data;
         // Override any display mode defined in the settings with that
         // defined by the text itself
         optionsCopy.displayMode = data[i].display;
@@ -12089,20 +12089,20 @@
     return fragment;
   };
 
-  const renderElem = function(elem, optionsCopy) {
+  var renderElem = function(elem, optionsCopy) {
     for (let i = 0; i < elem.childNodes.length; i++) {
-      const childNode = elem.childNodes[i];
+      var childNode = elem.childNodes[i];
       if (childNode.nodeType === 3) {
         // Text node
-        const text = childNode.textContent;
+        var text = childNode.textContent;
         if (optionsCopy.mightHaveMath(text)) {
-          const frag = renderMathInText(text, optionsCopy);
+          var frag = renderMathInText(text, optionsCopy);
           i += frag.childNodes.length - 1;
           elem.replaceChild(frag, childNode);
         }
       } else if (childNode.nodeType === 1) {
         // Element node
-        const shouldRender =
+        var shouldRender =
           optionsCopy.ignoredTags.indexOf(childNode.nodeName.toLowerCase()) ===
           -1;
 
@@ -12114,7 +12114,7 @@
     }
   };
 
-  const defaultAutoRenderOptions = {
+  var defaultAutoRenderOptions = {
     delimiters: [
       { left: "$$", right: "$$", display: true },
       { left: "\\[", right: "\\]", display: true },
@@ -12138,17 +12138,17 @@
     }
   };
 
-  const renderMathInElement = function(elem, options) {
+  var renderMathInElement = function(elem, options) {
     if (!elem) {
       throw new Error("No element provided to render");
     }
 
-    const optionsCopy = Object.assign({}, defaultAutoRenderOptions, options);
-    const delimiterStrings = optionsCopy.delimiters.flatMap(d => [
+    var optionsCopy = Object.assign({}, defaultAutoRenderOptions, options);
+    var delimiterStrings = optionsCopy.delimiters.flatMap(d => [
       d.left,
       d.right
     ]);
-    const mightHaveMath = text =>
+    var mightHaveMath = text =>
       delimiterStrings.some(d => text.indexOf(d) !== -1);
     optionsCopy.mightHaveMath = mightHaveMath;
     renderElem(elem, optionsCopy);
@@ -12158,7 +12158,7 @@
 
   function Mathematics(dom, data) {
     let needsCSS = false;
-    const body = dom.querySelector('body');
+    var body = dom.querySelector('body');
 
     if (!body) {
       console.warn("No body tag found!");
@@ -12171,15 +12171,15 @@
     }
 
     // render d-math tags
-    const mathTags = body.querySelectorAll('d-math');
+    var mathTags = body.querySelectorAll('d-math');
     if (mathTags.length > 0) {
       needsCSS = true;
       console.warn(`Prerendering ${mathTags.length} math tags...`);
-      for (const mathTag of mathTags) {
-        const localOptions = { displayMode: mathTag.hasAttribute('block') };
-        const options = Object.assign(localOptions, data.katex);
-        const html = katex$2.renderToString(mathTag.textContent, options);
-        const container = dom.createElement('span');
+      for (var mathTag of mathTags) {
+        var localOptions = { displayMode: mathTag.hasAttribute('block') };
+        var options = Object.assign(localOptions, data.katex);
+        var html = katex$2.renderToString(mathTag.textContent, options);
+        var container = dom.createElement('span');
         container.innerHTML = html;
         mathTag.parentElement.insertBefore(container, mathTag);
         mathTag.parentElement.removeChild(mathTag);
@@ -12187,7 +12187,7 @@
     }
 
     if (needsCSS) {
-      const katexCSSTag = '<link rel="stylesheet" href="https://distill.pub/third-party/katex/katex.min.css" crossorigin="anonymous">';
+      var katexCSSTag = '<link rel="stylesheet" href="https://distill.pub/third-party/katex/katex.min.css" crossorigin="anonymous">';
       dom.head.insertAdjacentHTML('beforeend', katexCSSTag);
     }
 
@@ -12379,7 +12379,7 @@
     if (data.citations) {
       data.citations.forEach(key => {
         if (data.bibliography && data.bibliography.has(key)) {
-          const entry = data.bibliography.get(key);
+          var entry = data.bibliography.get(key);
           meta('citation_reference', citation_meta_content(entry) );
         } else {
           console.warn('No bibliography data found for ' + key);
@@ -12452,19 +12452,19 @@
 
   // Copyright 2018 The Distill Template Authors
 
-  const styles = base + layout + title + byline + article + math + print;
+  var styles = base + layout + title + byline + article + math + print;
 
   function makeStyleTag(dom) {
 
-    const styleTagId = 'distill-prerendered-styles';
-    const prerenderedTag = dom.getElementById(styleTagId);
+    var styleTagId = 'distill-prerendered-styles';
+    var prerenderedTag = dom.getElementById(styleTagId);
     if (!prerenderedTag) {
-      const styleTag = dom.createElement('style');
+      var styleTag = dom.createElement('style');
       styleTag.id = styleTagId;
       styleTag.type = 'text/css';
-      const cssTextTag = dom.createTextNode(styles);
+      var cssTextTag = dom.createTextNode(styles);
       styleTag.appendChild(cssTextTag);
-      const firstScriptTag = dom.head.querySelector('script');
+      var firstScriptTag = dom.head.querySelector('script');
       dom.head.insertBefore(styleTag, firstScriptTag);
     }
 
@@ -12500,14 +12500,14 @@
   <h2>Table of contents</h2>
   <ul>`;
 
-    for (const el of headings) {
+    for (var el of headings) {
       // should element be included in TOC?
-      const isInTitle = el.parentElement.tagName == 'D-TITLE';
-      const isException = el.getAttribute('no-toc');
+      var isInTitle = el.parentElement.tagName == 'D-TITLE';
+      var isException = el.getAttribute('no-toc');
       if (isInTitle || isException) continue;
       // create TOC entry
-      const title = el.textContent;
-      const link = '#' + el.getAttribute('id');
+      var title = el.textContent;
+      var link = '#' + el.getAttribute('id');
 
       let newLine = '<li>' + '<a href="' + link + '">' + title + '</a>' + '</li>';
       if (el.tagName == 'H3') {
@@ -12526,10 +12526,10 @@
   // Copyright 2018 The Distill Template Authors
 
   function TOC(dom) {
-    const article = dom.querySelector('d-article');
-    const toc = dom.querySelector('d-toc');
+    var article = dom.querySelector('d-article');
+    var toc = dom.querySelector('d-toc');
     if (toc) {
-      const headings = article.querySelectorAll('h2, h3');
+      var headings = article.querySelectorAll('h2, h3');
       renderTOC(toc, headings);
       toc.setAttribute('prerendered', 'true');
     }
@@ -12651,7 +12651,7 @@
 
   // Copyright 2018 The Distill Template Authors
 
-  // const template = `
+  // var template = `
   // if ('IntersectionObserver' in window &&
   //   'IntersectionObserverEntry' in window &&
   //   'intersectionRatio' in IntersectionObserverEntry.prototype) {
@@ -12666,7 +12666,7 @@
   //     }
   // } else {
   //   // Platform does not support webcomponents--loading polyfills synchronously.
-  //   const scriptTag = document.createElement('script');
+  //   var scriptTag = document.createElement('script');
   //   scriptTag.src = '${intersectionObserverPath}';
   //   scriptTag.async = false;
   //   document.currentScript.parentNode.insertBefore(scriptTag, document.currentScript.nextSibling);
@@ -12678,7 +12678,7 @@
   //   // Platform supports webcomponents natively! :-)
   // } else {
   //   // Platform does not support webcomponents--loading polyfills synchronously.
-  //   const scriptTag = document.createElement('script');
+  //   var scriptTag = document.createElement('script');
   //   scriptTag.src = '${webcomponentPath}';
   //   scriptTag.async = false;
   //   document.currentScript.parentNode.insertBefore(scriptTag, document.currentScript.nextSibling);
@@ -12688,10 +12688,10 @@
   // `;
 
 
-  const addBackIn = `
+  var addBackIn = `
 window.addEventListener('WebComponentsReady', function() {
   console.warn('WebComponentsReady');
-  const loaderTag = document.createElement('script');
+  var loaderTag = document.createElement('script');
   loaderTag.src = 'https://distill.pub/template.v2.js';
   document.head.insertBefore(loaderTag, document.head.firstChild);
 });
@@ -12699,7 +12699,7 @@ window.addEventListener('WebComponentsReady', function() {
 
   function render(dom) {
     // pull out template script tag
-    const templateTag = dom.querySelector('script[src*="template.v2.js"]');
+    var templateTag = dom.querySelector('script[src*="template.v2.js"]');
     if (templateTag) {
       templateTag.parentNode.removeChild(templateTag);
     } else {
@@ -12707,29 +12707,29 @@ window.addEventListener('WebComponentsReady', function() {
     }
 
     // add loader
-    const loaderTag = dom.createElement('script');
+    var loaderTag = dom.createElement('script');
     loaderTag.src = 'https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.17/webcomponents-loader.js';
     dom.head.insertBefore(loaderTag, dom.head.firstChild);
 
     // add loader event listener to add tempalrte back in
-    const addTag = dom.createElement('script');
+    var addTag = dom.createElement('script');
     addTag.innerHTML = addBackIn;
     dom.head.insertBefore(addTag, dom.head.firstChild);
 
 
     // create polyfill script tag
-    // const polyfillScriptTag = dom.createElement('script');
+    // var polyfillScriptTag = dom.createElement('script');
     // polyfillScriptTag.innerHTML = template;
     // polyfillScriptTag.id = 'polyfills';
 
     // insert at appropriate position--before any other script tag
-    // const firstScriptTag = dom.head.querySelector('script');
+    // var firstScriptTag = dom.head.querySelector('script');
     // dom.head.insertBefore(polyfillScriptTag, firstScriptTag);
   }
 
   // Copyright 2018 The Distill Template Authors
 
-  const styles$1 = `
+  var styles$1 = `
 d-citation-list {
   contain: style;
 }
@@ -12750,11 +12750,11 @@ d-citation-list .references .title {
       if (list) {
         list.innerHTML = '';
       } else {
-        const stylesTag = dom.createElement('style');
+        var stylesTag = dom.createElement('style');
         stylesTag.innerHTML = styles$1;
         element.appendChild(stylesTag);
 
-        const heading = dom.createElement('h3');
+        var heading = dom.createElement('h3');
         heading.id = 'references';
         heading.textContent = 'References';
         element.appendChild(heading);
@@ -12765,8 +12765,8 @@ d-citation-list .references .title {
         element.appendChild(list);
       }
 
-      for (const [key, entry] of entries) {
-        const listItem = dom.createElement('li');
+      for (var [key, entry] of entries) {
+        var listItem = dom.createElement('li');
         listItem.id = key;
         listItem.innerHTML = bibliography_cite(entry);
         list.appendChild(listItem);
@@ -12779,9 +12779,9 @@ d-citation-list .references .title {
   // Copyright 2018 The Distill Template Authors
 
   function CitationList(dom, data) {
-    const citationListTag = dom.querySelector('d-citation-list');
+    var citationListTag = dom.querySelector('d-citation-list');
     if (citationListTag) {
-      const entries = new Map(data.citations.map( citationKey => {
+      var entries = new Map(data.citations.map( citationKey => {
         return [citationKey, data.bibliography.get(citationKey)];
       }));
       renderCitationList(citationListTag, entries, dom);
@@ -12809,21 +12809,21 @@ d-citation-list .references .title {
   */
 
   function render$1(dom) {
-    const head = dom.head;
+    var head = dom.head;
 
-    const metaIE = head.querySelector('meta[http-equiv]');
+    var metaIE = head.querySelector('meta[http-equiv]');
     head.insertBefore(metaIE, head.firstChild);
 
-    const metaViewport = head.querySelector('meta[name=viewport]');
+    var metaViewport = head.querySelector('meta[name=viewport]');
     head.insertBefore(metaViewport, head.firstChild);
 
-    const metaCharset = head.querySelector('meta[charset]');
+    var metaCharset = head.querySelector('meta[charset]');
     head.insertBefore(metaCharset, head.firstChild);
   }
 
   var logo = "<svg viewBox=\"-607 419 64 64\">\n  <path d=\"M-573.4,478.9c-8,0-14.6-6.4-14.6-14.5s14.6-25.9,14.6-40.8c0,14.9,14.6,32.8,14.6,40.8S-565.4,478.9-573.4,478.9z\"/>\n</svg>\n";
 
-  const headerTemplate = `
+  var headerTemplate = `
 <style>
 distill-header {
   position: relative;
@@ -12904,19 +12904,19 @@ distill-header .nav a {
   // Copyright 2018 The Distill Template Authors
 
   function DistillHeader(dom, data) {
-    const headerTag = dom.querySelector('distill-header');
+    var headerTag = dom.querySelector('distill-header');
     if (!headerTag) {
-      const header = dom.createElement('distill-header');
+      var header = dom.createElement('distill-header');
       header.innerHTML = headerTemplate;
       header.setAttribute('distill-prerendered', "");
-      const body = dom.querySelector('body');
+      var body = dom.querySelector('body');
       body.insertBefore(header, body.firstChild);
     }
   }
 
   // Copyright 2018 The Distill Template Authors
 
-  const styles$2 = `
+  var styles$2 = `
 <style>
   distill-appendix {
     contain: layout style;
@@ -12959,7 +12959,7 @@ distill-header .nav a {
     `;
     }
 
-    const journal = frontMatter.journal;
+    var journal = frontMatter.journal;
     if (typeof journal !== 'undefined' && journal.title === 'Distill') {
       html += `
     <h3 id="reuse">Reuse</h3>
@@ -12984,21 +12984,21 @@ distill-header .nav a {
 
   function DistillAppendix(dom, data) {
 
-    const appendixTag = dom.querySelector('d-appendix');
+    var appendixTag = dom.querySelector('d-appendix');
     if (!appendixTag) {
       console.warn('No appendix tag found!');
       return;
     }
-    const distillAppendixTag = appendixTag.querySelector('distill-appendix');
+    var distillAppendixTag = appendixTag.querySelector('distill-appendix');
     if (!distillAppendixTag) {
-      const distillAppendix = dom.createElement('distill-appendix');
+      var distillAppendix = dom.createElement('distill-appendix');
       appendixTag.appendChild(distillAppendix);
       distillAppendix.innerHTML = appendixTemplate(data);
     }
 
   }
 
-  const footerTemplate = `
+  var footerTemplate = `
 <style>
 
 :host {
@@ -13074,24 +13074,24 @@ distill-header .nav a {
   // Copyright 2018 The Distill Template Authors
 
   function DistillFooter(dom) {
-    const footerTag = dom.querySelector('distill-footer');
+    var footerTag = dom.querySelector('distill-footer');
     if(!footerTag) {
-      const footer = dom.createElement('distill-footer');
+      var footer = dom.createElement('distill-footer');
       footer.innerHTML = footerTemplate;
-      const body = dom.querySelector('body');
+      var body = dom.querySelector('body');
       body.appendChild(footer);
     }
   }
 
   // Copyright 2018 The Distill Template Authors
 
-  const extractors = new Map([
+  var extractors = new Map([
     ['ExtractFrontmatter', ExtractFrontmatter],
     ['ExtractBibliography', ExtractBibliography],
     ['ExtractCitations', ExtractCitations],
   ]);
 
-  const transforms = new Map([
+  var transforms = new Map([
     ['HTML', HTML],
     ['makeStyleTag', makeStyleTag],
     ['OptionalComponents', OptionalComponents],
@@ -13105,7 +13105,7 @@ distill-header .nav a {
     ['Reorder', render$1] // keep last
   ]);
 
-  const distillTransforms = new Map([
+  var distillTransforms = new Map([
     ['DistillHeader', DistillHeader],
     ['DistillAppendix', DistillAppendix],
     ['DistillFooter', DistillFooter],
@@ -13121,12 +13121,12 @@ distill-header .nav a {
       frontMatter = FrontMatter.fromObject(data);
     }
     // first, we collect static data from the dom
-    for (const [name, extract] of extractors.entries()) {
+    for (var [name, extract] of extractors.entries()) {
       if (verbose) console.warn('Running extractor: ' + name);
       extract(dom, frontMatter, verbose);
     }
     // secondly we use it to transform parts of the dom
-    for (const [name, transform] of transforms.entries()) {
+    for (var [name, transform] of transforms.entries()) {
       if (verbose) console.warn('Running transform: ' + name);
       // console.warn('Running transform: ', transform);
       transform(dom, frontMatter, verbose);
@@ -13140,17 +13140,17 @@ distill-header .nav a {
 
   function distillify(dom, data, verbose=true) {
     // thirdly, we can use these additional transforms when publishing on the Distill website
-    for (const [name, transform] of distillTransforms.entries()) {
+    for (var [name, transform] of distillTransforms.entries()) {
       if (verbose) console.warn('Running distillify: ', name);
       transform(dom, data, verbose);
     }
   }
 
   function usesTemplateV2(dom) {
-    const tags = dom.querySelectorAll('script');
+    var tags = dom.querySelectorAll('script');
     let usesV2 = undefined;
-    for (const tag of tags) {
-      const src = tag.src;
+    for (var tag of tags) {
+      var src = tag.src;
       if (src.includes('template.v1.js')) {
         usesV2 = false;
       } else if (src.includes('template.v2.js')) {
@@ -13167,7 +13167,7 @@ distill-header .nav a {
     }
   }
 
-  const testing = {
+  var testing = {
     extractors: extractors,
     transforms: transforms,
     distillTransforms: distillTransforms
