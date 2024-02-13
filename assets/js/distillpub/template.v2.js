@@ -1,3 +1,35 @@
+"use strict";
+
+function _wrapNativeSuper(Class) { var _cache = typeof Map === "function" ? new Map() : undefined; _wrapNativeSuper = function _wrapNativeSuper(Class) { if (Class === null || !_isNativeFunction(Class)) return Class; if (typeof Class !== "function") { throw new TypeError("Super expression must either be null or a function"); } if (typeof _cache !== "undefined") { if (_cache.has(Class)) return _cache.get(Class); _cache.set(Class, Wrapper); } function Wrapper() { return _construct(Class, arguments, _getPrototypeOf(this).constructor); } Wrapper.prototype = Object.create(Class.prototype, { constructor: { value: Wrapper, enumerable: false, writable: true, configurable: true } }); return _setPrototypeOf(Wrapper, Class); }; return _wrapNativeSuper(Class); }
+function _construct(t, e, r) { if (_isNativeReflectConstruct()) return Reflect.construct.apply(null, arguments); var o = [null]; o.push.apply(o, e); var p = new (t.bind.apply(t, o))(); return r && _setPrototypeOf(p, r.prototype), p; }
+function _isNativeFunction(fn) { try { return Function.toString.call(fn).indexOf("[native code]") !== -1; } catch (e) { return typeof fn === "function"; } }
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _callSuper(t, o, e) { return o = _getPrototypeOf(o), _possibleConstructorReturn(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor) : o.apply(t, e)); }
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+function _get() { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get.bind(); } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(arguments.length < 3 ? target : receiver); } return desc.value; }; } return _get.apply(this, arguments); }
+function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : String(i); }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 (function (factory) {
   typeof define === 'function' && define.amd ? define(factory) : factory();
 })(function () {
@@ -18,10 +50,10 @@
   // limitations under the License.
   var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   var months = ['Jan.', 'Feb.', 'March', 'April', 'May', 'June', 'July', 'Aug.', 'Sept.', 'Oct.', 'Nov.', 'Dec.'];
-  var zeroPad = function (n) {
+  var zeroPad = function zeroPad(n) {
     return n < 10 ? '0' + n : n;
   };
-  var RFC = function (date) {
+  var RFC = function RFC(date) {
     var day = days[date.getDay()].substring(0, 3);
     var paddedDate = zeroPad(date.getDate());
     var month = months[date.getMonth()].substring(0, 3);
@@ -31,14 +63,17 @@
     var seconds = date.getUTCSeconds().toString();
     return day + ", " + paddedDate + " " + month + " " + year + " " + hours + ":" + minutes + ":" + seconds + " Z";
   };
-  var objectFromMap = function (map) {
-    var object = Array.from(map).reduce((object, [key, value]) => Object.assign(object, {
-      [key]: value
-    }) // Be careful! Maps can have non-String keys; object literals can't.
+  var objectFromMap = function objectFromMap(map) {
+    var object = Array.from(map).reduce(function (object, _ref) {
+      var _ref2 = _slicedToArray(_ref, 2),
+        key = _ref2[0],
+        value = _ref2[1];
+      return Object.assign(object, _defineProperty({}, key, value));
+    } // Be careful! Maps can have non-String keys; object literals can't.
     , {});
     return object;
   };
-  var mapFromObject = function (object) {
+  var mapFromObject = function mapFromObject(object) {
     var map = new Map();
     for (var property in object) {
       if (object.hasOwnProperty(property)) {
@@ -47,7 +82,7 @@
     }
     return map;
   };
-  class Author {
+  var Author = /*#__PURE__*/function () {
     // constructor(name='', personalURL='', affiliation='', affiliationURL='') {
     //   this.name = name; // 'Chris Olah'
     //   this.personalURL = personalURL; // 'https://colah.github.io'
@@ -55,7 +90,8 @@
     //   this.affiliationURL = affiliationURL; // 'https://g.co/brain'
     // }
 
-    constructor(object) {
+    function Author(object) {
+      _classCallCheck(this, Author);
       this.name = object.author; // 'Chris Olah'
       this.personalURL = object.authorURL; // 'https://colah.github.io'
       this.affiliation = object.affiliation; // 'Google Brain'
@@ -64,17 +100,23 @@
     }
 
     // 'Chris'
-    get firstName() {
-      var names = this.name.split(' ');
-      return names.slice(0, names.length - 1).join(' ');
-    }
+    _createClass(Author, [{
+      key: "firstName",
+      get: function get() {
+        var names = this.name.split(' ');
+        return names.slice(0, names.length - 1).join(' ');
+      }
 
-    // 'Olah'
-    get lastName() {
-      var names = this.name.split(' ');
-      return names[names.length - 1];
-    }
-  }
+      // 'Olah'
+    }, {
+      key: "lastName",
+      get: function get() {
+        var names = this.name.split(' ');
+        return names[names.length - 1];
+      }
+    }]);
+    return Author;
+  }();
   function mergeFromYMLFrontmatter(target, source) {
     target.title = source.title;
     if (source.published) {
@@ -94,15 +136,18 @@
       }
     }
     target.description = source.description;
-    target.authors = source.authors.map(authorObject => new Author(authorObject));
+    target.authors = source.authors.map(function (authorObject) {
+      return new Author(authorObject);
+    });
     target.katex = source.katex;
     target.password = source.password;
     if (source.doi) {
       target.doi = source.doi;
     }
   }
-  class FrontMatter {
-    constructor() {
+  var FrontMatter = /*#__PURE__*/function () {
+    function FrontMatter() {
+      _classCallCheck(this, FrontMatter);
       this.title = 'unnamed article'; // 'Attention and Augmented Recurrent Neural Networks'
       this.description = ''; // 'A visual overview of neural attention...'
       this.authors = []; // Array of Author(s)
@@ -182,161 +227,204 @@
     //
 
     // 'http://distill.pub/2016/augmented-rnns',
-    set url(value) {
-      this._url = value;
-    }
-    get url() {
-      if (this._url) {
-        return this._url;
-      } else if (this.distillPath && this.journal.url) {
-        return this.journal.url + '/' + this.distillPath;
-      } else if (this.journal.url) {
-        return this.journal.url;
+    _createClass(FrontMatter, [{
+      key: "url",
+      get: function get() {
+        if (this._url) {
+          return this._url;
+        } else if (this.distillPath && this.journal.url) {
+          return this.journal.url + '/' + this.distillPath;
+        } else if (this.journal.url) {
+          return this.journal.url;
+        }
       }
-    }
 
-    // 'https://github.com/distillpub/post--augmented-rnns',
-    get githubUrl() {
-      if (this.githubPath) {
-        return 'https://github.com/' + this.githubPath;
-      } else {
-        return undefined;
+      // 'https://github.com/distillpub/post--augmented-rnns',
+      ,
+      set: function set(value) {
+        this._url = value;
       }
-    }
-
-    // TODO resolve differences in naming of URL/Url/url.
-    // 'http://distill.pub/2016/augmented-rnns/thumbnail.jpg',
-    set previewURL(value) {
-      this._previewURL = value;
-    }
-    get previewURL() {
-      return this._previewURL ? this._previewURL : this.url + '/thumbnail.jpg';
-    }
-
-    // 'Thu, 08 Sep 2016 00:00:00 -0700',
-    get publishedDateRFC() {
-      return RFC(this.publishedDate);
-    }
-
-    // 'Thu, 08 Sep 2016 00:00:00 -0700',
-    get updatedDateRFC() {
-      return RFC(this.updatedDate);
-    }
-
-    // 2016,
-    get publishedYear() {
-      return this.publishedDate.getFullYear();
-    }
-
-    // 'Sept',
-    get publishedMonth() {
-      return months[this.publishedDate.getMonth()];
-    }
-
-    // 8,
-    get publishedDay() {
-      return this.publishedDate.getDate();
-    }
-
-    // '09',
-    get publishedMonthPadded() {
-      return zeroPad(this.publishedDate.getMonth() + 1);
-    }
-
-    // '08',
-    get publishedDayPadded() {
-      return zeroPad(this.publishedDate.getDate());
-    }
-    get publishedISODateOnly() {
-      return this.publishedDate.toISOString().split('T')[0];
-    }
-    get volume() {
-      var volume = this.publishedYear - 2015;
-      if (volume < 1) {
-        throw new Error('Invalid publish date detected during computing volume');
+    }, {
+      key: "githubUrl",
+      get: function get() {
+        if (this.githubPath) {
+          return 'https://github.com/' + this.githubPath;
+        } else {
+          return undefined;
+        }
       }
-      return volume;
-    }
-    get issue() {
-      return this.publishedDate.getMonth() + 1;
-    }
 
-    // 'Olah & Carter',
-    get concatenatedAuthors() {
-      if (this.authors.length > 2) {
-        return this.authors[0].lastName + ', et al.';
-      } else if (this.authors.length === 2) {
-        return this.authors[0].lastName + ' & ' + this.authors[1].lastName;
-      } else if (this.authors.length === 1) {
-        return this.authors[0].lastName;
+      // TODO resolve differences in naming of URL/Url/url.
+      // 'http://distill.pub/2016/augmented-rnns/thumbnail.jpg',
+    }, {
+      key: "previewURL",
+      get: function get() {
+        return this._previewURL ? this._previewURL : this.url + '/thumbnail.jpg';
       }
-    }
 
-    // 'Olah, Chris and Carter, Shan',
-    get bibtexAuthors() {
-      return this.authors.map(author => {
-        return author.lastName + ', ' + author.firstName;
-      }).join(' and ');
-    }
+      // 'Thu, 08 Sep 2016 00:00:00 -0700',
+      ,
+      set: function set(value) {
+        this._previewURL = value;
+      }
+    }, {
+      key: "publishedDateRFC",
+      get: function get() {
+        return RFC(this.publishedDate);
+      }
 
-    // 'olah2016attention'
-    get slug() {
-      let slug = '';
-      if (this.authors.length) {
-        slug += this.authors[0].lastName.toLowerCase();
-        slug += this.publishedYear;
-        slug += this.title.split(' ')[0].toLowerCase();
+      // 'Thu, 08 Sep 2016 00:00:00 -0700',
+    }, {
+      key: "updatedDateRFC",
+      get: function get() {
+        return RFC(this.updatedDate);
       }
-      return slug || 'Untitled';
-    }
-    get bibliographyEntries() {
-      return new Map(this.citations.map(citationKey => {
-        var entry = this.bibliography.get(citationKey);
-        return [citationKey, entry];
-      }));
-    }
-    set bibliography(bibliography) {
-      if (bibliography instanceof Map) {
-        this._bibliography = bibliography;
-      } else if (typeof bibliography === 'object') {
-        this._bibliography = mapFromObject(bibliography);
-      }
-    }
-    get bibliography() {
-      return this._bibliography;
-    }
-    static fromObject(source) {
-      var frontMatter = new FrontMatter();
-      Object.assign(frontMatter, source);
-      return frontMatter;
-    }
-    assignToObject(target) {
-      Object.assign(target, this);
-      target.bibliography = objectFromMap(this.bibliographyEntries);
-      target.url = this.url;
-      target.doi = this.doi;
-      target.githubUrl = this.githubUrl;
-      target.previewURL = this.previewURL;
-      if (this.publishedDate) {
-        target.volume = this.volume;
-        target.issue = this.issue;
-        target.publishedDateRFC = this.publishedDateRFC;
-        target.publishedYear = this.publishedYear;
-        target.publishedMonth = this.publishedMonth;
-        target.publishedDay = this.publishedDay;
-        target.publishedMonthPadded = this.publishedMonthPadded;
-        target.publishedDayPadded = this.publishedDayPadded;
-      }
-      if (this.updatedDate) {
-        target.updatedDateRFC = this.updatedDateRFC;
-      }
-      target.concatenatedAuthors = this.concatenatedAuthors;
-      target.bibtexAuthors = this.bibtexAuthors;
-      target.slug = this.slug;
-    }
-  }
 
-  // Copyright 2018 The Distill Template Authors
+      // 2016,
+    }, {
+      key: "publishedYear",
+      get: function get() {
+        return this.publishedDate.getFullYear();
+      }
+
+      // 'Sept',
+    }, {
+      key: "publishedMonth",
+      get: function get() {
+        return months[this.publishedDate.getMonth()];
+      }
+
+      // 8,
+    }, {
+      key: "publishedDay",
+      get: function get() {
+        return this.publishedDate.getDate();
+      }
+
+      // '09',
+    }, {
+      key: "publishedMonthPadded",
+      get: function get() {
+        return zeroPad(this.publishedDate.getMonth() + 1);
+      }
+
+      // '08',
+    }, {
+      key: "publishedDayPadded",
+      get: function get() {
+        return zeroPad(this.publishedDate.getDate());
+      }
+    }, {
+      key: "publishedISODateOnly",
+      get: function get() {
+        return this.publishedDate.toISOString().split('T')[0];
+      }
+    }, {
+      key: "volume",
+      get: function get() {
+        var volume = this.publishedYear - 2015;
+        if (volume < 1) {
+          throw new Error('Invalid publish date detected during computing volume');
+        }
+        return volume;
+      }
+    }, {
+      key: "issue",
+      get: function get() {
+        return this.publishedDate.getMonth() + 1;
+      }
+
+      // 'Olah & Carter',
+    }, {
+      key: "concatenatedAuthors",
+      get: function get() {
+        if (this.authors.length > 2) {
+          return this.authors[0].lastName + ', et al.';
+        } else if (this.authors.length === 2) {
+          return this.authors[0].lastName + ' & ' + this.authors[1].lastName;
+        } else if (this.authors.length === 1) {
+          return this.authors[0].lastName;
+        }
+      }
+
+      // 'Olah, Chris and Carter, Shan',
+    }, {
+      key: "bibtexAuthors",
+      get: function get() {
+        return this.authors.map(function (author) {
+          return author.lastName + ', ' + author.firstName;
+        }).join(' and ');
+      }
+
+      // 'olah2016attention'
+    }, {
+      key: "slug",
+      get: function get() {
+        var slug = '';
+        if (this.authors.length) {
+          slug += this.authors[0].lastName.toLowerCase();
+          slug += this.publishedYear;
+          slug += this.title.split(' ')[0].toLowerCase();
+        }
+        return slug || 'Untitled';
+      }
+    }, {
+      key: "bibliographyEntries",
+      get: function get() {
+        var _this = this;
+        return new Map(this.citations.map(function (citationKey) {
+          var entry = _this.bibliography.get(citationKey);
+          return [citationKey, entry];
+        }));
+      }
+    }, {
+      key: "bibliography",
+      get: function get() {
+        return this._bibliography;
+      },
+      set: function set(bibliography) {
+        if (bibliography instanceof Map) {
+          this._bibliography = bibliography;
+        } else if (_typeof(bibliography) === 'object') {
+          this._bibliography = mapFromObject(bibliography);
+        }
+      }
+    }, {
+      key: "assignToObject",
+      value: function assignToObject(target) {
+        Object.assign(target, this);
+        target.bibliography = objectFromMap(this.bibliographyEntries);
+        target.url = this.url;
+        target.doi = this.doi;
+        target.githubUrl = this.githubUrl;
+        target.previewURL = this.previewURL;
+        if (this.publishedDate) {
+          target.volume = this.volume;
+          target.issue = this.issue;
+          target.publishedDateRFC = this.publishedDateRFC;
+          target.publishedYear = this.publishedYear;
+          target.publishedMonth = this.publishedMonth;
+          target.publishedDay = this.publishedDay;
+          target.publishedMonthPadded = this.publishedMonthPadded;
+          target.publishedDayPadded = this.publishedDayPadded;
+        }
+        if (this.updatedDate) {
+          target.updatedDateRFC = this.updatedDateRFC;
+        }
+        target.concatenatedAuthors = this.concatenatedAuthors;
+        target.bibtexAuthors = this.bibtexAuthors;
+        target.slug = this.slug;
+      }
+    }], [{
+      key: "fromObject",
+      value: function fromObject(source) {
+        var frontMatter = new FrontMatter();
+        Object.assign(frontMatter, source);
+        return frontMatter;
+      }
+    }]);
+    return FrontMatter;
+  }(); // Copyright 2018 The Distill Template Authors
   //
   // Licensed under the Apache License, Version 2.0 (the "License");
   // you may not use this file except in compliance with the License.
@@ -349,11 +437,13 @@
   // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   // See the License for the specific language governing permissions and
   // limitations under the License.
-
-  var Mutating = superclass => {
-    return class extends superclass {
-      constructor() {
-        super();
+  var Mutating = function Mutating(superclass) {
+    return /*#__PURE__*/function (_superclass) {
+      _inherits(_class, _superclass);
+      function _class() {
+        var _this2;
+        _classCallCheck(this, _class);
+        _this2 = _callSuper(this, _class);
 
         // set up mutation observer
         var options = {
@@ -361,31 +451,40 @@
           characterData: true,
           subtree: true
         };
-        var observer = new MutationObserver(() => {
+        var observer = new MutationObserver(function () {
           observer.disconnect();
-          this.renderIfPossible();
-          observer.observe(this, options);
+          _this2.renderIfPossible();
+          observer.observe(_assertThisInitialized(_this2), options);
         });
 
         // ...and listen for changes
-        observer.observe(this, options);
+        observer.observe(_assertThisInitialized(_this2), options);
+        return _this2;
       }
-      connectedCallback() {
-        super.connectedCallback();
-        this.renderIfPossible();
-      }
-
-      // potential TODO: check if this is enough for all our usecases
-      // maybe provide a custom function to tell if we have enough information to render
-      renderIfPossible() {
-        if (this.textContent && this.root) {
-          this.renderContent();
+      _createClass(_class, [{
+        key: "connectedCallback",
+        value: function connectedCallback() {
+          _get(_getPrototypeOf(_class.prototype), "connectedCallback", this).call(this);
+          this.renderIfPossible();
         }
-      }
-      renderContent() {
-        console.error(`Your class ${this.constructor.name} must provide a custom renderContent() method!`);
-      }
-    }; // end class
+
+        // potential TODO: check if this is enough for all our usecases
+        // maybe provide a custom function to tell if we have enough information to render
+      }, {
+        key: "renderIfPossible",
+        value: function renderIfPossible() {
+          if (this.textContent && this.root) {
+            this.renderContent();
+          }
+        }
+      }, {
+        key: "renderContent",
+        value: function renderContent() {
+          console.error("Your class ".concat(this.constructor.name, " must provide a custom renderContent() method!"));
+        }
+      }]);
+      return _class;
+    }(superclass); // end class
   }; // end mixin function
 
   // Copyright 2018 The Distill Template Authors
@@ -404,55 +503,72 @@
 
   /*global ShadyCSS*/
 
-  var Template = (name, templateString, useShadow = true) => {
-    return superclass => {
+  var Template = function Template(name, templateString) {
+    var useShadow = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+    return function (superclass) {
       var template = document.createElement('template');
       template.innerHTML = templateString;
       if (useShadow && 'ShadyCSS' in window) {
         ShadyCSS.prepareTemplate(template, name);
       }
-      return class extends superclass {
-        static get is() {
-          return name;
-        }
-        constructor() {
-          super();
-          this.clone = document.importNode(template.content, true);
+      return /*#__PURE__*/function (_superclass2) {
+        _inherits(_class2, _superclass2);
+        function _class2() {
+          var _this3;
+          _classCallCheck(this, _class2);
+          _this3 = _callSuper(this, _class2);
+          _this3.clone = document.importNode(template.content, true);
           if (useShadow) {
-            this.attachShadow({
+            _this3.attachShadow({
               mode: 'open'
             });
-            this.shadowRoot.appendChild(this.clone);
+            _this3.shadowRoot.appendChild(_this3.clone);
           }
+          return _this3;
         }
-        connectedCallback() {
-          if (this.hasAttribute('distill-prerendered')) {
-            return;
-          }
-          if (useShadow) {
-            if ('ShadyCSS' in window) {
-              ShadyCSS.styleElement(this);
+        _createClass(_class2, [{
+          key: "connectedCallback",
+          value: function connectedCallback() {
+            if (this.hasAttribute('distill-prerendered')) {
+              return;
             }
-          } else {
-            this.insertBefore(this.clone, this.firstChild);
+            if (useShadow) {
+              if ('ShadyCSS' in window) {
+                ShadyCSS.styleElement(this);
+              }
+            } else {
+              this.insertBefore(this.clone, this.firstChild);
+            }
           }
-        }
-        get root() {
-          if (useShadow) {
-            return this.shadowRoot;
-          } else {
-            return this;
+        }, {
+          key: "root",
+          get: function get() {
+            if (useShadow) {
+              return this.shadowRoot;
+            } else {
+              return this;
+            }
           }
-        }
 
-        /* TODO: Are we using these? Should we even? */
-        $(query) {
-          return this.root.querySelector(query);
-        }
-        $$(query) {
-          return this.root.querySelectorAll(query);
-        }
-      };
+          /* TODO: Are we using these? Should we even? */
+        }, {
+          key: "$",
+          value: function $(query) {
+            return this.root.querySelector(query);
+          }
+        }, {
+          key: "$$",
+          value: function $$(query) {
+            return this.root.querySelectorAll(query);
+          }
+        }], [{
+          key: "is",
+          get: function get() {
+            return name;
+          }
+        }]);
+        return _class2;
+      }(superclass);
     };
   };
   var math = "/*\n * Copyright 2018 The Distill Template Authors\n *\n * Licensed under the Apache License, Version 2.0 (the \"License\");\n * you may not use this file except in compliance with the License.\n * You may obtain a copy of the License at\n *\n *      http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\n\nspan.katex-display {\n  text-align: left;\n  padding: 8px 0 8px 0;\n  margin: 0.5em 0 0.5em 1em;\n}\n\nspan.katex {\n  -webkit-font-smoothing: antialiased;\n  color: rgba(0, 0, 0, 0.8);\n  font-size: 1.18em;\n}\n";
@@ -476,11 +592,11 @@
 
   /*global katex */
 
-  var findEndOfMath = function (delimiter, text, startIndex) {
+  var findEndOfMath = function findEndOfMath(delimiter, text, startIndex) {
     // Adapted from
     // https://github.com/Khan/perseus/blob/master/src/perseus-markdown.jsx
-    let index = startIndex;
-    let braceLevel = 0;
+    var index = startIndex;
+    var braceLevel = 0;
     var delimLength = delimiter.length;
     while (index < text.length) {
       var character = text[index];
@@ -497,14 +613,14 @@
     }
     return -1;
   };
-  var splitAtDelimiters = function (startData, leftDelim, rightDelim, display) {
+  var splitAtDelimiters = function splitAtDelimiters(startData, leftDelim, rightDelim, display) {
     var finalData = [];
-    for (let i = 0; i < startData.length; i++) {
+    for (var i = 0; i < startData.length; i++) {
       if (startData[i].type === "text") {
         var text = startData[i].data;
-        let lookingForLeft = true;
-        let currIndex = 0;
-        let nextIndex;
+        var lookingForLeft = true;
+        var currIndex = 0;
+        var nextIndex = void 0;
         nextIndex = text.indexOf(leftDelim);
         if (nextIndex !== -1) {
           currIndex = nextIndex;
@@ -551,12 +667,12 @@
     }
     return finalData;
   };
-  var splitWithDelimiters = function (text, delimiters) {
-    let data = [{
+  var splitWithDelimiters = function splitWithDelimiters(text, delimiters) {
+    var data = [{
       type: "text",
       data: text
     }];
-    for (let i = 0; i < delimiters.length; i++) {
+    for (var i = 0; i < delimiters.length; i++) {
       var delimiter = delimiters[i];
       data = splitAtDelimiters(data, delimiter.left, delimiter.right, delimiter.display || false);
     }
@@ -566,10 +682,10 @@
   /* Note: optionsCopy is mutated by this method. If it is ever exposed in the
    * API, we should copy it before mutating.
    */
-  var renderMathInText = function (text, optionsCopy) {
+  var renderMathInText = function renderMathInText(text, optionsCopy) {
     var data = splitWithDelimiters(text, optionsCopy.delimiters);
     var fragment = document.createDocumentFragment();
-    for (let i = 0; i < data.length; i++) {
+    for (var i = 0; i < data.length; i++) {
       if (data[i].type === "text") {
         fragment.appendChild(document.createTextNode(data[i].data));
       } else {
@@ -596,8 +712,8 @@
     }
     return fragment;
   };
-  var renderElem = function (elem, optionsCopy) {
-    for (let i = 0; i < elem.childNodes.length; i++) {
+  var renderElem = function renderElem(elem, optionsCopy) {
+    for (var i = 0; i < elem.childNodes.length; i++) {
       var childNode = elem.childNodes[i];
       if (childNode.nodeType === 3) {
         // Text node
@@ -635,17 +751,23 @@
     // {left: '$', right: '$', display: false},
     ],
     ignoredTags: ["script", "noscript", "style", "textarea", "pre", "code", "svg"],
-    errorCallback: function (msg, err) {
+    errorCallback: function errorCallback(msg, err) {
       console.error(msg, err);
     }
   };
-  var renderMathInElement = function (elem, options) {
+  var renderMathInElement = function renderMathInElement(elem, options) {
     if (!elem) {
       throw new Error("No element provided to render");
     }
     var optionsCopy = Object.assign({}, defaultAutoRenderOptions, options);
-    var delimiterStrings = optionsCopy.delimiters.flatMap(d => [d.left, d.right]);
-    var mightHaveMath = text => delimiterStrings.some(d => text.indexOf(d) !== -1);
+    var delimiterStrings = optionsCopy.delimiters.flatMap(function (d) {
+      return [d.left, d.right];
+    });
+    var mightHaveMath = function mightHaveMath(text) {
+      return delimiterStrings.some(function (d) {
+        return text.indexOf(d) !== -1;
+      });
+    };
     optionsCopy.mightHaveMath = mightHaveMath;
     renderElem(elem, optionsCopy);
   };
@@ -654,90 +776,102 @@
 
   var katexJSURL = 'https://distill.pub/third-party/katex/katex.min.js';
   var katexCSSTag = '<link rel="stylesheet" href="https://distill.pub/third-party/katex/katex.min.css" crossorigin="anonymous">';
-  var T = Template('d-math', `
-${katexCSSTag}
-<style>
-
-:host {
-  display: inline-block;
-  contain: style;
-}
-
-:host([block]) {
-  display: block;
-}
-
-${math}
-</style>
-<span id='katex-container'></span>
-`);
+  var T = Template('d-math', "\n".concat(katexCSSTag, "\n<style>\n\n:host {\n  display: inline-block;\n  contain: style;\n}\n\n:host([block]) {\n  display: block;\n}\n\n").concat(math, "\n</style>\n<span id='katex-container'></span>\n"));
 
   // DMath, not Math, because that would conflict with the JS built-in
-  class DMath extends Mutating(T(HTMLElement)) {
-    static set katexOptions(options) {
-      DMath._katexOptions = options;
-      if (DMath.katexOptions.delimiters) {
+  var DMath = /*#__PURE__*/function (_Mutating) {
+    _inherits(DMath, _Mutating);
+    function DMath() {
+      _classCallCheck(this, DMath);
+      return _callSuper(this, DMath, arguments);
+    }
+    _createClass(DMath, [{
+      key: "options",
+      get: function get() {
+        var localOptions = {
+          displayMode: this.hasAttribute('block')
+        };
+        return Object.assign(localOptions, DMath.katexOptions);
+      }
+    }, {
+      key: "connectedCallback",
+      value: function connectedCallback() {
+        _get(_getPrototypeOf(DMath.prototype), "connectedCallback", this).call(this);
         if (!DMath.katexAdded) {
           DMath.addKatex();
-        } else {
-          DMath.katexLoadedCallback();
         }
       }
-    }
-    static get katexOptions() {
-      if (!DMath._katexOptions) {
-        DMath._katexOptions = {
-          delimiters: [{
-            'left': '$$',
-            'right': '$$',
-            'display': false
-          }]
-        };
+    }, {
+      key: "renderContent",
+      value: function renderContent() {
+        if (typeof katex !== 'undefined') {
+          var container = this.root.querySelector('#katex-container');
+          katex.render(this.textContent, container, this.options);
+        }
       }
-      return DMath._katexOptions;
-    }
-    static katexLoadedCallback() {
-      // render all d-math tags
-      var mathTags = document.querySelectorAll('d-math');
-      for (var mathTag of mathTags) {
-        mathTag.renderContent();
+    }], [{
+      key: "katexOptions",
+      get: function get() {
+        if (!DMath._katexOptions) {
+          DMath._katexOptions = {
+            delimiters: [{
+              'left': '$$',
+              'right': '$$',
+              'display': false
+            }]
+          };
+        }
+        return DMath._katexOptions;
+      },
+      set: function set(options) {
+        DMath._katexOptions = options;
+        if (DMath.katexOptions.delimiters) {
+          if (!DMath.katexAdded) {
+            DMath.addKatex();
+          } else {
+            DMath.katexLoadedCallback();
+          }
+        }
       }
-      // transform inline delimited math to d-math tags
-      if (DMath.katexOptions.delimiters) {
-        renderMathInElement(document.body, DMath.katexOptions);
+    }, {
+      key: "katexLoadedCallback",
+      value: function katexLoadedCallback() {
+        // render all d-math tags
+        var mathTags = document.querySelectorAll('d-math');
+        var _iterator = _createForOfIteratorHelper(mathTags),
+          _step;
+        try {
+          for (_iterator.s(); !(_step = _iterator.n()).done;) {
+            var mathTag = _step.value;
+            mathTag.renderContent();
+          }
+          // transform inline delimited math to d-math tags
+        } catch (err) {
+          _iterator.e(err);
+        } finally {
+          _iterator.f();
+        }
+        if (DMath.katexOptions.delimiters) {
+          renderMathInElement(document.body, DMath.katexOptions);
+        }
       }
-    }
-    static addKatex() {
-      // css tag can use this convenience function
-      document.head.insertAdjacentHTML('beforeend', katexCSSTag);
-      // script tag has to be created to work properly
-      var scriptTag = document.createElement('script');
-      scriptTag.src = katexJSURL;
-      scriptTag.async = true;
-      scriptTag.onload = DMath.katexLoadedCallback;
-      scriptTag.crossorigin = 'anonymous';
-      document.head.appendChild(scriptTag);
-      DMath.katexAdded = true;
-    }
-    get options() {
-      var localOptions = {
-        displayMode: this.hasAttribute('block')
-      };
-      return Object.assign(localOptions, DMath.katexOptions);
-    }
-    connectedCallback() {
-      super.connectedCallback();
-      if (!DMath.katexAdded) {
-        DMath.addKatex();
+    }, {
+      key: "addKatex",
+      value: function addKatex() {
+        // css tag can use this convenience function
+        document.head.insertAdjacentHTML('beforeend', katexCSSTag);
+        // script tag has to be created to work properly
+        var scriptTag = document.createElement('script');
+        scriptTag.src = katexJSURL;
+        scriptTag.async = true;
+        scriptTag.onload = DMath.katexLoadedCallback;
+        scriptTag.crossorigin = 'anonymous';
+        document.head.appendChild(scriptTag);
+        DMath.katexAdded = true;
       }
-    }
-    renderContent() {
-      if (typeof katex !== 'undefined') {
-        var container = this.root.querySelector('#katex-container');
-        katex.render(this.textContent, container, this.options);
-      }
-    }
-  }
+    }]);
+    return DMath;
+  }(Mutating(T(HTMLElement)));
   DMath.katexAdded = false;
   DMath.inlineMathRendered = false;
   window.DMath = DMath; // TODO: check if this can be removed, or if we should expose a distill global
@@ -756,24 +890,45 @@ ${math}
   // See the License for the specific language governing permissions and
   // limitations under the License.
 
-  function collect_citations(dom = document) {
+  function collect_citations() {
+    var dom = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : document;
     var citations = new Set();
     var citeTags = dom.querySelectorAll("d-cite");
-    for (var tag of citeTags) {
-      var keyString = tag.getAttribute("key") || tag.getAttribute("bibtex-key");
-      var keys = keyString.split(",").map(k => k.trim());
-      for (var key of keys) {
-        citations.add(key);
+    var _iterator2 = _createForOfIteratorHelper(citeTags),
+      _step2;
+    try {
+      for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+        var tag = _step2.value;
+        var keyString = tag.getAttribute("key") || tag.getAttribute("bibtex-key");
+        var keys = keyString.split(",").map(function (k) {
+          return k.trim();
+        });
+        var _iterator3 = _createForOfIteratorHelper(keys),
+          _step3;
+        try {
+          for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+            var key = _step3.value;
+            citations.add(key);
+          }
+        } catch (err) {
+          _iterator3.e(err);
+        } finally {
+          _iterator3.f();
+        }
       }
+    } catch (err) {
+      _iterator2.e(err);
+    } finally {
+      _iterator2.f();
     }
-    return [...citations];
+    return _toConsumableArray(citations);
   }
   function author_string(ent, template, sep, finalSep) {
     if (ent.author == null) {
       return "";
     }
     var names = ent.author.split(" and ");
-    let name_strings = names.map(name => {
+    var name_strings = names.map(function (name) {
       name = name.trim();
       if (name.indexOf(",") != -1) {
         var last = name.split(",")[0].trim();
@@ -786,7 +941,9 @@ ${math}
       }
       var initials = "";
       if (firsts != undefined) {
-        initials = firsts.trim().split(" ").map(s => s.trim()[0]);
+        initials = firsts.trim().split(" ").map(function (s) {
+          return s.trim()[0];
+        });
         initials = initials.join(".") + ".";
       }
       return template.replace("${F}", firsts).replace("${L}", last).replace("${I}", initials).trim(); // in case one of first or last was empty
@@ -821,14 +978,14 @@ ${math}
       var url = ent.url;
       var arxiv_match = /arxiv\.org\/abs\/([0-9\.]*)/.exec(url);
       if (arxiv_match != null) {
-        url = `http://arxiv.org/pdf/${arxiv_match[1]}.pdf`;
+        url = "http://arxiv.org/pdf/".concat(arxiv_match[1], ".pdf");
       }
       if (url.slice(-4) == ".pdf") {
         var label = "PDF";
       } else if (url.slice(-5) == ".html") {
         var label = "HTML";
       }
-      return ` &ensp;<a href="${url}">[${label || "link"}]</a>`;
+      return " &ensp;<a href=\"".concat(url, "\">[").concat(label || "link", "]</a>");
     } /* else if ("doi" in ent){
       return ` &ensp;<a href="https://doi.org/${ent.doi}" >[DOI]</a>`;
       }*/else {
@@ -837,7 +994,7 @@ ${math}
   }
   function doi_string(ent, new_line) {
     if ("doi" in ent) {
-      return `${new_line ? "<br>" : ""} <a href="https://doi.org/${ent.doi}" style="text-decoration:inherit;">DOI: ${ent.doi}</a>`;
+      return "".concat(new_line ? "<br>" : "", " <a href=\"https://doi.org/").concat(ent.doi, "\" style=\"text-decoration:inherit;\">DOI: ").concat(ent.doi, "</a>");
     } else {
       return "";
     }
@@ -918,19 +1075,28 @@ ${math}
     // authors used to have propoerties "affiliation" and "affiliationURL".
     // We now encourage using an array for affiliations containing objects with
     // properties "name" and "url".
-    for (let author of frontMatter.authors) {
-      var hasOldStyle = Boolean(author.affiliation);
-      var hasNewStyle = Boolean(author.affiliations);
-      if (!hasOldStyle) continue;
-      if (hasNewStyle) {
-        console.warn(`Author ${author.author} has both old-style ("affiliation" & "affiliationURL") and new style ("affiliations") affiliation information!`);
-      } else {
-        let newAffiliation = {
-          "name": author.affiliation
-        };
-        if (author.affiliationURL) newAffiliation.url = author.affiliationURL;
-        author.affiliations = [newAffiliation];
+    var _iterator4 = _createForOfIteratorHelper(frontMatter.authors),
+      _step4;
+    try {
+      for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
+        var author = _step4.value;
+        var hasOldStyle = Boolean(author.affiliation);
+        var hasNewStyle = Boolean(author.affiliations);
+        if (!hasOldStyle) continue;
+        if (hasNewStyle) {
+          console.warn("Author ".concat(author.author, " has both old-style (\"affiliation\" & \"affiliationURL\") and new style (\"affiliations\") affiliation information!"));
+        } else {
+          var newAffiliation = {
+            "name": author.affiliation
+          };
+          if (author.affiliationURL) newAffiliation.url = author.affiliationURL;
+          author.affiliations = [newAffiliation];
+        }
       }
+    } catch (err) {
+      _iterator4.e(err);
+    } finally {
+      _iterator4.f();
     }
     return frontMatter;
   }
@@ -950,38 +1116,55 @@ ${math}
     }
     return {};
   }
-  class FrontMatter$1 extends HTMLElement {
-    static get is() {
-      return 'd-front-matter';
-    }
-    constructor() {
-      super();
+  var FrontMatter$1 = /*#__PURE__*/function (_HTMLElement) {
+    _inherits(FrontMatter$1, _HTMLElement);
+    function FrontMatter$1() {
+      var _this4;
+      _classCallCheck(this, FrontMatter$1);
+      _this4 = _callSuper(this, FrontMatter$1);
       var options = {
         childList: true,
         characterData: true,
         subtree: true
       };
-      var observer = new MutationObserver(entries => {
-        for (var entry of entries) {
-          if (entry.target.nodeName === 'SCRIPT' || entry.type === 'characterData') {
-            var data = parseFrontmatter(this);
-            this.notify(data);
+      var observer = new MutationObserver(function (entries) {
+        var _iterator5 = _createForOfIteratorHelper(entries),
+          _step5;
+        try {
+          for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
+            var entry = _step5.value;
+            if (entry.target.nodeName === 'SCRIPT' || entry.type === 'characterData') {
+              var data = parseFrontmatter(_assertThisInitialized(_this4));
+              _this4.notify(data);
+            }
           }
+        } catch (err) {
+          _iterator5.e(err);
+        } finally {
+          _iterator5.f();
         }
       });
-      observer.observe(this, options);
+      observer.observe(_assertThisInitialized(_this4), options);
+      return _this4;
     }
-    notify(data) {
-      var options = {
-        detail: data,
-        bubbles: true
-      };
-      var event = new CustomEvent('onFrontMatterChanged', options);
-      document.dispatchEvent(event);
-    }
-  }
-
-  // Copyright 2018 The Distill Template Authors
+    _createClass(FrontMatter$1, [{
+      key: "notify",
+      value: function notify(data) {
+        var options = {
+          detail: data,
+          bubbles: true
+        };
+        var event = new CustomEvent('onFrontMatterChanged', options);
+        document.dispatchEvent(event);
+      }
+    }], [{
+      key: "is",
+      get: function get() {
+        return 'd-front-matter';
+      }
+    }]);
+    return FrontMatter$1;
+  }( /*#__PURE__*/_wrapNativeSuper(HTMLElement)); // Copyright 2018 The Distill Template Authors
   //
   // Licensed under the Apache License, Version 2.0 (the "License");
   // you may not use this file except in compliance with the License.
@@ -994,16 +1177,13 @@ ${math}
   // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   // See the License for the specific language governing permissions and
   // limitations under the License.
-
   // no appendix -> add appendix
   // title in front, no h1 -> add it
   // no title in front, h1 -> read and put into frontMatter
   // footnote -> footnote list
   // break up bib
   // if citation, no bib-list -> add citation-list
-
   // if authors, no byline -> add byline
-
   function optionalComponents(dom, data) {
     var body = dom.body;
     var article = body.querySelector('d-article');
@@ -1013,7 +1193,7 @@ ${math}
       console.warn('No d-article tag found; skipping adding optional components!');
       return;
     }
-    let byline = dom.querySelector('d-byline');
+    var byline = dom.querySelector('d-byline');
     if (!byline) {
       if (data.authors) {
         byline = dom.createElement('d-byline');
@@ -1022,19 +1202,19 @@ ${math}
         console.warn('No authors found in front matter; please add them before submission!');
       }
     }
-    let title = dom.querySelector('d-title');
+    var title = dom.querySelector('d-title');
     if (!title) {
       title = dom.createElement('d-title');
       body.insertBefore(title, byline);
     }
-    let h1 = title.querySelector('h1');
+    var h1 = title.querySelector('h1');
     if (!h1) {
       h1 = dom.createElement('h1');
       h1.textContent = data.title;
       title.insertBefore(h1, title.firstChild);
     }
     var hasPassword = typeof data.password !== 'undefined';
-    let interstitial = body.querySelector('d-interstitial');
+    var interstitial = body.querySelector('d-interstitial');
     if (hasPassword && !interstitial) {
       var inBrowser = typeof window !== 'undefined';
       var onLocalhost = inBrowser && window.location.hostname.includes('localhost');
@@ -1046,17 +1226,17 @@ ${math}
     } else if (!hasPassword && interstitial) {
       interstitial.parentElement.removeChild(this);
     }
-    let appendix = dom.querySelector('d-appendix');
+    var appendix = dom.querySelector('d-appendix');
     if (!appendix) {
       appendix = dom.createElement('d-appendix');
       dom.body.appendChild(appendix);
     }
-    let footnoteList = dom.querySelector('d-footnote-list');
+    var footnoteList = dom.querySelector('d-footnote-list');
     if (!footnoteList) {
       footnoteList = dom.createElement('d-footnote-list');
       appendix.appendChild(footnoteList);
     }
-    let citationList = dom.querySelector('d-citation-list');
+    var citationList = dom.querySelector('d-citation-list');
     if (!citationList) {
       citationList = dom.createElement('d-citation-list');
       appendix.appendChild(citationList);
@@ -1073,66 +1253,107 @@ ${math}
       citations: []
     },
     listeners: {
-      onCiteKeyCreated(event) {
-        var [citeTag, keys] = event.detail;
+      onCiteKeyCreated: function onCiteKeyCreated(event) {
+        var _event$detail = _slicedToArray(event.detail, 2),
+          citeTag = _event$detail[0],
+          keys = _event$detail[1];
 
         // ensure we have citations
         if (!frontMatter.citationsCollected) {
           // console.debug('onCiteKeyCreated, but unresolved dependency ("citations"). Enqueing.');
-          Controller.waitingOn.citations.push(() => Controller.listeners.onCiteKeyCreated(event));
+          Controller.waitingOn.citations.push(function () {
+            return Controller.listeners.onCiteKeyCreated(event);
+          });
           return;
         }
 
         // ensure we have a loaded bibliography
         if (!frontMatter.bibliographyParsed) {
           // console.debug('onCiteKeyCreated, but unresolved dependency ("bibliography"). Enqueing.');
-          Controller.waitingOn.bibliography.push(() => Controller.listeners.onCiteKeyCreated(event));
+          Controller.waitingOn.bibliography.push(function () {
+            return Controller.listeners.onCiteKeyCreated(event);
+          });
           return;
         }
-        var numbers = keys.map(key => frontMatter.citations.indexOf(key));
+        var numbers = keys.map(function (key) {
+          return frontMatter.citations.indexOf(key);
+        });
         citeTag.numbers = numbers;
-        var entries = keys.map(key => frontMatter.bibliography.get(key));
+        var entries = keys.map(function (key) {
+          return frontMatter.bibliography.get(key);
+        });
         citeTag.entries = entries;
       },
-      onCiteKeyChanged() {
+      onCiteKeyChanged: function onCiteKeyChanged() {
         // var [citeTag, keys] = event.detail;
 
         // update citations
         frontMatter.citations = collect_citations();
         frontMatter.citationsCollected = true;
-        for (var waitingCallback of Controller.waitingOn.citations.slice()) {
-          waitingCallback();
-        }
+        var _iterator6 = _createForOfIteratorHelper(Controller.waitingOn.citations.slice()),
+          _step6;
+        try {
+          for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
+            var waitingCallback = _step6.value;
+            waitingCallback();
+          }
 
-        // update bibliography
+          // update bibliography
+        } catch (err) {
+          _iterator6.e(err);
+        } finally {
+          _iterator6.f();
+        }
         var citationListTag = document.querySelector("d-citation-list");
-        var bibliographyEntries = new Map(frontMatter.citations.map(citationKey => {
+        var bibliographyEntries = new Map(frontMatter.citations.map(function (citationKey) {
           return [citationKey, frontMatter.bibliography.get(citationKey)];
         }));
         citationListTag.citations = bibliographyEntries;
         var citeTags = document.querySelectorAll("d-cite");
-        for (var citeTag of citeTags) {
-          console.log(citeTag);
-          var keys = citeTag.keys;
-          var numbers = keys.map(key => frontMatter.citations.indexOf(key));
-          citeTag.numbers = numbers;
-          var entries = keys.map(key => frontMatter.bibliography.get(key));
-          citeTag.entries = entries;
+        var _iterator7 = _createForOfIteratorHelper(citeTags),
+          _step7;
+        try {
+          for (_iterator7.s(); !(_step7 = _iterator7.n()).done;) {
+            var citeTag = _step7.value;
+            console.log(citeTag);
+            var keys = citeTag.keys;
+            var numbers = keys.map(function (key) {
+              return frontMatter.citations.indexOf(key);
+            });
+            citeTag.numbers = numbers;
+            var entries = keys.map(function (key) {
+              return frontMatter.bibliography.get(key);
+            });
+            citeTag.entries = entries;
+          }
+        } catch (err) {
+          _iterator7.e(err);
+        } finally {
+          _iterator7.f();
         }
       },
-      onCiteKeyRemoved(event) {
+      onCiteKeyRemoved: function onCiteKeyRemoved(event) {
         Controller.listeners.onCiteKeyChanged(event);
       },
-      onBibliographyChanged(event) {
+      onBibliographyChanged: function onBibliographyChanged(event) {
         var citationListTag = document.querySelector("d-citation-list");
         var bibliography = event.detail;
         frontMatter.bibliography = bibliography;
         frontMatter.bibliographyParsed = true;
-        for (var waitingCallback of Controller.waitingOn.bibliography.slice()) {
-          waitingCallback();
-        }
+        var _iterator8 = _createForOfIteratorHelper(Controller.waitingOn.bibliography.slice()),
+          _step8;
+        try {
+          for (_iterator8.s(); !(_step8 = _iterator8.n()).done;) {
+            var waitingCallback = _step8.value;
+            waitingCallback();
+          }
 
-        // ensure we have citations
+          // ensure we have citations
+        } catch (err) {
+          _iterator8.e(err);
+        } finally {
+          _iterator8.f();
+        }
         if (!frontMatter.citationsCollected) {
           Controller.waitingOn.citations.push(function () {
             Controller.listeners.onBibliographyChanged({
@@ -1145,13 +1366,13 @@ ${math}
         if (citationListTag.hasAttribute("distill-prerendered")) {
           console.debug("Citation list was prerendered; not updating it.");
         } else {
-          var entries = new Map(frontMatter.citations.map(citationKey => {
+          var entries = new Map(frontMatter.citations.map(function (citationKey) {
             return [citationKey, frontMatter.bibliography.get(citationKey)];
           }));
           citationListTag.citations = entries;
         }
       },
-      onFootnoteChanged() {
+      onFootnoteChanged: function onFootnoteChanged() {
         // var footnote = event.detail;
         //TODO: optimize to only update current footnote
         var footnotesList = document.querySelector("d-footnote-list");
@@ -1160,7 +1381,7 @@ ${math}
           footnotesList.footnotes = footnotes;
         }
       },
-      onFrontMatterChanged(event) {
+      onFrontMatterChanged: function onFrontMatterChanged(event) {
         var data = event.detail;
         mergeFromYMLFrontmatter(frontMatter, data);
         var interstitial = document.querySelector("d-interstitial");
@@ -1187,7 +1408,7 @@ ${math}
           }
         }
       },
-      DOMContentLoaded() {
+      DOMContentLoaded: function DOMContentLoaded() {
         if (Controller.loaded) {
           console.warn("Controller received DOMContentLoaded but was already loaded!");
           return;
@@ -1209,12 +1430,30 @@ ${math}
         // Resolving "citations" dependency due to initial DOM load
         frontMatter.citations = collect_citations();
         frontMatter.citationsCollected = true;
-        for (var waitingCallback of Controller.waitingOn.citations.slice()) {
-          waitingCallback();
+        var _iterator9 = _createForOfIteratorHelper(Controller.waitingOn.citations.slice()),
+          _step9;
+        try {
+          for (_iterator9.s(); !(_step9 = _iterator9.n()).done;) {
+            var waitingCallback = _step9.value;
+            waitingCallback();
+          }
+        } catch (err) {
+          _iterator9.e(err);
+        } finally {
+          _iterator9.f();
         }
         if (frontMatter.bibliographyParsed) {
-          for (var waitingCallback of Controller.waitingOn.bibliography.slice()) {
-            waitingCallback();
+          var _iterator10 = _createForOfIteratorHelper(Controller.waitingOn.bibliography.slice()),
+            _step10;
+          try {
+            for (_iterator10.s(); !(_step10 = _iterator10.n()).done;) {
+              var waitingCallback = _step10.value;
+              waitingCallback();
+            }
+          } catch (err) {
+            _iterator10.e(err);
+          } finally {
+            _iterator10.f();
           }
         }
         var footnotesList = document.querySelector("d-footnote-list");
@@ -1281,48 +1520,72 @@ ${math}
   }
   var polyfills = [{
     name: 'WebComponents',
-    support: function () {
+    support: function support() {
       return 'customElements' in window && 'attachShadow' in Element.prototype && 'getRootNode' in Element.prototype && 'content' in document.createElement('template') && 'Promise' in window && 'from' in Array;
     },
     url: 'https://distill.pub/third-party/polyfills/webcomponents-lite.js'
   }, {
     name: 'IntersectionObserver',
-    support: function () {
+    support: function support() {
       return 'IntersectionObserver' in window && 'IntersectionObserverEntry' in window;
     },
     url: 'https://distill.pub/third-party/polyfills/intersection-observer.js'
   }];
-  class Polyfills {
-    static browserSupportsAllFeatures() {
-      return polyfills.every(poly => poly.support());
+  var Polyfills = /*#__PURE__*/function () {
+    function Polyfills() {
+      _classCallCheck(this, Polyfills);
     }
-    static load(callback) {
-      // Define an intermediate callback that checks if all is loaded.
-      var polyfillLoaded = function (polyfill) {
-        polyfill.loaded = true;
-        console.debug('Runlevel 0: Polyfill has finished loading: ' + polyfill.name);
-        // console.debug(window[polyfill.name]);
-        if (Polyfills.neededPolyfills.every(poly => poly.loaded)) {
-          console.debug('Runlevel 0: All required polyfills have finished loading.');
-          console.debug('Runlevel 0->1.');
-          window.distillRunlevel = 1;
-          callback();
+    _createClass(Polyfills, null, [{
+      key: "browserSupportsAllFeatures",
+      value: function browserSupportsAllFeatures() {
+        return polyfills.every(function (poly) {
+          return poly.support();
+        });
+      }
+    }, {
+      key: "load",
+      value: function load(callback) {
+        // Define an intermediate callback that checks if all is loaded.
+        var polyfillLoaded = function polyfillLoaded(polyfill) {
+          polyfill.loaded = true;
+          console.debug('Runlevel 0: Polyfill has finished loading: ' + polyfill.name);
+          // console.debug(window[polyfill.name]);
+          if (Polyfills.neededPolyfills.every(function (poly) {
+            return poly.loaded;
+          })) {
+            console.debug('Runlevel 0: All required polyfills have finished loading.');
+            console.debug('Runlevel 0->1.');
+            window.distillRunlevel = 1;
+            callback();
+          }
+        };
+        // Add polyfill script tags
+        var _iterator11 = _createForOfIteratorHelper(Polyfills.neededPolyfills),
+          _step11;
+        try {
+          for (_iterator11.s(); !(_step11 = _iterator11.n()).done;) {
+            var polyfill = _step11.value;
+            addPolyfill(polyfill, polyfillLoaded);
+          }
+        } catch (err) {
+          _iterator11.e(err);
+        } finally {
+          _iterator11.f();
         }
-      };
-      // Add polyfill script tags
-      for (var polyfill of Polyfills.neededPolyfills) {
-        addPolyfill(polyfill, polyfillLoaded);
       }
-    }
-    static get neededPolyfills() {
-      if (!Polyfills._neededPolyfills) {
-        Polyfills._neededPolyfills = polyfills.filter(poly => !poly.support());
+    }, {
+      key: "neededPolyfills",
+      get: function get() {
+        if (!Polyfills._neededPolyfills) {
+          Polyfills._neededPolyfills = polyfills.filter(function (poly) {
+            return !poly.support();
+          });
+        }
+        return Polyfills._neededPolyfills;
       }
-      return Polyfills._neededPolyfills;
-    }
-  }
-
-  // Copyright 2018 The Distill Template Authors
+    }]);
+    return Polyfills;
+  }(); // Copyright 2018 The Distill Template Authors
   //
   // Licensed under the Apache License, Version 2.0 (the "License");
   // you may not use this file except in compliance with the License.
@@ -1335,7 +1598,6 @@ ${math}
   // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   // See the License for the specific language governing permissions and
   // limitations under the License.
-
   // var marginSmall = 16;
   // var marginLarge = 3 * marginSmall;
   // var margin = marginSmall + marginLarge;
@@ -1348,102 +1610,30 @@ ${math}
   // var screenwidth = 768;
   // var pageWidth = screenwidth - 2 * marginLarge;
   // var bodyWidth = pageWidth - columnWidth - gutter;
-
   function body(selector) {
-    return `${selector} {
-      grid-column: left / text;
+    return "".concat(selector, " {\n      grid-column: left / text;\n    }\n  ");
+  }
+
+  // Copyright 2018 The Distill Template Authors
+
+  var T$1 = Template('d-abstract', "\n<style>\n  :host {\n    font-size: 1.25rem;\n    line-height: 1.6em;\n    color: rgba(0, 0, 0, 0.7);\n    -webkit-font-smoothing: antialiased;\n  }\n\n  ::slotted(p) {\n    margin-top: 0;\n    margin-bottom: 1em;\n    grid-column: text-start / middle-end;\n  }\n  ".concat(body('d-abstract'), "\n</style>\n\n<slot></slot>\n"));
+  var Abstract = /*#__PURE__*/function (_T$) {
+    _inherits(Abstract, _T$);
+    function Abstract() {
+      _classCallCheck(this, Abstract);
+      return _callSuper(this, Abstract, arguments);
     }
-  `;
-  }
-
-  // Copyright 2018 The Distill Template Authors
-
-  var T$1 = Template('d-abstract', `
-<style>
-  :host {
-    font-size: 1.25rem;
-    line-height: 1.6em;
-    color: rgba(0, 0, 0, 0.7);
-    -webkit-font-smoothing: antialiased;
-  }
-
-  ::slotted(p) {
-    margin-top: 0;
-    margin-bottom: 1em;
-    grid-column: text-start / middle-end;
-  }
-  ${body('d-abstract')}
-</style>
-
-<slot></slot>
-`);
-  class Abstract extends T$1(HTMLElement) {}
-
-  // Copyright 2018 The Distill Template Authors
-
-  var T$2 = Template('d-appendix', `
-<style>
-
-d-appendix {
-  contain: layout style;
-  font-size: 0.8em;
-  line-height: 1.7em;
-  margin-top: 60px;
-  margin-bottom: 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-  color: rgba(0,0,0,0.5);
-  padding-top: 60px;
-  padding-bottom: 48px;
-}
-
-d-appendix h3 {
-  grid-column: page-start / text-start;
-  font-size: 15px;
-  font-weight: 500;
-  margin-top: 1em;
-  margin-bottom: 0;
-  color: rgba(0,0,0,0.65);
-}
-
-d-appendix h3 + * {
-  margin-top: 1em;
-}
-
-d-appendix ol {
-  padding: 0 0 0 15px;
-}
-
-@media (min-width: 768px) {
-  d-appendix ol {
-    padding: 0 0 0 30px;
-    margin-left: -30px;
-  }
-}
-
-d-appendix li {
-  margin-bottom: 1em;
-}
-
-d-appendix a {
-  color: rgba(0, 0, 0, 0.6);
-}
-
-d-appendix > * {
-  grid-column: text;
-}
-
-d-appendix > d-footnote-list,
-d-appendix > d-citation-list,
-d-appendix > distill-appendix {
-  grid-column: screen;
-}
-
-</style>
-
-`, false);
-  class Appendix extends T$2(HTMLElement) {}
-
-  // Copyright 2018 The Distill Template Authors
+    return _createClass(Abstract);
+  }(T$1(HTMLElement)); // Copyright 2018 The Distill Template Authors
+  var T$2 = Template('d-appendix', "\n<style>\n\nd-appendix {\n  contain: layout style;\n  font-size: 0.8em;\n  line-height: 1.7em;\n  margin-top: 60px;\n  margin-bottom: 0;\n  border-top: 1px solid rgba(0, 0, 0, 0.1);\n  color: rgba(0,0,0,0.5);\n  padding-top: 60px;\n  padding-bottom: 48px;\n}\n\nd-appendix h3 {\n  grid-column: page-start / text-start;\n  font-size: 15px;\n  font-weight: 500;\n  margin-top: 1em;\n  margin-bottom: 0;\n  color: rgba(0,0,0,0.65);\n}\n\nd-appendix h3 + * {\n  margin-top: 1em;\n}\n\nd-appendix ol {\n  padding: 0 0 0 15px;\n}\n\n@media (min-width: 768px) {\n  d-appendix ol {\n    padding: 0 0 0 30px;\n    margin-left: -30px;\n  }\n}\n\nd-appendix li {\n  margin-bottom: 1em;\n}\n\nd-appendix a {\n  color: rgba(0, 0, 0, 0.6);\n}\n\nd-appendix > * {\n  grid-column: text;\n}\n\nd-appendix > d-footnote-list,\nd-appendix > d-citation-list,\nd-appendix > distill-appendix {\n  grid-column: screen;\n}\n\n</style>\n\n", false);
+  var Appendix = /*#__PURE__*/function (_T$2) {
+    _inherits(Appendix, _T$2);
+    function Appendix() {
+      _classCallCheck(this, Appendix);
+      return _callSuper(this, Appendix, arguments);
+    }
+    return _createClass(Appendix);
+  }(T$2(HTMLElement)); // Copyright 2018 The Distill Template Authors
   //
   // Licensed under the Apache License, Version 2.0 (the "License");
   // you may not use this file except in compliance with the License.
@@ -1456,42 +1646,66 @@ d-appendix > distill-appendix {
   // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   // See the License for the specific language governing permissions and
   // limitations under the License.
-
   // import { Template } from '../mixins/template';
   // import { Controller } from '../controller';
-
   var isOnlyWhitespace = /^\s*$/;
-  class Article extends HTMLElement {
-    static get is() {
-      return 'd-article';
-    }
-    constructor() {
-      super();
-      new MutationObserver(mutations => {
-        for (var mutation of mutations) {
-          for (var addedNode of mutation.addedNodes) {
-            switch (addedNode.nodeName) {
-              case '#text':
-                {
-                  // usually text nodes are only linebreaks.
-                  var text = addedNode.nodeValue;
-                  if (!isOnlyWhitespace.test(text)) {
-                    console.warn('Use of unwrapped text in distill articles is discouraged as it breaks layout! Please wrap any text in a <span> or <p> tag. We found the following text: ' + text);
-                    var wrapper = document.createElement('span');
-                    wrapper.innerHTML = addedNode.nodeValue;
-                    addedNode.parentNode.insertBefore(wrapper, addedNode);
-                    addedNode.parentNode.removeChild(addedNode);
-                  }
+  var Article = /*#__PURE__*/function (_HTMLElement2) {
+    _inherits(Article, _HTMLElement2);
+    function Article() {
+      var _this5;
+      _classCallCheck(this, Article);
+      _this5 = _callSuper(this, Article);
+      new MutationObserver(function (mutations) {
+        var _iterator12 = _createForOfIteratorHelper(mutations),
+          _step12;
+        try {
+          for (_iterator12.s(); !(_step12 = _iterator12.n()).done;) {
+            var mutation = _step12.value;
+            var _iterator13 = _createForOfIteratorHelper(mutation.addedNodes),
+              _step13;
+            try {
+              for (_iterator13.s(); !(_step13 = _iterator13.n()).done;) {
+                var addedNode = _step13.value;
+                switch (addedNode.nodeName) {
+                  case '#text':
+                    {
+                      // usually text nodes are only linebreaks.
+                      var text = addedNode.nodeValue;
+                      if (!isOnlyWhitespace.test(text)) {
+                        console.warn('Use of unwrapped text in distill articles is discouraged as it breaks layout! Please wrap any text in a <span> or <p> tag. We found the following text: ' + text);
+                        var wrapper = document.createElement('span');
+                        wrapper.innerHTML = addedNode.nodeValue;
+                        addedNode.parentNode.insertBefore(wrapper, addedNode);
+                        addedNode.parentNode.removeChild(addedNode);
+                      }
+                    }
+                    break;
                 }
-                break;
+              }
+            } catch (err) {
+              _iterator13.e(err);
+            } finally {
+              _iterator13.f();
             }
           }
+        } catch (err) {
+          _iterator12.e(err);
+        } finally {
+          _iterator12.f();
         }
-      }).observe(this, {
+      }).observe(_assertThisInitialized(_this5), {
         childList: true
       });
+      return _this5;
     }
-  }
+    _createClass(Article, null, [{
+      key: "is",
+      get: function get() {
+        return 'd-article';
+      }
+    }]);
+    return Article;
+  }( /*#__PURE__*/_wrapNativeSuper(HTMLElement));
   var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
   function createCommonjsModule(fn, module) {
     return module = {
@@ -1774,41 +1988,49 @@ d-appendix > distill-appendix {
   // Copyright 2018 The Distill Template Authors
 
   function normalizeTag(string) {
-    return string.replace(/[\t\n ]+/g, ' ').replace(/{\\["^`.'acu~Hvs]( )?([a-zA-Z])}/g, (full, x, char) => char).replace(/{\\([a-zA-Z])}/g, (full, char) => char);
+    return string.replace(/[\t\n ]+/g, ' ').replace(/{\\["^`.'acu~Hvs]( )?([a-zA-Z])}/g, function (full, x, _char) {
+      return _char;
+    }).replace(/{\\([a-zA-Z])}/g, function (full, _char2) {
+      return _char2;
+    });
   }
   function parseBibtex(bibtex) {
     var bibliography = new Map();
     var parsedEntries = bibtexParse.toJSON(bibtex);
-    for (var entry of parsedEntries) {
-      // normalize tags; note entryTags is an object, not Map
-      for (var [key, value] of Object.entries(entry.entryTags)) {
-        entry.entryTags[key.toLowerCase()] = normalizeTag(value);
+    var _iterator14 = _createForOfIteratorHelper(parsedEntries),
+      _step14;
+    try {
+      for (_iterator14.s(); !(_step14 = _iterator14.n()).done;) {
+        var entry = _step14.value;
+        // normalize tags; note entryTags is an object, not Map
+        for (var _i = 0, _Object$entries = Object.entries(entry.entryTags); _i < _Object$entries.length; _i++) {
+          var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+            key = _Object$entries$_i[0],
+            value = _Object$entries$_i[1];
+          entry.entryTags[key.toLowerCase()] = normalizeTag(value);
+        }
+        entry.entryTags.type = entry.entryType;
+        // add to bibliography
+        bibliography.set(entry.citationKey, entry.entryTags);
       }
-      entry.entryTags.type = entry.entryType;
-      // add to bibliography
-      bibliography.set(entry.citationKey, entry.entryTags);
+    } catch (err) {
+      _iterator14.e(err);
+    } finally {
+      _iterator14.f();
     }
     return bibliography;
   }
   function serializeFrontmatterToBibtex(frontMatter) {
-    return `@article{${frontMatter.slug},
-  author = {${frontMatter.bibtexAuthors}},
-  title = {${frontMatter.title}},
-  journal = {${frontMatter.journal.title}},
-  year = {${frontMatter.publishedYear}},
-  note = {${frontMatter.url}},
-  doi = {${frontMatter.doi}}
-}`;
+    return "@article{".concat(frontMatter.slug, ",\n  author = {").concat(frontMatter.bibtexAuthors, "},\n  title = {").concat(frontMatter.title, "},\n  journal = {").concat(frontMatter.journal.title, "},\n  year = {").concat(frontMatter.publishedYear, "},\n  note = {").concat(frontMatter.url, "},\n  doi = {").concat(frontMatter.doi, "}\n}");
   }
 
   // Copyright 2018 The Distill Template Authors
-
-  class Bibliography extends HTMLElement {
-    static get is() {
-      return 'd-bibliography';
-    }
-    constructor() {
-      super();
+  var Bibliography = /*#__PURE__*/function (_HTMLElement3) {
+    _inherits(Bibliography, _HTMLElement3);
+    function Bibliography() {
+      var _this6;
+      _classCallCheck(this, Bibliography);
+      _this6 = _callSuper(this, Bibliography);
 
       // set up mutation observer
       var options = {
@@ -1816,66 +2038,98 @@ d-appendix > distill-appendix {
         characterData: true,
         subtree: true
       };
-      var observer = new MutationObserver(entries => {
-        for (var entry of entries) {
-          if (entry.target.nodeName === 'SCRIPT' || entry.type === 'characterData') {
-            this.parseIfPossible();
+      var observer = new MutationObserver(function (entries) {
+        var _iterator15 = _createForOfIteratorHelper(entries),
+          _step15;
+        try {
+          for (_iterator15.s(); !(_step15 = _iterator15.n()).done;) {
+            var entry = _step15.value;
+            if (entry.target.nodeName === 'SCRIPT' || entry.type === 'characterData') {
+              _this6.parseIfPossible();
+            }
           }
+        } catch (err) {
+          _iterator15.e(err);
+        } finally {
+          _iterator15.f();
         }
       });
-      observer.observe(this, options);
+      observer.observe(_assertThisInitialized(_this6), options);
+      return _this6;
     }
-    connectedCallback() {
-      requestAnimationFrame(() => {
-        this.parseIfPossible();
-      });
-    }
-    parseIfPossible() {
-      var scriptTag = this.querySelector('script');
-      if (!scriptTag) return;
-      if (scriptTag.type == 'text/bibtex') {
-        var newBibtex = scriptTag.textContent;
-        if (this.bibtex !== newBibtex) {
-          this.bibtex = newBibtex;
-          var bibliography = parseBibtex(this.bibtex);
-          this.notify(bibliography);
-        }
-      } else if (scriptTag.type == 'text/json') {
-        var bibliography = new Map(JSON.parse(scriptTag.textContent));
-        this.notify(bibliography);
-      } else {
-        console.warn('Unsupported bibliography script tag type: ' + scriptTag.type);
+    _createClass(Bibliography, [{
+      key: "connectedCallback",
+      value: function connectedCallback() {
+        var _this7 = this;
+        requestAnimationFrame(function () {
+          _this7.parseIfPossible();
+        });
       }
-    }
-    notify(bibliography) {
-      var options = {
-        detail: bibliography,
-        bubbles: true
-      };
-      var event = new CustomEvent('onBibliographyChanged', options);
-      this.dispatchEvent(event);
-    }
+    }, {
+      key: "parseIfPossible",
+      value: function parseIfPossible() {
+        var scriptTag = this.querySelector('script');
+        if (!scriptTag) return;
+        if (scriptTag.type == 'text/bibtex') {
+          var newBibtex = scriptTag.textContent;
+          if (this.bibtex !== newBibtex) {
+            this.bibtex = newBibtex;
+            var bibliography = parseBibtex(this.bibtex);
+            this.notify(bibliography);
+          }
+        } else if (scriptTag.type == 'text/json') {
+          var bibliography = new Map(JSON.parse(scriptTag.textContent));
+          this.notify(bibliography);
+        } else {
+          console.warn('Unsupported bibliography script tag type: ' + scriptTag.type);
+        }
+      }
+    }, {
+      key: "notify",
+      value: function notify(bibliography) {
+        var options = {
+          detail: bibliography,
+          bubbles: true
+        };
+        var event = new CustomEvent('onBibliographyChanged', options);
+        this.dispatchEvent(event);
+      }
 
-    /* observe 'src' attribute */
-
-    static get observedAttributes() {
-      return ['src'];
-    }
-    receivedBibtex(event) {
-      var bibliography = parseBibtex(event.target.response);
-      this.notify(bibliography);
-    }
-    attributeChangedCallback(name, oldValue, newValue) {
-      var oReq = new XMLHttpRequest();
-      oReq.onload = e => this.receivedBibtex(e);
-      oReq.onerror = () => console.warn(`Could not load Bibtex! (tried ${newValue})`);
-      oReq.responseType = 'text';
-      oReq.open('GET', newValue, true);
-      oReq.send();
-    }
-  }
-
-  // Copyright 2018 The Distill Template Authors
+      /* observe 'src' attribute */
+    }, {
+      key: "receivedBibtex",
+      value: function receivedBibtex(event) {
+        var bibliography = parseBibtex(event.target.response);
+        this.notify(bibliography);
+      }
+    }, {
+      key: "attributeChangedCallback",
+      value: function attributeChangedCallback(name, oldValue, newValue) {
+        var _this8 = this;
+        var oReq = new XMLHttpRequest();
+        oReq.onload = function (e) {
+          return _this8.receivedBibtex(e);
+        };
+        oReq.onerror = function () {
+          return console.warn("Could not load Bibtex! (tried ".concat(newValue, ")"));
+        };
+        oReq.responseType = 'text';
+        oReq.open('GET', newValue, true);
+        oReq.send();
+      }
+    }], [{
+      key: "is",
+      get: function get() {
+        return 'd-bibliography';
+      }
+    }, {
+      key: "observedAttributes",
+      get: function get() {
+        return ['src'];
+      }
+    }]);
+    return Bibliography;
+  }( /*#__PURE__*/_wrapNativeSuper(HTMLElement)); // Copyright 2018 The Distill Template Authors
   //
   // Licensed under the Apache License, Version 2.0 (the "License");
   // you may not use this file except in compliance with the License.
@@ -1888,210 +2142,154 @@ d-appendix > distill-appendix {
   // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   // See the License for the specific language governing permissions and
   // limitations under the License.
-
   // import style from '../styles/d-byline.css';
-
   function bylineTemplate(frontMatter) {
-    return `
-  <div class="byline grid">
-    <div class="authors-affiliations grid">
-      <h3>Authors</h3>
-      <h3>Affiliations</h3>
-      ${frontMatter.authors.map(author => `
-        <p class="author">
-          ${author.personalURL ? `
-            <a class="name" href="${author.personalURL}">${author.name}</a>` : `
-            <span class="name">${author.name}</span>`}
-        </p>
-        <p class="affiliation">
-        ${author.affiliations.map(affiliation => affiliation.url ? `<a class="affiliation" href="${affiliation.url}">${affiliation.name}</a>` : `<span class="affiliation">${affiliation.name}</span>`).join(', ')}
-        </p>
-      `).join('')}
-    </div>
-    <div>
-      <h3>Published</h3>
-      ${frontMatter.publishedDate ? `
-        <p>${frontMatter.publishedMonth} ${frontMatter.publishedDay}, ${frontMatter.publishedYear}</p> ` : `
-        <p><em>Not published yet.</em></p>`}
-    </div>
-  </div>
-`;
+    return "\n  <div class=\"byline grid\">\n    <div class=\"authors-affiliations grid\">\n      <h3>Authors</h3>\n      <h3>Affiliations</h3>\n      ".concat(frontMatter.authors.map(function (author) {
+      return "\n        <p class=\"author\">\n          ".concat(author.personalURL ? "\n            <a class=\"name\" href=\"".concat(author.personalURL, "\">").concat(author.name, "</a>") : "\n            <span class=\"name\">".concat(author.name, "</span>"), "\n        </p>\n        <p class=\"affiliation\">\n        ").concat(author.affiliations.map(function (affiliation) {
+        return affiliation.url ? "<a class=\"affiliation\" href=\"".concat(affiliation.url, "\">").concat(affiliation.name, "</a>") : "<span class=\"affiliation\">".concat(affiliation.name, "</span>");
+      }).join(', '), "\n        </p>\n      ");
+    }).join(''), "\n    </div>\n    <div>\n      <h3>Published</h3>\n      ").concat(frontMatter.publishedDate ? "\n        <p>".concat(frontMatter.publishedMonth, " ").concat(frontMatter.publishedDay, ", ").concat(frontMatter.publishedYear, "</p> ") : "\n        <p><em>Not published yet.</em></p>", "\n    </div>\n  </div>\n");
   }
-  class Byline extends HTMLElement {
-    static get is() {
-      return 'd-byline';
+  var Byline = /*#__PURE__*/function (_HTMLElement4) {
+    _inherits(Byline, _HTMLElement4);
+    function Byline() {
+      _classCallCheck(this, Byline);
+      return _callSuper(this, Byline, arguments);
     }
-    set frontMatter(frontMatter) {
-      this.innerHTML = bylineTemplate(frontMatter);
-    }
-  }
-
-  // Copyright 2018 The Distill Template Authors
-
-  var T$3 = Template("d-cite", `
-<style>
-
-:host {
-  display: inline-block;
-}
-
-.citation {
-  color: hsla(206, 90%, 20%, 0.7);
-}
-
-.citation-number {
-  cursor: default;
-  white-space: nowrap;
-  font-family: -apple-system, BlinkMacSystemFont, "Roboto", Helvetica, sans-serif;
-  font-size: 75%;
-  color: hsla(206, 90%, 20%, 0.7);
-  display: inline-block;
-  line-height: 1.1em;
-  text-align: center;
-  position: relative;
-  top: -2px;
-  margin: 0 2px;
-}
-
-figcaption .citation-number {
-  font-size: 11px;
-  font-weight: normal;
-  top: -2px;
-  line-height: 1em;
-}
-
-ul {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-}
-
-ul li {
-  padding: 15px 10px 15px 10px;
-  border-bottom: 1px solid rgba(0,0,0,0.1)
-}
-
-ul li:last-of-type {
-  border-bottom: none;
-}
-
-</style>
-
-<d-hover-box id="hover-box"></d-hover-box>
-
-<div id="citation-" class="citation">
-  <span class="citation-number"></span>
-</div>
-`);
-  class Cite extends T$3(HTMLElement) {
+    _createClass(Byline, [{
+      key: "frontMatter",
+      set: function set(frontMatter) {
+        this.innerHTML = bylineTemplate(frontMatter);
+      }
+    }], [{
+      key: "is",
+      get: function get() {
+        return 'd-byline';
+      }
+    }]);
+    return Byline;
+  }( /*#__PURE__*/_wrapNativeSuper(HTMLElement)); // Copyright 2018 The Distill Template Authors
+  var T$3 = Template("d-cite", "\n<style>\n\n:host {\n  display: inline-block;\n}\n\n.citation {\n  color: hsla(206, 90%, 20%, 0.7);\n}\n\n.citation-number {\n  cursor: default;\n  white-space: nowrap;\n  font-family: -apple-system, BlinkMacSystemFont, \"Roboto\", Helvetica, sans-serif;\n  font-size: 75%;\n  color: hsla(206, 90%, 20%, 0.7);\n  display: inline-block;\n  line-height: 1.1em;\n  text-align: center;\n  position: relative;\n  top: -2px;\n  margin: 0 2px;\n}\n\nfigcaption .citation-number {\n  font-size: 11px;\n  font-weight: normal;\n  top: -2px;\n  line-height: 1em;\n}\n\nul {\n  margin: 0;\n  padding: 0;\n  list-style-type: none;\n}\n\nul li {\n  padding: 15px 10px 15px 10px;\n  border-bottom: 1px solid rgba(0,0,0,0.1)\n}\n\nul li:last-of-type {\n  border-bottom: none;\n}\n\n</style>\n\n<d-hover-box id=\"hover-box\"></d-hover-box>\n\n<div id=\"citation-\" class=\"citation\">\n  <span class=\"citation-number\"></span>\n</div>\n");
+  var Cite = /*#__PURE__*/function (_T$3) {
+    _inherits(Cite, _T$3);
     /* Lifecycle */
-    constructor() {
-      super();
-      this._numbers = [];
-      this._entries = [];
+    function Cite() {
+      var _this9;
+      _classCallCheck(this, Cite);
+      _this9 = _callSuper(this, Cite);
+      _this9._numbers = [];
+      _this9._entries = [];
+      return _this9;
     }
-    connectedCallback() {
-      this.outerSpan = this.root.querySelector("#citation-");
-      this.innerSpan = this.root.querySelector(".citation-number");
-      this.hoverBox = this.root.querySelector("d-hover-box");
-      window.customElements.whenDefined("d-hover-box").then(() => {
-        this.hoverBox.listen(this);
-      });
-      // in case this component got connected after values were set
-      if (this.numbers) {
-        this.displayNumbers(this.numbers);
+    _createClass(Cite, [{
+      key: "connectedCallback",
+      value: function connectedCallback() {
+        var _this10 = this;
+        this.outerSpan = this.root.querySelector("#citation-");
+        this.innerSpan = this.root.querySelector(".citation-number");
+        this.hoverBox = this.root.querySelector("d-hover-box");
+        window.customElements.whenDefined("d-hover-box").then(function () {
+          _this10.hoverBox.listen(_this10);
+        });
+        // in case this component got connected after values were set
+        if (this.numbers) {
+          this.displayNumbers(this.numbers);
+        }
+        if (this.entries) {
+          this.displayEntries(this.entries);
+        }
       }
-      if (this.entries) {
-        this.displayEntries(this.entries);
+
+      //TODO This causes an infinite loop on firefox with polyfills.
+      // This is only needed for interactive editing so no priority.
+      // disconnectedCallback() {
+      // var options = { detail: [this, this.keys], bubbles: true };
+      // var event = new CustomEvent('onCiteKeyRemoved', options);
+      // document.dispatchEvent(event);
+      // }
+
+      /* observe 'key' attribute */
+    }, {
+      key: "attributeChangedCallback",
+      value: function attributeChangedCallback(name, oldValue, newValue) {
+        var eventName = oldValue ? "onCiteKeyChanged" : "onCiteKeyCreated";
+        var keys = newValue.split(",").map(function (k) {
+          return k.trim();
+        });
+        var options = {
+          detail: [this, keys],
+          bubbles: true
+        };
+        var event = new CustomEvent(eventName, options);
+        document.dispatchEvent(event);
       }
-    }
+    }, {
+      key: "key",
+      get: function get() {
+        return this.getAttribute("key") || this.getAttribute("bibtex-key");
+      },
+      set: function set(value) {
+        this.setAttribute("key", value);
+      }
+    }, {
+      key: "keys",
+      get: function get() {
+        var result = this.key.split(",");
+        console.log(result);
+        return result;
+      }
 
-    //TODO This causes an infinite loop on firefox with polyfills.
-    // This is only needed for interactive editing so no priority.
-    // disconnectedCallback() {
-    // var options = { detail: [this, this.keys], bubbles: true };
-    // var event = new CustomEvent('onCiteKeyRemoved', options);
-    // document.dispatchEvent(event);
-    // }
-
-    /* observe 'key' attribute */
-
-    static get observedAttributes() {
-      return ["key", "bibtex-key"];
-    }
-    attributeChangedCallback(name, oldValue, newValue) {
-      var eventName = oldValue ? "onCiteKeyChanged" : "onCiteKeyCreated";
-      var keys = newValue.split(",").map(k => k.trim());
-      var options = {
-        detail: [this, keys],
-        bubbles: true
-      };
-      var event = new CustomEvent(eventName, options);
-      document.dispatchEvent(event);
-    }
-    set key(value) {
-      this.setAttribute("key", value);
-    }
-    get key() {
-      return this.getAttribute("key") || this.getAttribute("bibtex-key");
-    }
-    get keys() {
-      var result = this.key.split(",");
-      console.log(result);
-      return result;
-    }
-
-    /* Setters & Rendering */
-
-    set numbers(numbers) {
-      this._numbers = numbers;
-      this.displayNumbers(numbers);
-    }
-    get numbers() {
-      return this._numbers;
-    }
-    displayNumbers(numbers) {
-      if (!this.innerSpan) return;
-      var numberStrings = numbers.map(index => {
-        return index == -1 ? "?" : index + 1 + "";
-      });
-      var textContent = "[" + numberStrings.join(", ") + "]";
-      this.innerSpan.textContent = textContent;
-    }
-    set entries(entries) {
-      this._entries = entries;
-      this.displayEntries(entries);
-    }
-    get entries() {
-      return this._entries;
-    }
-    displayEntries(entries) {
-      if (!this.hoverBox) return;
-      this.hoverBox.innerHTML = `<ul>
-      ${entries.map(hover_cite).map(html => `<li>${html}</li>`).join("\n")}
-    </ul>`;
-    }
-  }
-
-  // Copyright 2018 The Distill Template Authors
-
-  var styles$1 = `
-d-citation-list {
-  contain: style;
-}
-
-d-citation-list .references {
-  grid-column: text;
-}
-
-d-citation-list .references .title {
-  font-weight: 500;
-}
-`;
-  function renderCitationList(element, entries, dom = document) {
+      /* Setters & Rendering */
+    }, {
+      key: "numbers",
+      get: function get() {
+        return this._numbers;
+      },
+      set: function set(numbers) {
+        this._numbers = numbers;
+        this.displayNumbers(numbers);
+      }
+    }, {
+      key: "displayNumbers",
+      value: function displayNumbers(numbers) {
+        if (!this.innerSpan) return;
+        var numberStrings = numbers.map(function (index) {
+          return index == -1 ? "?" : index + 1 + "";
+        });
+        var textContent = "[" + numberStrings.join(", ") + "]";
+        this.innerSpan.textContent = textContent;
+      }
+    }, {
+      key: "entries",
+      get: function get() {
+        return this._entries;
+      },
+      set: function set(entries) {
+        this._entries = entries;
+        this.displayEntries(entries);
+      }
+    }, {
+      key: "displayEntries",
+      value: function displayEntries(entries) {
+        if (!this.hoverBox) return;
+        this.hoverBox.innerHTML = "<ul>\n      ".concat(entries.map(hover_cite).map(function (html) {
+          return "<li>".concat(html, "</li>");
+        }).join("\n"), "\n    </ul>");
+      }
+    }], [{
+      key: "observedAttributes",
+      get: function get() {
+        return ["key", "bibtex-key"];
+      }
+    }]);
+    return Cite;
+  }(T$3(HTMLElement)); // Copyright 2018 The Distill Template Authors
+  var styles$1 = "\nd-citation-list {\n  contain: style;\n}\n\nd-citation-list .references {\n  grid-column: text;\n}\n\nd-citation-list .references .title {\n  font-weight: 500;\n}\n";
+  function renderCitationList(element, entries) {
+    var dom = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : document;
     if (entries.size > 0) {
       element.style.display = '';
-      let list = element.querySelector('.references');
+      var list = element.querySelector('.references');
       if (list) {
         list.innerHTML = '';
       } else {
@@ -2107,29 +2305,53 @@ d-citation-list .references .title {
         list.className = 'references';
         element.appendChild(list);
       }
-      for (var [key, entry] of entries) {
-        var listItem = dom.createElement('li');
-        listItem.id = key;
-        listItem.innerHTML = bibliography_cite(entry);
-        list.appendChild(listItem);
+      var _iterator16 = _createForOfIteratorHelper(entries),
+        _step16;
+      try {
+        for (_iterator16.s(); !(_step16 = _iterator16.n()).done;) {
+          var _step16$value = _slicedToArray(_step16.value, 2),
+            key = _step16$value[0],
+            entry = _step16$value[1];
+          var listItem = dom.createElement('li');
+          listItem.id = key;
+          listItem.innerHTML = bibliography_cite(entry);
+          list.appendChild(listItem);
+        }
+      } catch (err) {
+        _iterator16.e(err);
+      } finally {
+        _iterator16.f();
       }
     } else {
       element.style.display = 'none';
     }
   }
-  class CitationList extends HTMLElement {
-    static get is() {
-      return 'd-citation-list';
+  var CitationList = /*#__PURE__*/function (_HTMLElement5) {
+    _inherits(CitationList, _HTMLElement5);
+    function CitationList() {
+      _classCallCheck(this, CitationList);
+      return _callSuper(this, CitationList, arguments);
     }
-    connectedCallback() {
-      if (!this.hasAttribute('distill-prerendered')) {
-        this.style.display = 'none';
+    _createClass(CitationList, [{
+      key: "connectedCallback",
+      value: function connectedCallback() {
+        if (!this.hasAttribute('distill-prerendered')) {
+          this.style.display = 'none';
+        }
       }
-    }
-    set citations(citations) {
-      renderCitationList(this, citations);
-    }
-  }
+    }, {
+      key: "citations",
+      set: function set(citations) {
+        renderCitationList(this, citations);
+      }
+    }], [{
+      key: "is",
+      get: function get() {
+        return 'd-citation-list';
+      }
+    }]);
+    return CitationList;
+  }( /*#__PURE__*/_wrapNativeSuper(HTMLElement));
   var prism = createCommonjsModule(function (module) {
     /* **********************************************
          Begin prism-core.js
@@ -2163,10 +2385,10 @@ d-citation-list .references .title {
               return tokens.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/\u00a0/g, ' ');
             }
           },
-          type: function (o) {
+          type: function type(o) {
             return Object.prototype.toString.call(o).slice(8, -1);
           },
-          objId: function (obj) {
+          objId: function objId(obj) {
             if (!obj['__id']) {
               Object.defineProperty(obj, '__id', {
                 value: ++uniqueId
@@ -2217,7 +2439,7 @@ d-citation-list .references .title {
            * @param {Element} element
            * @returns {string}
            */
-          getLanguage: function (element) {
+          getLanguage: function getLanguage(element) {
             while (element && !lang.test(element.className)) {
               element = element.parentElement;
             }
@@ -2233,7 +2455,7 @@ d-citation-list .references .title {
            *
            * @returns {HTMLScriptElement | null}
            */
-          currentScript: function () {
+          currentScript: function currentScript() {
             if (typeof document === 'undefined') {
               return null;
             }
@@ -2269,7 +2491,7 @@ d-citation-list .references .title {
           }
         },
         languages: {
-          extend: function (id, redef) {
+          extend: function extend(id, redef) {
             var lang = _.util.clone(_.languages[id]);
             for (var key in redef) {
               lang[key] = redef[key];
@@ -2285,7 +2507,7 @@ d-citation-list .references .title {
            * @param insert Object with the key/value pairs to insert
            * @param root The object that contains `inside`. If equal to Prism.languages, it can be omitted.
            */
-          insertBefore: function (inside, before, insert, root) {
+          insertBefore: function insertBefore(inside, before, insert, root) {
             root = root || _.languages;
             var grammar = root[inside];
             var ret = {};
@@ -2337,10 +2559,10 @@ d-citation-list .references .title {
           }
         },
         plugins: {},
-        highlightAll: function (async, callback) {
+        highlightAll: function highlightAll(async, callback) {
           _.highlightAllUnder(document, async, callback);
         },
-        highlightAllUnder: function (container, async, callback) {
+        highlightAllUnder: function highlightAllUnder(container, async, callback) {
           var env = {
             callback: callback,
             container: container,
@@ -2353,7 +2575,7 @@ d-citation-list .references .title {
             _.highlightElement(element, async === true, env.callback);
           }
         },
-        highlightElement: function (element, async, callback) {
+        highlightElement: function highlightElement(element, async, callback) {
           // Find language
           var language = _.util.getLanguage(element);
           var grammar = _.languages[language];
@@ -2406,7 +2628,7 @@ d-citation-list .references .title {
             insertHighlightedCode(_.highlight(env.code, env.grammar, env.language));
           }
         },
-        highlight: function (text, grammar, language) {
+        highlight: function highlight(text, grammar, language) {
           var env = {
             code: text,
             grammar: grammar,
@@ -2417,7 +2639,7 @@ d-citation-list .references .title {
           _.hooks.run('after-tokenize', env);
           return Token.stringify(_.util.encode(env.tokens), env.language);
         },
-        tokenize: function (text, grammar) {
+        tokenize: function tokenize(text, grammar) {
           var rest = grammar.rest;
           if (rest) {
             for (var token in rest) {
@@ -2432,12 +2654,12 @@ d-citation-list .references .title {
         },
         hooks: {
           all: {},
-          add: function (name, callback) {
+          add: function add(name, callback) {
             var hooks = _.hooks.all;
             hooks[name] = hooks[name] || [];
             hooks[name].push(callback);
           },
-          run: function (name, env) {
+          run: function run(name, env) {
             var callbacks = _.hooks.all[name];
             if (!callbacks || !callbacks.length) {
               return;
@@ -3730,344 +3952,275 @@ d-citation-list .references .title {
 
   // Copyright 2018 The Distill Template Authors
 
-  var T$4 = Template('d-code', `
-<style>
-
-code {
-  white-space: nowrap;
-  background: rgba(0, 0, 0, 0.04);
-  border-radius: 2px;
-  padding: 4px 7px;
-  font-size: 15px;
-  color: rgba(0, 0, 0, 0.6);
-}
-
-pre code {
-  display: block;
-  border-left: 2px solid rgba(0, 0, 0, .1);
-  padding: 0 0 0 36px;
-}
-
-${css}
-</style>
-
-<code id="code-container"></code>
-
-`);
-  class Code extends Mutating(T$4(HTMLElement)) {
-    renderContent() {
-      // check if language can be highlighted
-      this.languageName = this.getAttribute('language');
-      if (!this.languageName) {
-        console.warn('You need to provide a language attribute to your <d-code> block to let us know how to highlight your code; e.g.:\n <d-code language="python">zeros = np.zeros(shape)</d-code>.');
-        return;
-      }
-      var language = prism.languages[this.languageName];
-      if (language == undefined) {
-        console.warn(`Distill does not yet support highlighting your code block in "${this.languageName}'.`);
-        return;
-      }
-      let content = this.textContent;
-      var codeTag = this.shadowRoot.querySelector('#code-container');
-      if (this.hasAttribute('block')) {
-        // normalize the tab indents
-        content = content.replace(/\n/, '');
-        var tabs = content.match(/\s*/);
-        content = content.replace(new RegExp('\n' + tabs, 'g'), '\n');
-        content = content.trim();
-        // wrap code block in pre tag if needed
-        if (codeTag.parentNode instanceof ShadowRoot) {
-          var preTag = document.createElement('pre');
-          this.shadowRoot.removeChild(codeTag);
-          preTag.appendChild(codeTag);
-          this.shadowRoot.appendChild(preTag);
-        }
-      }
-      codeTag.className = `language-${this.languageName}`;
-      codeTag.innerHTML = prism.highlight(content, language);
+  var T$4 = Template('d-code', "\n<style>\n\ncode {\n  white-space: nowrap;\n  background: rgba(0, 0, 0, 0.04);\n  border-radius: 2px;\n  padding: 4px 7px;\n  font-size: 15px;\n  color: rgba(0, 0, 0, 0.6);\n}\n\npre code {\n  display: block;\n  border-left: 2px solid rgba(0, 0, 0, .1);\n  padding: 0 0 0 36px;\n}\n\n".concat(css, "\n</style>\n\n<code id=\"code-container\"></code>\n\n"));
+  var Code = /*#__PURE__*/function (_Mutating2) {
+    _inherits(Code, _Mutating2);
+    function Code() {
+      _classCallCheck(this, Code);
+      return _callSuper(this, Code, arguments);
     }
-  }
-
-  // Copyright 2018 The Distill Template Authors
-
-  var T$5 = Template('d-footnote', `
-<style>
-
-d-math[block] {
-  display: block;
-}
-
-:host {
-
-}
-
-sup {
-  line-height: 1em;
-  font-size: 0.75em;
-  position: relative;
-  top: -.5em;
-  vertical-align: baseline;
-}
-
-span {
-  color: hsla(206, 90%, 20%, 0.7);
-  cursor: default;
-}
-
-.footnote-container {
-  padding: 10px;
-}
-
-</style>
-
-<d-hover-box>
-  <div class="footnote-container">
-    <slot id="slot"></slot>
-  </div>
-</d-hover-box>
-
-<sup>
-  <span id="fn-" data-hover-ref=""></span>
-</sup>
-
-`);
-  class Footnote extends T$5(HTMLElement) {
-    constructor() {
-      super();
+    _createClass(Code, [{
+      key: "renderContent",
+      value: function renderContent() {
+        // check if language can be highlighted
+        this.languageName = this.getAttribute('language');
+        if (!this.languageName) {
+          console.warn('You need to provide a language attribute to your <d-code> block to let us know how to highlight your code; e.g.:\n <d-code language="python">zeros = np.zeros(shape)</d-code>.');
+          return;
+        }
+        var language = prism.languages[this.languageName];
+        if (language == undefined) {
+          console.warn("Distill does not yet support highlighting your code block in \"".concat(this.languageName, "'."));
+          return;
+        }
+        var content = this.textContent;
+        var codeTag = this.shadowRoot.querySelector('#code-container');
+        if (this.hasAttribute('block')) {
+          // normalize the tab indents
+          content = content.replace(/\n/, '');
+          var tabs = content.match(/\s*/);
+          content = content.replace(new RegExp('\n' + tabs, 'g'), '\n');
+          content = content.trim();
+          // wrap code block in pre tag if needed
+          if (codeTag.parentNode instanceof ShadowRoot) {
+            var preTag = document.createElement('pre');
+            this.shadowRoot.removeChild(codeTag);
+            preTag.appendChild(codeTag);
+            this.shadowRoot.appendChild(preTag);
+          }
+        }
+        codeTag.className = "language-".concat(this.languageName);
+        codeTag.innerHTML = prism.highlight(content, language);
+      }
+    }]);
+    return Code;
+  }(Mutating(T$4(HTMLElement))); // Copyright 2018 The Distill Template Authors
+  var T$5 = Template('d-footnote', "\n<style>\n\nd-math[block] {\n  display: block;\n}\n\n:host {\n\n}\n\nsup {\n  line-height: 1em;\n  font-size: 0.75em;\n  position: relative;\n  top: -.5em;\n  vertical-align: baseline;\n}\n\nspan {\n  color: hsla(206, 90%, 20%, 0.7);\n  cursor: default;\n}\n\n.footnote-container {\n  padding: 10px;\n}\n\n</style>\n\n<d-hover-box>\n  <div class=\"footnote-container\">\n    <slot id=\"slot\"></slot>\n  </div>\n</d-hover-box>\n\n<sup>\n  <span id=\"fn-\" data-hover-ref=\"\"></span>\n</sup>\n\n");
+  var Footnote = /*#__PURE__*/function (_T$4) {
+    _inherits(Footnote, _T$4);
+    function Footnote() {
+      var _this11;
+      _classCallCheck(this, Footnote);
+      _this11 = _callSuper(this, Footnote);
       var options = {
         childList: true,
         characterData: true,
         subtree: true
       };
-      var observer = new MutationObserver(this.notify);
-      observer.observe(this, options);
+      var observer = new MutationObserver(_this11.notify);
+      observer.observe(_assertThisInitialized(_this11), options);
+      return _this11;
     }
-    notify() {
-      var options = {
-        detail: this,
-        bubbles: true
-      };
-      var event = new CustomEvent('onFootnoteChanged', options);
-      document.dispatchEvent(event);
-    }
-    connectedCallback() {
-      // listen and notify about changes to slotted content
-      // var slot = this.shadowRoot.querySelector('#slot');
-      // console.warn(slot.textContent);
-      // slot.addEventListener('slotchange', this.notify);
-      this.hoverBox = this.root.querySelector('d-hover-box');
-      window.customElements.whenDefined('d-hover-box').then(() => {
-        this.hoverBox.listen(this);
-      });
-      // create numeric ID
-      Footnote.currentFootnoteId += 1;
-      var IdString = Footnote.currentFootnoteId.toString();
-      this.root.host.id = 'd-footnote-' + IdString;
+    _createClass(Footnote, [{
+      key: "notify",
+      value: function notify() {
+        var options = {
+          detail: this,
+          bubbles: true
+        };
+        var event = new CustomEvent('onFootnoteChanged', options);
+        document.dispatchEvent(event);
+      }
+    }, {
+      key: "connectedCallback",
+      value: function connectedCallback() {
+        var _this12 = this;
+        // listen and notify about changes to slotted content
+        // var slot = this.shadowRoot.querySelector('#slot');
+        // console.warn(slot.textContent);
+        // slot.addEventListener('slotchange', this.notify);
+        this.hoverBox = this.root.querySelector('d-hover-box');
+        window.customElements.whenDefined('d-hover-box').then(function () {
+          _this12.hoverBox.listen(_this12);
+        });
+        // create numeric ID
+        Footnote.currentFootnoteId += 1;
+        var IdString = Footnote.currentFootnoteId.toString();
+        this.root.host.id = 'd-footnote-' + IdString;
 
-      // set up hidden hover box
-      var id = 'dt-fn-hover-box-' + IdString;
-      this.hoverBox.id = id;
+        // set up hidden hover box
+        var id = 'dt-fn-hover-box-' + IdString;
+        this.hoverBox.id = id;
 
-      // set up visible footnote marker
-      var span = this.root.querySelector('#fn-');
-      span.setAttribute('id', 'fn-' + IdString);
-      span.setAttribute('data-hover-ref', id);
-      span.textContent = IdString;
-    }
-  }
+        // set up visible footnote marker
+        var span = this.root.querySelector('#fn-');
+        span.setAttribute('id', 'fn-' + IdString);
+        span.setAttribute('data-hover-ref', id);
+        span.textContent = IdString;
+      }
+    }]);
+    return Footnote;
+  }(T$5(HTMLElement));
   Footnote.currentFootnoteId = 0;
 
   // Copyright 2018 The Distill Template Authors
 
-  var T$6 = Template('d-footnote-list', `
-<style>
-
-d-footnote-list {
-  contain: layout style;
-}
-
-d-footnote-list > * {
-  grid-column: text;
-}
-
-d-footnote-list a.footnote-backlink {
-  color: rgba(0,0,0,0.3);
-  padding-left: 0.5em;
-}
-
-</style>
-
-<h3>Footnotes</h3>
-<ol></ol>
-`, false);
-  class FootnoteList extends T$6(HTMLElement) {
-    connectedCallback() {
-      super.connectedCallback();
-      this.list = this.root.querySelector('ol');
-      // footnotes list is initially hidden
-      this.root.style.display = 'none';
-      // look through document and register existing footnotes
-      // Store.subscribeTo('footnotes', (footnote) => {
-      //   this.renderFootnote(footnote);
-      // });
+  var T$6 = Template('d-footnote-list', "\n<style>\n\nd-footnote-list {\n  contain: layout style;\n}\n\nd-footnote-list > * {\n  grid-column: text;\n}\n\nd-footnote-list a.footnote-backlink {\n  color: rgba(0,0,0,0.3);\n  padding-left: 0.5em;\n}\n\n</style>\n\n<h3>Footnotes</h3>\n<ol></ol>\n", false);
+  var FootnoteList = /*#__PURE__*/function (_T$5) {
+    _inherits(FootnoteList, _T$5);
+    function FootnoteList() {
+      _classCallCheck(this, FootnoteList);
+      return _callSuper(this, FootnoteList, arguments);
     }
-
-    // TODO: could optimize this to accept individual footnotes?
-    set footnotes(footnotes) {
-      this.list.innerHTML = '';
-      if (footnotes.length) {
-        // ensure footnote list is visible
-        this.root.style.display = '';
-        for (var footnote of footnotes) {
-          // construct and append list item to show footnote
-          var listItem = document.createElement('li');
-          listItem.id = footnote.id + '-listing';
-          listItem.innerHTML = footnote.innerHTML;
-          var backlink = document.createElement('a');
-          backlink.setAttribute('class', 'footnote-backlink');
-          backlink.textContent = '[↩]';
-          backlink.href = '#' + footnote.id;
-          listItem.appendChild(backlink);
-          this.list.appendChild(listItem);
-        }
-      } else {
-        // ensure footnote list is invisible
+    _createClass(FootnoteList, [{
+      key: "connectedCallback",
+      value: function connectedCallback() {
+        _get(_getPrototypeOf(FootnoteList.prototype), "connectedCallback", this).call(this);
+        this.list = this.root.querySelector('ol');
+        // footnotes list is initially hidden
         this.root.style.display = 'none';
+        // look through document and register existing footnotes
+        // Store.subscribeTo('footnotes', (footnote) => {
+        //   this.renderFootnote(footnote);
+        // });
       }
-    }
-  }
 
-  // Copyright 2018 The Distill Template Authors
-
-  var T$7 = Template('d-hover-box', `
-<style>
-
-:host {
-  position: absolute;
-  width: 100%;
-  left: 0px;
-  z-index: 10000;
-  display: none;
-  white-space: normal
-}
-
-.container {
-  position: relative;
-  width: 704px;
-  max-width: 100vw;
-  margin: 0 auto;
-}
-
-.panel {
-  position: absolute;
-  font-size: 1rem;
-  line-height: 1.5em;
-  top: 0;
-  left: 0;
-  width: 100%;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  background-color: rgba(250, 250, 250, 0.95);
-  box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
-  box-sizing: border-box;
-
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
-}
-
-</style>
-
-<div class="container">
-  <div class="panel">
-    <slot></slot>
-  </div>
-</div>
-`);
-  class HoverBox extends T$7(HTMLElement) {
-    constructor() {
-      super();
-    }
-    connectedCallback() {}
-    listen(element) {
-      // console.log(element)
-      this.bindDivEvents(this);
-      this.bindTriggerEvents(element);
-      // this.style.display = "block";
-    }
-    bindDivEvents(element) {
-      // For mice, same behavior as hovering on links
-      element.addEventListener('mouseover', () => {
-        if (!this.visible) this.showAtNode(element);
-        this.stopTimeout();
-      });
-      element.addEventListener('mouseout', () => {
-        this.extendTimeout(500);
-      });
-      // Don't trigger body touchstart event when touching within box
-      element.addEventListener('touchstart', event => {
-        event.stopPropagation();
-      }, {
-        passive: true
-      });
-      // Close box when touching outside box
-      document.body.addEventListener('touchstart', () => {
-        this.hide();
-      }, {
-        passive: true
-      });
-    }
-    bindTriggerEvents(node) {
-      node.addEventListener('mouseover', () => {
-        if (!this.visible) {
-          this.showAtNode(node);
-        }
-        this.stopTimeout();
-      });
-      node.addEventListener('mouseout', () => {
-        this.extendTimeout(300);
-      });
-      node.addEventListener('touchstart', event => {
-        if (this.visible) {
-          this.hide();
+      // TODO: could optimize this to accept individual footnotes?
+    }, {
+      key: "footnotes",
+      set: function set(footnotes) {
+        this.list.innerHTML = '';
+        if (footnotes.length) {
+          // ensure footnote list is visible
+          this.root.style.display = '';
+          var _iterator17 = _createForOfIteratorHelper(footnotes),
+            _step17;
+          try {
+            for (_iterator17.s(); !(_step17 = _iterator17.n()).done;) {
+              var footnote = _step17.value;
+              // construct and append list item to show footnote
+              var listItem = document.createElement('li');
+              listItem.id = footnote.id + '-listing';
+              listItem.innerHTML = footnote.innerHTML;
+              var backlink = document.createElement('a');
+              backlink.setAttribute('class', 'footnote-backlink');
+              backlink.textContent = '[↩]';
+              backlink.href = '#' + footnote.id;
+              listItem.appendChild(backlink);
+              this.list.appendChild(listItem);
+            }
+          } catch (err) {
+            _iterator17.e(err);
+          } finally {
+            _iterator17.f();
+          }
         } else {
-          this.showAtNode(node);
+          // ensure footnote list is invisible
+          this.root.style.display = 'none';
         }
-        // Don't trigger body touchstart event when touching link
-        event.stopPropagation();
-      }, {
-        passive: true
-      });
-    }
-    show(position) {
-      this.visible = true;
-      this.style.display = 'block';
-      // 10px extra offset from element
-      this.style.top = Math.round(position[1] + 10) + 'px';
-    }
-    showAtNode(node) {
-      // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
-      var bbox = node.getBoundingClientRect();
-      this.show([node.offsetLeft + bbox.width, node.offsetTop + bbox.height]);
-    }
-    hide() {
-      this.visible = false;
-      this.style.display = 'none';
-      this.stopTimeout();
-    }
-    stopTimeout() {
-      if (this.timeout) {
-        clearTimeout(this.timeout);
       }
+    }]);
+    return FootnoteList;
+  }(T$6(HTMLElement)); // Copyright 2018 The Distill Template Authors
+  var T$7 = Template('d-hover-box', "\n<style>\n\n:host {\n  position: absolute;\n  width: 100%;\n  left: 0px;\n  z-index: 10000;\n  display: none;\n  white-space: normal\n}\n\n.container {\n  position: relative;\n  width: 704px;\n  max-width: 100vw;\n  margin: 0 auto;\n}\n\n.panel {\n  position: absolute;\n  font-size: 1rem;\n  line-height: 1.5em;\n  top: 0;\n  left: 0;\n  width: 100%;\n  border: 1px solid rgba(0, 0, 0, 0.1);\n  background-color: rgba(250, 250, 250, 0.95);\n  box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);\n  border-radius: 4px;\n  box-sizing: border-box;\n\n  backdrop-filter: blur(2px);\n  -webkit-backdrop-filter: blur(2px);\n}\n\n</style>\n\n<div class=\"container\">\n  <div class=\"panel\">\n    <slot></slot>\n  </div>\n</div>\n");
+  var HoverBox = /*#__PURE__*/function (_T$6) {
+    _inherits(HoverBox, _T$6);
+    function HoverBox() {
+      _classCallCheck(this, HoverBox);
+      return _callSuper(this, HoverBox);
     }
-    extendTimeout(time) {
-      this.stopTimeout();
-      this.timeout = setTimeout(() => {
-        this.hide();
-      }, time);
-    }
-  }
-
-  // Copyright 2018 The Distill Template Authors
+    _createClass(HoverBox, [{
+      key: "connectedCallback",
+      value: function connectedCallback() {}
+    }, {
+      key: "listen",
+      value: function listen(element) {
+        // console.log(element)
+        this.bindDivEvents(this);
+        this.bindTriggerEvents(element);
+        // this.style.display = "block";
+      }
+    }, {
+      key: "bindDivEvents",
+      value: function bindDivEvents(element) {
+        var _this13 = this;
+        // For mice, same behavior as hovering on links
+        element.addEventListener('mouseover', function () {
+          if (!_this13.visible) _this13.showAtNode(element);
+          _this13.stopTimeout();
+        });
+        element.addEventListener('mouseout', function () {
+          _this13.extendTimeout(500);
+        });
+        // Don't trigger body touchstart event when touching within box
+        element.addEventListener('touchstart', function (event) {
+          event.stopPropagation();
+        }, {
+          passive: true
+        });
+        // Close box when touching outside box
+        document.body.addEventListener('touchstart', function () {
+          _this13.hide();
+        }, {
+          passive: true
+        });
+      }
+    }, {
+      key: "bindTriggerEvents",
+      value: function bindTriggerEvents(node) {
+        var _this14 = this;
+        node.addEventListener('mouseover', function () {
+          if (!_this14.visible) {
+            _this14.showAtNode(node);
+          }
+          _this14.stopTimeout();
+        });
+        node.addEventListener('mouseout', function () {
+          _this14.extendTimeout(300);
+        });
+        node.addEventListener('touchstart', function (event) {
+          if (_this14.visible) {
+            _this14.hide();
+          } else {
+            _this14.showAtNode(node);
+          }
+          // Don't trigger body touchstart event when touching link
+          event.stopPropagation();
+        }, {
+          passive: true
+        });
+      }
+    }, {
+      key: "show",
+      value: function show(position) {
+        this.visible = true;
+        this.style.display = 'block';
+        // 10px extra offset from element
+        this.style.top = Math.round(position[1] + 10) + 'px';
+      }
+    }, {
+      key: "showAtNode",
+      value: function showAtNode(node) {
+        // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+        var bbox = node.getBoundingClientRect();
+        this.show([node.offsetLeft + bbox.width, node.offsetTop + bbox.height]);
+      }
+    }, {
+      key: "hide",
+      value: function hide() {
+        this.visible = false;
+        this.style.display = 'none';
+        this.stopTimeout();
+      }
+    }, {
+      key: "stopTimeout",
+      value: function stopTimeout() {
+        if (this.timeout) {
+          clearTimeout(this.timeout);
+        }
+      }
+    }, {
+      key: "extendTimeout",
+      value: function extendTimeout(time) {
+        var _this15 = this;
+        this.stopTimeout();
+        this.timeout = setTimeout(function () {
+          _this15.hide();
+        }, time);
+      }
+    }]);
+    return HoverBox;
+  }(T$7(HTMLElement)); // Copyright 2018 The Distill Template Authors
   //
   // Licensed under the Apache License, Version 2.0 (the "License");
   // you may not use this file except in compliance with the License.
@@ -4080,25 +4233,29 @@ d-footnote-list a.footnote-backlink {
   // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   // See the License for the specific language governing permissions and
   // limitations under the License.
-
-  class Title extends HTMLElement {
-    static get is() {
-      return 'd-title';
+  var Title = /*#__PURE__*/function (_HTMLElement6) {
+    _inherits(Title, _HTMLElement6);
+    function Title() {
+      _classCallCheck(this, Title);
+      return _callSuper(this, Title, arguments);
     }
-  }
-
-  // Copyright 2018 The Distill Template Authors
-
-  var T$8 = Template('d-references', `
-<style>
-d-references {
-  display: block;
-}
-</style>
-`, false);
-  class References extends T$8(HTMLElement) {}
-
-  // Copyright 2018 The Distill Template Authors
+    _createClass(Title, null, [{
+      key: "is",
+      get: function get() {
+        return 'd-title';
+      }
+    }]);
+    return Title;
+  }( /*#__PURE__*/_wrapNativeSuper(HTMLElement)); // Copyright 2018 The Distill Template Authors
+  var T$8 = Template('d-references', "\n<style>\nd-references {\n  display: block;\n}\n</style>\n", false);
+  var References = /*#__PURE__*/function (_T$7) {
+    _inherits(References, _T$7);
+    function References() {
+      _classCallCheck(this, References);
+      return _callSuper(this, References, arguments);
+    }
+    return _createClass(References);
+  }(T$8(HTMLElement)); // Copyright 2018 The Distill Template Authors
   //
   // Licensed under the Apache License, Version 2.0 (the "License");
   // you may not use this file except in compliance with the License.
@@ -4111,62 +4268,58 @@ d-references {
   // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   // See the License for the specific language governing permissions and
   // limitations under the License.
-
-  class TOC extends HTMLElement {
-    static get is() {
-      return 'd-toc';
+  var TOC = /*#__PURE__*/function (_HTMLElement7) {
+    _inherits(TOC, _HTMLElement7);
+    function TOC() {
+      _classCallCheck(this, TOC);
+      return _callSuper(this, TOC, arguments);
     }
-    connectedCallback() {
-      if (!this.getAttribute('prerendered')) {
-        window.onload = () => {
-          var article = document.querySelector('d-article');
-          var headings = article.querySelectorAll('h2, h3');
-          renderTOC(this, headings);
-        };
+    _createClass(TOC, [{
+      key: "connectedCallback",
+      value: function connectedCallback() {
+        var _this16 = this;
+        if (!this.getAttribute('prerendered')) {
+          window.onload = function () {
+            var article = document.querySelector('d-article');
+            var headings = article.querySelectorAll('h2, h3');
+            renderTOC(_this16, headings);
+          };
+        }
       }
-    }
-  }
+    }], [{
+      key: "is",
+      get: function get() {
+        return 'd-toc';
+      }
+    }]);
+    return TOC;
+  }( /*#__PURE__*/_wrapNativeSuper(HTMLElement));
   function renderTOC(element, headings) {
-    let ToC = `
-  <style>
-
-  d-toc {
-    contain: layout style;
-    display: block;
-  }
-
-  d-toc ul {
-    padding-left: 0;
-  }
-
-  d-toc ul > ul {
-    padding-left: 24px;
-  }
-
-  d-toc a {
-    border-bottom: none;
-    text-decoration: none;
-  }
-
-  </style>
-  <nav role="navigation" class="table-of-contents"></nav>
-  <h2>Table of contents</h2>
-  <ul>`;
-    for (var el of headings) {
-      // should element be included in TOC?
-      var isInTitle = el.parentElement.tagName == 'D-TITLE';
-      var isException = el.getAttribute('no-toc');
-      if (isInTitle || isException) continue;
-      // create TOC entry
-      var title = el.textContent;
-      var link = '#' + el.getAttribute('id');
-      let newLine = '<li>' + '<a href="' + link + '">' + title + '</a>' + '</li>';
-      if (el.tagName == 'H3') {
-        newLine = '<ul>' + newLine + '</ul>';
-      } else {
-        newLine += '<br>';
+    var ToC = "\n  <style>\n\n  d-toc {\n    contain: layout style;\n    display: block;\n  }\n\n  d-toc ul {\n    padding-left: 0;\n  }\n\n  d-toc ul > ul {\n    padding-left: 24px;\n  }\n\n  d-toc a {\n    border-bottom: none;\n    text-decoration: none;\n  }\n\n  </style>\n  <nav role=\"navigation\" class=\"table-of-contents\"></nav>\n  <h2>Table of contents</h2>\n  <ul>";
+    var _iterator18 = _createForOfIteratorHelper(headings),
+      _step18;
+    try {
+      for (_iterator18.s(); !(_step18 = _iterator18.n()).done;) {
+        var el = _step18.value;
+        // should element be included in TOC?
+        var isInTitle = el.parentElement.tagName == 'D-TITLE';
+        var isException = el.getAttribute('no-toc');
+        if (isInTitle || isException) continue;
+        // create TOC entry
+        var title = el.textContent;
+        var link = '#' + el.getAttribute('id');
+        var newLine = '<li>' + '<a href="' + link + '">' + title + '</a>' + '</li>';
+        if (el.tagName == 'H3') {
+          newLine = '<ul>' + newLine + '</ul>';
+        } else {
+          newLine += '<br>';
+        }
+        ToC += newLine;
       }
-      ToC += newLine;
+    } catch (err) {
+      _iterator18.e(err);
+    } finally {
+      _iterator18.f();
     }
     ToC += '</ul></nav>';
     element.innerHTML = ToC;
@@ -4200,151 +4353,204 @@ d-references {
   //                                 +----------------+
   //                                  scroll into view
   //
-
-  class Figure extends HTMLElement {
-    static get is() {
-      return 'd-figure';
-    }
-    static get readyQueue() {
-      if (!Figure._readyQueue) {
-        Figure._readyQueue = [];
-      }
-      return Figure._readyQueue;
-    }
-    static addToReadyQueue(figure) {
-      if (Figure.readyQueue.indexOf(figure) === -1) {
-        Figure.readyQueue.push(figure);
-        Figure.runReadyQueue();
-      }
-    }
-    static runReadyQueue() {
-      // console.log("Checking to run readyQueue, length: " + Figure.readyQueue.length + ", scrolling: " + Figure.isScrolling);
-      // if (Figure.isScrolling) return;
-      // console.log("Running ready Queue");
-      var figure = Figure.readyQueue.sort((a, b) => a._seenOnScreen - b._seenOnScreen).filter(figure => !figure._ready).pop();
-      if (figure) {
-        figure.ready();
-        requestAnimationFrame(Figure.runReadyQueue);
-      }
-    }
-    constructor() {
-      super();
+  var Figure = /*#__PURE__*/function (_HTMLElement8) {
+    _inherits(Figure, _HTMLElement8);
+    function Figure() {
+      var _this17;
+      _classCallCheck(this, Figure);
+      _this17 = _callSuper(this, Figure);
       // debugger
-      this._ready = false;
-      this._onscreen = false;
-      this._offscreen = true;
+      _this17._ready = false;
+      _this17._onscreen = false;
+      _this17._offscreen = true;
+      return _this17;
     }
-    connectedCallback() {
-      this.loadsWhileScrolling = this.hasAttribute('loadsWhileScrolling');
-      Figure.marginObserver.observe(this);
-      Figure.directObserver.observe(this);
-    }
-    disconnectedCallback() {
-      Figure.marginObserver.unobserve(this);
-      Figure.directObserver.unobserve(this);
-    }
+    _createClass(Figure, [{
+      key: "connectedCallback",
+      value: function connectedCallback() {
+        this.loadsWhileScrolling = this.hasAttribute('loadsWhileScrolling');
+        Figure.marginObserver.observe(this);
+        Figure.directObserver.observe(this);
+      }
+    }, {
+      key: "disconnectedCallback",
+      value: function disconnectedCallback() {
+        Figure.marginObserver.unobserve(this);
+        Figure.directObserver.unobserve(this);
+      }
 
-    // We use two separate observers:
-    // One with an extra 1000px margin to warn if the viewpoint gets close,
-    // And one for the actual on/off screen events
+      // We use two separate observers:
+      // One with an extra 1000px margin to warn if the viewpoint gets close,
+      // And one for the actual on/off screen events
+    }, {
+      key: "addEventListener",
+      value:
+      // Notify listeners that registered late, too:
 
-    static get marginObserver() {
-      if (!Figure._marginObserver) {
-        // if (!('IntersectionObserver' in window)) {
-        //   throw new Error('no interscetionobbserver!');
-        // }
-        var viewportHeight = window.innerHeight;
-        var margin = Math.floor(2 * viewportHeight);
-        var options = {
-          rootMargin: margin + 'px 0px ' + margin + 'px 0px',
-          threshold: 0.01
-        };
-        var callback = Figure.didObserveMarginIntersection;
-        var observer = new IntersectionObserver(callback, options);
-        Figure._marginObserver = observer;
-      }
-      return Figure._marginObserver;
-    }
-    static didObserveMarginIntersection(entries) {
-      for (var entry of entries) {
-        var figure = entry.target;
-        if (entry.isIntersecting && !figure._ready) {
-          Figure.addToReadyQueue(figure);
-        }
-      }
-    }
-    static get directObserver() {
-      if (!Figure._directObserver) {
-        Figure._directObserver = new IntersectionObserver(Figure.didObserveDirectIntersection, {
-          rootMargin: '0px',
-          threshold: [0, 1.0]
-        });
-      }
-      return Figure._directObserver;
-    }
-    static didObserveDirectIntersection(entries) {
-      for (var entry of entries) {
-        var figure = entry.target;
-        if (entry.isIntersecting) {
-          figure._seenOnScreen = new Date();
-          // if (!figure._ready) { figure.ready(); }
-          if (figure._offscreen) {
-            figure.onscreen();
-          }
-        } else {
-          if (figure._onscreen) {
-            figure.offscreen();
+      function addEventListener(eventName, callback) {
+        _get(_getPrototypeOf(Figure.prototype), "addEventListener", this).call(this, eventName, callback);
+        // if we had already dispatched something while presumingly no one was listening, we do so again
+        // debugger
+        if (eventName === 'ready') {
+          if (Figure.readyQueue.indexOf(this) !== -1) {
+            this._ready = false;
+            Figure.runReadyQueue();
           }
         }
+        if (eventName === 'onscreen') {
+          this.onscreen();
+        }
       }
-    }
 
-    // Notify listeners that registered late, too:
-
-    addEventListener(eventName, callback) {
-      super.addEventListener(eventName, callback);
-      // if we had already dispatched something while presumingly no one was listening, we do so again
-      // debugger
-      if (eventName === 'ready') {
-        if (Figure.readyQueue.indexOf(this) !== -1) {
-          this._ready = false;
+      // Custom Events
+    }, {
+      key: "ready",
+      value: function ready() {
+        // debugger
+        this._ready = true;
+        Figure.marginObserver.unobserve(this);
+        var event = new CustomEvent('ready');
+        this.dispatchEvent(event);
+      }
+    }, {
+      key: "onscreen",
+      value: function onscreen() {
+        this._onscreen = true;
+        this._offscreen = false;
+        var event = new CustomEvent('onscreen');
+        this.dispatchEvent(event);
+      }
+    }, {
+      key: "offscreen",
+      value: function offscreen() {
+        this._onscreen = false;
+        this._offscreen = true;
+        var event = new CustomEvent('offscreen');
+        this.dispatchEvent(event);
+      }
+    }], [{
+      key: "is",
+      get: function get() {
+        return 'd-figure';
+      }
+    }, {
+      key: "readyQueue",
+      get: function get() {
+        if (!Figure._readyQueue) {
+          Figure._readyQueue = [];
+        }
+        return Figure._readyQueue;
+      }
+    }, {
+      key: "addToReadyQueue",
+      value: function addToReadyQueue(figure) {
+        if (Figure.readyQueue.indexOf(figure) === -1) {
+          Figure.readyQueue.push(figure);
           Figure.runReadyQueue();
         }
       }
-      if (eventName === 'onscreen') {
-        this.onscreen();
+    }, {
+      key: "runReadyQueue",
+      value: function runReadyQueue() {
+        // console.log("Checking to run readyQueue, length: " + Figure.readyQueue.length + ", scrolling: " + Figure.isScrolling);
+        // if (Figure.isScrolling) return;
+        // console.log("Running ready Queue");
+        var figure = Figure.readyQueue.sort(function (a, b) {
+          return a._seenOnScreen - b._seenOnScreen;
+        }).filter(function (figure) {
+          return !figure._ready;
+        }).pop();
+        if (figure) {
+          figure.ready();
+          requestAnimationFrame(Figure.runReadyQueue);
+        }
       }
-    }
-
-    // Custom Events
-
-    ready() {
-      // debugger
-      this._ready = true;
-      Figure.marginObserver.unobserve(this);
-      var event = new CustomEvent('ready');
-      this.dispatchEvent(event);
-    }
-    onscreen() {
-      this._onscreen = true;
-      this._offscreen = false;
-      var event = new CustomEvent('onscreen');
-      this.dispatchEvent(event);
-    }
-    offscreen() {
-      this._onscreen = false;
-      this._offscreen = true;
-      var event = new CustomEvent('offscreen');
-      this.dispatchEvent(event);
-    }
-  }
+    }, {
+      key: "marginObserver",
+      get: function get() {
+        if (!Figure._marginObserver) {
+          // if (!('IntersectionObserver' in window)) {
+          //   throw new Error('no interscetionobbserver!');
+          // }
+          var viewportHeight = window.innerHeight;
+          var margin = Math.floor(2 * viewportHeight);
+          var options = {
+            rootMargin: margin + 'px 0px ' + margin + 'px 0px',
+            threshold: 0.01
+          };
+          var callback = Figure.didObserveMarginIntersection;
+          var observer = new IntersectionObserver(callback, options);
+          Figure._marginObserver = observer;
+        }
+        return Figure._marginObserver;
+      }
+    }, {
+      key: "didObserveMarginIntersection",
+      value: function didObserveMarginIntersection(entries) {
+        var _iterator19 = _createForOfIteratorHelper(entries),
+          _step19;
+        try {
+          for (_iterator19.s(); !(_step19 = _iterator19.n()).done;) {
+            var entry = _step19.value;
+            var figure = entry.target;
+            if (entry.isIntersecting && !figure._ready) {
+              Figure.addToReadyQueue(figure);
+            }
+          }
+        } catch (err) {
+          _iterator19.e(err);
+        } finally {
+          _iterator19.f();
+        }
+      }
+    }, {
+      key: "directObserver",
+      get: function get() {
+        if (!Figure._directObserver) {
+          Figure._directObserver = new IntersectionObserver(Figure.didObserveDirectIntersection, {
+            rootMargin: '0px',
+            threshold: [0, 1.0]
+          });
+        }
+        return Figure._directObserver;
+      }
+    }, {
+      key: "didObserveDirectIntersection",
+      value: function didObserveDirectIntersection(entries) {
+        var _iterator20 = _createForOfIteratorHelper(entries),
+          _step20;
+        try {
+          for (_iterator20.s(); !(_step20 = _iterator20.n()).done;) {
+            var entry = _step20.value;
+            var figure = entry.target;
+            if (entry.isIntersecting) {
+              figure._seenOnScreen = new Date();
+              // if (!figure._ready) { figure.ready(); }
+              if (figure._offscreen) {
+                figure.onscreen();
+              }
+            } else {
+              if (figure._onscreen) {
+                figure.offscreen();
+              }
+            }
+          }
+        } catch (err) {
+          _iterator20.e(err);
+        } finally {
+          _iterator20.f();
+        }
+      }
+    }]);
+    return Figure;
+  }( /*#__PURE__*/_wrapNativeSuper(HTMLElement));
   if (typeof window !== 'undefined') {
     Figure.isScrolling = false;
-    let timeout;
-    var resetTimer = () => {
+    var timeout;
+    var resetTimer = function resetTimer() {
       Figure.isScrolling = true;
       clearTimeout(timeout);
-      timeout = setTimeout(() => {
+      timeout = setTimeout(function () {
         Figure.isScrolling = false;
         Figure.runReadyQueue();
       }, 500);
@@ -4358,157 +4564,74 @@ d-references {
   // It is only meant as a social deterrent.
 
   var productionHostname = 'distill.pub';
-  var T$9 = Template('d-interstitial', `
-<style>
-
-.overlay {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background: white;
-
-  opacity: 1;
-  visibility: visible;
-
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  z-index: 2147483647 /* MaxInt32 */
-
-}
-
-.container {
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 420px;
-  padding: 2em;
-}
-
-h1 {
-  text-decoration: underline;
-  text-decoration-color: hsl(0,100%,40%);
-  -webkit-text-decoration-color: hsl(0,100%,40%);
-  margin-bottom: 1em;
-  line-height: 1.5em;
-}
-
-input[type="password"] {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-  -webkit-border-radius: none;
-  -moz-border-radius: none;
-  -ms-border-radius: none;
-  -o-border-radius: none;
-  border-radius: none;
-  outline: none;
-
-  font-size: 18px;
-  background: none;
-  width: 25%;
-  padding: 10px;
-  border: none;
-  border-bottom: solid 2px #999;
-  transition: border .3s;
-}
-
-input[type="password"]:focus {
-  border-bottom: solid 2px #333;
-}
-
-input[type="password"].wrong {
-  border-bottom: solid 2px hsl(0,100%,40%);
-}
-
-p small {
-  color: #888;
-}
-
-.logo {
-  position: relative;
-  font-size: 1.5em;
-  margin-bottom: 3em;
-}
-
-.logo svg {
-  width: 36px;
-  position: relative;
-  top: 6px;
-  margin-right: 2px;
-}
-
-.logo svg path {
-  fill: none;
-  stroke: black;
-  stroke-width: 2px;
-}
-
-</style>
-
-<div class="overlay">
-  <div class="container">
-    <h1>This article is in review.</h1>
-    <p>Do not share this URL or the contents of this article. Thank you!</p>
-    <input id="interstitial-password-input" type="password" name="password" autofocus/>
-    <p><small>Enter the password we shared with you as part of the review process to view the article.</small></p>
-  </div>
-</div>
-`);
-  class Interstitial extends T$9(HTMLElement) {
-    connectedCallback() {
-      if (this.shouldRemoveSelf()) {
-        this.parentElement.removeChild(this);
-      } else {
-        var passwordInput = this.root.querySelector('#interstitial-password-input');
-        passwordInput.oninput = event => this.passwordChanged(event);
-      }
+  var T$9 = Template('d-interstitial', "\n<style>\n\n.overlay {\n  position: fixed;\n  width: 100%;\n  height: 100%;\n  top: 0;\n  left: 0;\n  background: white;\n\n  opacity: 1;\n  visibility: visible;\n\n  display: flex;\n  flex-flow: column;\n  justify-content: center;\n  z-index: 2147483647 /* MaxInt32 */\n\n}\n\n.container {\n  position: relative;\n  margin-left: auto;\n  margin-right: auto;\n  max-width: 420px;\n  padding: 2em;\n}\n\nh1 {\n  text-decoration: underline;\n  text-decoration-color: hsl(0,100%,40%);\n  -webkit-text-decoration-color: hsl(0,100%,40%);\n  margin-bottom: 1em;\n  line-height: 1.5em;\n}\n\ninput[type=\"password\"] {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  -webkit-box-shadow: none;\n  -moz-box-shadow: none;\n  box-shadow: none;\n  -webkit-border-radius: none;\n  -moz-border-radius: none;\n  -ms-border-radius: none;\n  -o-border-radius: none;\n  border-radius: none;\n  outline: none;\n\n  font-size: 18px;\n  background: none;\n  width: 25%;\n  padding: 10px;\n  border: none;\n  border-bottom: solid 2px #999;\n  transition: border .3s;\n}\n\ninput[type=\"password\"]:focus {\n  border-bottom: solid 2px #333;\n}\n\ninput[type=\"password\"].wrong {\n  border-bottom: solid 2px hsl(0,100%,40%);\n}\n\np small {\n  color: #888;\n}\n\n.logo {\n  position: relative;\n  font-size: 1.5em;\n  margin-bottom: 3em;\n}\n\n.logo svg {\n  width: 36px;\n  position: relative;\n  top: 6px;\n  margin-right: 2px;\n}\n\n.logo svg path {\n  fill: none;\n  stroke: black;\n  stroke-width: 2px;\n}\n\n</style>\n\n<div class=\"overlay\">\n  <div class=\"container\">\n    <h1>This article is in review.</h1>\n    <p>Do not share this URL or the contents of this article. Thank you!</p>\n    <input id=\"interstitial-password-input\" type=\"password\" name=\"password\" autofocus/>\n    <p><small>Enter the password we shared with you as part of the review process to view the article.</small></p>\n  </div>\n</div>\n");
+  var Interstitial = /*#__PURE__*/function (_T$8) {
+    _inherits(Interstitial, _T$8);
+    function Interstitial() {
+      _classCallCheck(this, Interstitial);
+      return _callSuper(this, Interstitial, arguments);
     }
-    passwordChanged(event) {
-      var entered = event.target.value;
-      if (entered === this.password) {
-        console.log('Correct password entered.');
-        this.parentElement.removeChild(this);
-        if (typeof Storage !== 'undefined') {
-          console.log('Saved that correct password was entered.');
-          localStorage.setItem(this.localStorageIdentifier(), 'true');
+    _createClass(Interstitial, [{
+      key: "connectedCallback",
+      value: function connectedCallback() {
+        var _this18 = this;
+        if (this.shouldRemoveSelf()) {
+          this.parentElement.removeChild(this);
+        } else {
+          var passwordInput = this.root.querySelector('#interstitial-password-input');
+          passwordInput.oninput = function (event) {
+            return _this18.passwordChanged(event);
+          };
         }
       }
-    }
-    shouldRemoveSelf() {
-      // should never be visible in production
-      if (window && window.location.hostname === productionHostname) {
-        console.warn('Interstitial found on production, hiding it.');
-        return true;
+    }, {
+      key: "passwordChanged",
+      value: function passwordChanged(event) {
+        var entered = event.target.value;
+        if (entered === this.password) {
+          console.log('Correct password entered.');
+          this.parentElement.removeChild(this);
+          if (typeof Storage !== 'undefined') {
+            console.log('Saved that correct password was entered.');
+            localStorage.setItem(this.localStorageIdentifier(), 'true');
+          }
+        }
       }
-      // should only have to enter password once
-      if (typeof Storage !== 'undefined') {
-        if (localStorage.getItem(this.localStorageIdentifier()) === 'true') {
-          console.log('Loaded that correct password was entered before; skipping interstitial.');
+    }, {
+      key: "shouldRemoveSelf",
+      value: function shouldRemoveSelf() {
+        // should never be visible in production
+        if (window && window.location.hostname === productionHostname) {
+          console.warn('Interstitial found on production, hiding it.');
           return true;
         }
+        // should only have to enter password once
+        if (typeof Storage !== 'undefined') {
+          if (localStorage.getItem(this.localStorageIdentifier()) === 'true') {
+            console.log('Loaded that correct password was entered before; skipping interstitial.');
+            return true;
+          }
+        }
+        // otherwise, leave visible
+        return false;
       }
-      // otherwise, leave visible
-      return false;
-    }
-    localStorageIdentifier() {
-      var prefix = 'distill-drafts';
-      var suffix = 'interstitial-password-correct';
-      return prefix + (window ? window.location.pathname : '-') + suffix;
-    }
-  }
+    }, {
+      key: "localStorageIdentifier",
+      value: function localStorageIdentifier() {
+        var prefix = 'distill-drafts';
+        var suffix = 'interstitial-password-correct';
+        return prefix + (window ? window.location.pathname : '-') + suffix;
+      }
+    }]);
+    return Interstitial;
+  }(T$9(HTMLElement));
   function ascending(a, b) {
     return a < b ? -1 : a > b ? 1 : a >= b ? 0 : NaN;
   }
   function bisector(compare) {
     if (compare.length === 1) compare = ascendingComparator(compare);
     return {
-      left: function (a, x, lo, hi) {
+      left: function left(a, x, lo, hi) {
         if (lo == null) lo = 0;
         if (hi == null) hi = a.length;
         while (lo < hi) {
@@ -4517,7 +4640,7 @@ p small {
         }
         return lo;
       },
-      right: function (a, x, lo, hi) {
+      right: function right(a, x, lo, hi) {
         if (lo == null) lo = 0;
         if (hi == null) hi = a.length;
         while (lo < hi) {
@@ -4608,8 +4731,8 @@ p small {
     return prototype;
   }
   function Color() {}
-  var darker = 0.7;
-  var brighter = 1 / darker;
+  var _darker = 0.7;
+  var _brighter = 1 / _darker;
   var reI = "\\s*([+-]?\\d+)\\s*",
     reN = "\\s*([+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?)\\s*",
     reP = "\\s*([+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?)%\\s*",
@@ -4771,10 +4894,10 @@ p small {
     yellowgreen: 0x9acd32
   };
   define(Color, color, {
-    copy: function (channels) {
+    copy: function copy(channels) {
       return Object.assign(new this.constructor(), this, channels);
     },
-    displayable: function () {
+    displayable: function displayable() {
       return this.rgb().displayable();
     },
     hex: color_formatHex,
@@ -4833,18 +4956,18 @@ p small {
     this.opacity = +opacity;
   }
   define(Rgb, rgb, extend(Color, {
-    brighter: function (k) {
-      k = k == null ? brighter : Math.pow(brighter, k);
+    brighter: function brighter(k) {
+      k = k == null ? _brighter : Math.pow(_brighter, k);
       return new Rgb(this.r * k, this.g * k, this.b * k, this.opacity);
     },
-    darker: function (k) {
-      k = k == null ? darker : Math.pow(darker, k);
+    darker: function darker(k) {
+      k = k == null ? _darker : Math.pow(_darker, k);
       return new Rgb(this.r * k, this.g * k, this.b * k, this.opacity);
     },
-    rgb: function () {
+    rgb: function rgb() {
       return this;
     },
-    displayable: function () {
+    displayable: function displayable() {
       return -0.5 <= this.r && this.r < 255.5 && -0.5 <= this.g && this.g < 255.5 && -0.5 <= this.b && this.b < 255.5 && 0 <= this.opacity && this.opacity <= 1;
     },
     hex: rgb_formatHex,
@@ -4902,15 +5025,15 @@ p small {
     this.opacity = +opacity;
   }
   define(Hsl, hsl, extend(Color, {
-    brighter: function (k) {
-      k = k == null ? brighter : Math.pow(brighter, k);
+    brighter: function brighter(k) {
+      k = k == null ? _brighter : Math.pow(_brighter, k);
       return new Hsl(this.h, this.s, this.l * k, this.opacity);
     },
-    darker: function (k) {
-      k = k == null ? darker : Math.pow(darker, k);
+    darker: function darker(k) {
+      k = k == null ? _darker : Math.pow(_darker, k);
       return new Hsl(this.h, this.s, this.l * k, this.opacity);
     },
-    rgb: function () {
+    rgb: function rgb() {
       var h = this.h % 360 + (this.h < 0) * 360,
         s = isNaN(h) || isNaN(this.s) ? 0 : this.s,
         l = this.l,
@@ -4918,10 +5041,10 @@ p small {
         m1 = 2 * l - m2;
       return new Rgb(hsl2rgb(h >= 240 ? h - 240 : h + 120, m1, m2), hsl2rgb(h, m1, m2), hsl2rgb(h < 120 ? h + 240 : h - 120, m1, m2), this.opacity);
     },
-    displayable: function () {
+    displayable: function displayable() {
       return (0 <= this.s && this.s <= 1 || isNaN(this.s)) && 0 <= this.l && this.l <= 1 && 0 <= this.opacity && this.opacity <= 1;
     },
-    formatHsl: function () {
+    formatHsl: function formatHsl() {
       var a = this.opacity;
       a = isNaN(a) ? 1 : Math.max(0, Math.min(1, a));
       return (a === 1 ? "hsl(" : "hsla(") + (this.h || 0) + ", " + (this.s || 0) * 100 + "%, " + (this.l || 0) * 100 + "%" + (a === 1 ? ")" : ", " + a + ")");
@@ -4970,13 +5093,13 @@ p small {
     this.opacity = +opacity;
   }
   define(Lab, lab, extend(Color, {
-    brighter: function (k) {
+    brighter: function brighter(k) {
       return new Lab(this.l + K * (k == null ? 1 : k), this.a, this.b, this.opacity);
     },
-    darker: function (k) {
+    darker: function darker(k) {
       return new Lab(this.l - K * (k == null ? 1 : k), this.a, this.b, this.opacity);
     },
-    rgb: function () {
+    rgb: function rgb() {
       var y = (this.l + 16) / 116,
         x = isNaN(this.a) ? y : y + this.a / 500,
         z = isNaN(this.b) ? y : y - this.b / 200;
@@ -5020,13 +5143,13 @@ p small {
     return new Lab(o.l, Math.cos(h) * o.c, Math.sin(h) * o.c, o.opacity);
   }
   define(Hcl, hcl, extend(Color, {
-    brighter: function (k) {
+    brighter: function brighter(k) {
       return new Hcl(this.h, this.c, this.l + K * (k == null ? 1 : k), this.opacity);
     },
-    darker: function (k) {
+    darker: function darker(k) {
       return new Hcl(this.h, this.c, this.l - K * (k == null ? 1 : k), this.opacity);
     },
-    rgb: function () {
+    rgb: function rgb() {
       return hcl2lab(this).rgb();
     }
   }));
@@ -5062,15 +5185,15 @@ p small {
     this.opacity = +opacity;
   }
   define(Cubehelix, cubehelix, extend(Color, {
-    brighter: function (k) {
-      k = k == null ? brighter : Math.pow(brighter, k);
+    brighter: function brighter(k) {
+      k = k == null ? _brighter : Math.pow(_brighter, k);
       return new Cubehelix(this.h, this.s, this.l * k, this.opacity);
     },
-    darker: function (k) {
-      k = k == null ? darker : Math.pow(darker, k);
+    darker: function darker(k) {
+      k = k == null ? _darker : Math.pow(_darker, k);
       return new Cubehelix(this.h, this.s, this.l * k, this.opacity);
     },
-    rgb: function () {
+    rgb: function rgb() {
       var h = isNaN(this.h) ? 0 : (this.h + 120) * deg2rad,
         l = +this.l,
         a = isNaN(this.s) ? 0 : this.s * l * (1 - l),
@@ -5162,8 +5285,8 @@ p small {
     var i = {},
       c = {},
       k;
-    if (a === null || typeof a !== "object") a = {};
-    if (b === null || typeof b !== "object") b = {};
+    if (a === null || _typeof(a) !== "object") a = {};
+    if (b === null || _typeof(b) !== "object") b = {};
     for (k in b) {
       if (k in a) {
         i[k] = interpolate(a[k], b[k]);
@@ -5244,7 +5367,7 @@ p small {
     });
   }
   function interpolate(a, b) {
-    var t = typeof b,
+    var t = _typeof(b),
       c;
     return b == null || t === "boolean" ? constant(b) : (t === "number" ? interpolateNumber : t === "string" ? (c = color(b)) ? (b = c, rgb$1) : string : b instanceof color ? rgb$1 : b instanceof Date ? date : isNumberArray(b) ? numberArray : Array.isArray(b) ? genericArray : typeof b.valueOf !== "function" && typeof b.toString !== "function" || isNaN(b) ? object : interpolateNumber)(a, b);
   }
@@ -5476,40 +5599,40 @@ p small {
     return exponent < 0 ? "0." + new Array(-exponent).join("0") + coefficient : coefficient.length > exponent + 1 ? coefficient.slice(0, exponent + 1) + "." + coefficient.slice(exponent + 1) : coefficient + new Array(exponent - coefficient.length + 2).join("0");
   }
   var formatTypes = {
-    "%": function (x, p) {
+    "%": function _(x, p) {
       return (x * 100).toFixed(p);
     },
-    "b": function (x) {
+    "b": function b(x) {
       return Math.round(x).toString(2);
     },
-    "c": function (x) {
+    "c": function c(x) {
       return x + "";
     },
-    "d": function (x) {
+    "d": function d(x) {
       return Math.round(x).toString(10);
     },
-    "e": function (x, p) {
+    "e": function e(x, p) {
       return x.toExponential(p);
     },
-    "f": function (x, p) {
+    "f": function f(x, p) {
       return x.toFixed(p);
     },
-    "g": function (x, p) {
+    "g": function g(x, p) {
       return x.toPrecision(p);
     },
-    "o": function (x) {
+    "o": function o(x) {
       return Math.round(x).toString(8);
     },
-    "p": function (x, p) {
-      return formatRounded(x * 100, p);
+    "p": function p(x, _p) {
+      return formatRounded(x * 100, _p);
     },
     "r": formatRounded,
     "s": formatPrefixAuto,
-    "X": function (x) {
+    "X": function X(x) {
       return Math.round(x).toString(16).toUpperCase();
     },
-    "x": function (x) {
-      return Math.round(x).toString(16);
+    "x": function x(_x) {
+      return Math.round(_x).toString(16);
     }
   };
   function identity$1(x) {
@@ -6321,28 +6444,28 @@ p small {
       return 1 + ~~(d.getUTCMonth() / 3);
     }
     return {
-      format: function (specifier) {
+      format: function format(specifier) {
         var f = newFormat(specifier += "", formats);
         f.toString = function () {
           return specifier;
         };
         return f;
       },
-      parse: function (specifier) {
+      parse: function parse(specifier) {
         var p = newParse(specifier += "", false);
         p.toString = function () {
           return specifier;
         };
         return p;
       },
-      utcFormat: function (specifier) {
+      utcFormat: function utcFormat(specifier) {
         var f = newFormat(specifier += "", utcFormats);
         f.toString = function () {
           return specifier;
         };
         return f;
       },
-      utcParse: function (specifier) {
+      utcParse: function utcParse(specifier) {
         var p = newParse(specifier += "", true);
         p.toString = function () {
           return specifier;
@@ -6611,7 +6734,7 @@ p small {
   }
   var parseIso = +new Date("2000-01-01T00:00:00.000Z") ? parseIsoNative : utcParse(isoSpecifier);
   var noop = {
-    value: function () {}
+    value: function value() {}
   };
   function dispatch() {
     for (var i = 0, n = arguments.length, _ = {}, t; i < n; ++i) {
@@ -6637,7 +6760,7 @@ p small {
   }
   Dispatch.prototype = dispatch.prototype = {
     constructor: Dispatch,
-    on: function (typename, callback) {
+    on: function on(typename, callback) {
       var _ = this._,
         T = parseTypenames(typename + "", _),
         t,
@@ -6658,18 +6781,18 @@ p small {
       }
       return this;
     },
-    copy: function () {
+    copy: function copy() {
       var copy = {},
         _ = this._;
       for (var t in _) copy[t] = _[t].slice();
       return new Dispatch(copy);
     },
-    call: function (type, that) {
+    call: function call(type, that) {
       if ((n = arguments.length - 2) > 0) for (var args = new Array(n), i = 0, n, t; i < n; ++i) args[i] = arguments[i + 2];
       if (!this._.hasOwnProperty(type)) throw new Error("unknown type: " + type);
       for (t = this._[type], i = 0, n = t.length; i < n; ++i) t[i].value.apply(that, args);
     },
-    apply: function (type, that, args) {
+    apply: function apply(type, that, args) {
       if (!this._.hasOwnProperty(type)) throw new Error("unknown type: " + type);
       for (var t = this._[type], i = 0, n = t.length; i < n; ++i) t[i].value.apply(that, args);
     }
@@ -6796,16 +6919,16 @@ p small {
   }
   EnterNode.prototype = {
     constructor: EnterNode,
-    appendChild: function (child) {
+    appendChild: function appendChild(child) {
       return this._parent.insertBefore(child, this._next);
     },
-    insertBefore: function (child, next) {
+    insertBefore: function insertBefore(child, next) {
       return this._parent.insertBefore(child, next);
     },
-    querySelector: function (selector) {
+    querySelector: function querySelector(selector) {
       return this._parent.querySelector(selector);
     },
-    querySelectorAll: function (selector) {
+    querySelectorAll: function querySelectorAll(selector) {
       return this._parent.querySelectorAll(selector);
     }
   };
@@ -7115,21 +7238,21 @@ p small {
     this._names = classArray(node.getAttribute("class") || "");
   }
   ClassList.prototype = {
-    add: function (name) {
+    add: function add(name) {
       var i = this._names.indexOf(name);
       if (i < 0) {
         this._names.push(name);
         this._node.setAttribute("class", this._names.join(" "));
       }
     },
-    remove: function (name) {
+    remove: function remove(name) {
       var i = this._names.indexOf(name);
       if (i >= 0) {
         this._names.splice(i, 1);
         this._node.setAttribute("class", this._names.join(" "));
       }
     },
-    contains: function (name) {
+    contains: function contains(name) {
       return this._names.indexOf(name) >= 0;
     }
   };
@@ -7677,102 +7800,7 @@ p small {
 
   // Copyright 2018 The Distill Template Authors
 
-  var T$a = Template('d-slider', `
-<style>
-  :host {
-    position: relative;
-    display: inline-block;
-  }
-
-  :host(:focus) {
-    outline: none;
-  }
-
-  .background {
-    padding: 9px 0;
-    color: white;
-    position: relative;
-  }
-
-  .track {
-    height: 3px;
-    width: 100%;
-    border-radius: 2px;
-    background-color: hsla(0, 0%, 0%, 0.2);
-  }
-
-  .track-fill {
-    position: absolute;
-    top: 9px;
-    height: 3px;
-    border-radius: 4px;
-    background-color: hsl(24, 100%, 50%);
-  }
-
-  .knob-container {
-    position: absolute;
-    top: 10px;
-  }
-
-  .knob {
-    position: absolute;
-    top: -6px;
-    left: -6px;
-    width: 13px;
-    height: 13px;
-    background-color: hsl(24, 100%, 50%);
-    border-radius: 50%;
-    transition-property: transform;
-    transition-duration: 0.18s;
-    transition-timing-function: ease;
-  }
-  .mousedown .knob {
-    transform: scale(1.5);
-  }
-
-  .knob-highlight {
-    position: absolute;
-    top: -6px;
-    left: -6px;
-    width: 13px;
-    height: 13px;
-    background-color: hsla(0, 0%, 0%, 0.1);
-    border-radius: 50%;
-    transition-property: transform;
-    transition-duration: 0.18s;
-    transition-timing-function: ease;
-  }
-
-  .focus .knob-highlight {
-    transform: scale(2);
-  }
-
-  .ticks {
-    position: absolute;
-    top: 16px;
-    height: 4px;
-    width: 100%;
-    z-index: -1;
-  }
-
-  .ticks .tick {
-    position: absolute;
-    height: 100%;
-    border-left: 1px solid hsla(0, 0%, 0%, 0.2);
-  }
-
-</style>
-
-  <div class='background'>
-    <div class='track'></div>
-    <div class='track-fill'></div>
-    <div class='knob-container'>
-      <div class='knob-highlight'></div>
-      <div class='knob'></div>
-    </div>
-    <div class='ticks'></div>
-  </div>
-`);
+  var T$a = Template('d-slider', "\n<style>\n  :host {\n    position: relative;\n    display: inline-block;\n  }\n\n  :host(:focus) {\n    outline: none;\n  }\n\n  .background {\n    padding: 9px 0;\n    color: white;\n    position: relative;\n  }\n\n  .track {\n    height: 3px;\n    width: 100%;\n    border-radius: 2px;\n    background-color: hsla(0, 0%, 0%, 0.2);\n  }\n\n  .track-fill {\n    position: absolute;\n    top: 9px;\n    height: 3px;\n    border-radius: 4px;\n    background-color: hsl(24, 100%, 50%);\n  }\n\n  .knob-container {\n    position: absolute;\n    top: 10px;\n  }\n\n  .knob {\n    position: absolute;\n    top: -6px;\n    left: -6px;\n    width: 13px;\n    height: 13px;\n    background-color: hsl(24, 100%, 50%);\n    border-radius: 50%;\n    transition-property: transform;\n    transition-duration: 0.18s;\n    transition-timing-function: ease;\n  }\n  .mousedown .knob {\n    transform: scale(1.5);\n  }\n\n  .knob-highlight {\n    position: absolute;\n    top: -6px;\n    left: -6px;\n    width: 13px;\n    height: 13px;\n    background-color: hsla(0, 0%, 0%, 0.1);\n    border-radius: 50%;\n    transition-property: transform;\n    transition-duration: 0.18s;\n    transition-timing-function: ease;\n  }\n\n  .focus .knob-highlight {\n    transform: scale(2);\n  }\n\n  .ticks {\n    position: absolute;\n    top: 16px;\n    height: 4px;\n    width: 100%;\n    z-index: -1;\n  }\n\n  .ticks .tick {\n    position: absolute;\n    height: 100%;\n    border-left: 1px solid hsla(0, 0%, 0%, 0.2);\n  }\n\n</style>\n\n  <div class='background'>\n    <div class='track'></div>\n    <div class='track-fill'></div>\n    <div class='knob-container'>\n      <div class='knob-highlight'></div>\n      <div class='knob'></div>\n    </div>\n    <div class='ticks'></div>\n  </div>\n");
 
   // ARIA
   // If the slider has a visible label, it is referenced by aria-labelledby on the slider element. Otherwise, the slider element has a label provided by aria-label.
@@ -7788,423 +7816,287 @@ p small {
     end: 35,
     home: 36
   };
-  class Slider extends T$a(HTMLElement) {
-    connectedCallback() {
-      this.connected = true;
-      this.setAttribute('role', 'slider');
-      // Makes the element tab-able.
-      if (!this.hasAttribute('tabindex')) {
-        this.setAttribute('tabindex', 0);
-      }
+  var Slider = /*#__PURE__*/function (_T$a) {
+    _inherits(Slider, _T$a);
+    function Slider() {
+      _classCallCheck(this, Slider);
+      return _callSuper(this, Slider, arguments);
+    }
+    _createClass(Slider, [{
+      key: "connectedCallback",
+      value: function connectedCallback() {
+        var _this19 = this;
+        this.connected = true;
+        this.setAttribute('role', 'slider');
+        // Makes the element tab-able.
+        if (!this.hasAttribute('tabindex')) {
+          this.setAttribute('tabindex', 0);
+        }
 
-      // Keeps track of keyboard vs. mouse interactions for focus rings
-      this.mouseEvent = false;
-
-      // Handles to shadow DOM elements
-      this.knob = this.root.querySelector('.knob-container');
-      this.background = this.root.querySelector('.background');
-      this.trackFill = this.root.querySelector('.track-fill');
-      this.track = this.root.querySelector('.track');
-
-      // Default values for attributes
-      this.min = this.min ? this.min : 0;
-      this.max = this.max ? this.max : 100;
-      this.scale = linear$1().domain([this.min, this.max]).range([0, 1]).clamp(true);
-      this.origin = this.origin !== undefined ? this.origin : this.min;
-      this.step = this.step ? this.step : 1;
-      this.update(this.value ? this.value : 0);
-      this.ticks = this.ticks ? this.ticks : false;
-      this.renderTicks();
-      this.drag = drag().container(this.background).on('start', () => {
-        this.mouseEvent = true;
-        this.background.classList.add('mousedown');
-        this.changeValue = this.value;
-        this.dragUpdate();
-      }).on('drag', () => {
-        this.dragUpdate();
-      }).on('end', () => {
+        // Keeps track of keyboard vs. mouse interactions for focus rings
         this.mouseEvent = false;
-        this.background.classList.remove('mousedown');
-        this.dragUpdate();
-        if (this.changeValue !== this.value) this.dispatchChange();
-        this.changeValue = this.value;
-      });
-      this.drag(select(this.background));
-      this.addEventListener('focusin', () => {
-        if (!this.mouseEvent) {
-          this.background.classList.add('focus');
-        }
-      });
-      this.addEventListener('focusout', () => {
-        this.background.classList.remove('focus');
-      });
-      this.addEventListener('keydown', this.onKeyDown);
-    }
-    static get observedAttributes() {
-      return ['min', 'max', 'value', 'step', 'ticks', 'origin', 'tickValues', 'tickLabels'];
-    }
-    attributeChangedCallback(attr, oldValue, newValue) {
-      if (isNaN(newValue) || newValue === undefined || newValue === null) return;
-      if (attr == 'min') {
-        this.min = +newValue;
-        this.setAttribute('aria-valuemin', this.min);
-      }
-      if (attr == 'max') {
-        this.max = +newValue;
-        this.setAttribute('aria-valuemax', this.max);
-      }
-      if (attr == 'value') {
-        this.update(+newValue);
-      }
-      if (attr == 'origin') {
-        this.origin = +newValue;
-        // this.update(this.value);
-      }
-      if (attr == 'step') {
-        if (newValue > 0) {
-          this.step = +newValue;
-        }
-      }
-      if (attr == 'ticks') {
-        this.ticks = newValue === '' ? true : newValue;
-      }
-    }
-    onKeyDown(event) {
-      this.changeValue = this.value;
-      let stopPropagation = false;
-      switch (event.keyCode) {
-        case keyCodes.left:
-        case keyCodes.down:
-          this.update(this.value - this.step);
-          stopPropagation = true;
-          break;
-        case keyCodes.right:
-        case keyCodes.up:
-          this.update(this.value + this.step);
-          stopPropagation = true;
-          break;
-        case keyCodes.pageUp:
-          this.update(this.value + this.step * 10);
-          stopPropagation = true;
-          break;
-        case keyCodes.pageDown:
-          this.update(this.value + this.step * 10);
-          stopPropagation = true;
-          break;
-        case keyCodes.home:
-          this.update(this.min);
-          stopPropagation = true;
-          break;
-        case keyCodes.end:
-          this.update(this.max);
-          stopPropagation = true;
-          break;
-      }
-      if (stopPropagation) {
-        this.background.classList.add('focus');
-        event.preventDefault();
-        event.stopPropagation();
-        if (this.changeValue !== this.value) this.dispatchChange();
-      }
-    }
-    validateValueRange(min, max, value) {
-      return Math.max(Math.min(max, value), min);
-    }
-    quantizeValue(value, step) {
-      return Math.round(value / step) * step;
-    }
-    dragUpdate() {
-      var bbox = this.background.getBoundingClientRect();
-      var x = event.x;
-      var width = bbox.width;
-      this.update(this.scale.invert(x / width));
-    }
-    update(value) {
-      let v = value;
-      if (this.step !== 'any') {
-        v = this.quantizeValue(value, this.step);
-      }
-      v = this.validateValueRange(this.min, this.max, v);
-      if (this.connected) {
-        this.knob.style.left = this.scale(v) * 100 + '%';
-        this.trackFill.style.width = this.scale(this.min + Math.abs(v - this.origin)) * 100 + '%';
-        this.trackFill.style.left = this.scale(Math.min(v, this.origin)) * 100 + '%';
-      }
-      if (this.value !== v) {
-        this.value = v;
-        this.setAttribute('aria-valuenow', this.value);
-        this.dispatchInput();
-      }
-    }
 
-    // Dispatches only on a committed change (basically only on mouseup).
-    dispatchChange() {
-      var e = new Event('change');
-      this.dispatchEvent(e, {});
-    }
+        // Handles to shadow DOM elements
+        this.knob = this.root.querySelector('.knob-container');
+        this.background = this.root.querySelector('.background');
+        this.trackFill = this.root.querySelector('.track-fill');
+        this.track = this.root.querySelector('.track');
 
-    // Dispatches on each value change.
-    dispatchInput() {
-      var e = new Event('input');
-      this.dispatchEvent(e, {});
-    }
-    renderTicks() {
-      var ticksContainer = this.root.querySelector('.ticks');
-      if (this.ticks !== false) {
-        let tickData = [];
-        if (this.ticks > 0) {
-          tickData = this.scale.ticks(this.ticks);
-        } else if (this.step === 'any') {
-          tickData = this.scale.ticks();
-        } else {
-          tickData = range(this.min, this.max + 1e-6, this.step);
-        }
-        tickData.forEach(d => {
-          var tick = document.createElement('div');
-          tick.classList.add('tick');
-          tick.style.left = this.scale(d) * 100 + '%';
-          ticksContainer.appendChild(tick);
+        // Default values for attributes
+        this.min = this.min ? this.min : 0;
+        this.max = this.max ? this.max : 100;
+        this.scale = linear$1().domain([this.min, this.max]).range([0, 1]).clamp(true);
+        this.origin = this.origin !== undefined ? this.origin : this.min;
+        this.step = this.step ? this.step : 1;
+        this.update(this.value ? this.value : 0);
+        this.ticks = this.ticks ? this.ticks : false;
+        this.renderTicks();
+        this.drag = drag().container(this.background).on('start', function () {
+          _this19.mouseEvent = true;
+          _this19.background.classList.add('mousedown');
+          _this19.changeValue = _this19.value;
+          _this19.dragUpdate();
+        }).on('drag', function () {
+          _this19.dragUpdate();
+        }).on('end', function () {
+          _this19.mouseEvent = false;
+          _this19.background.classList.remove('mousedown');
+          _this19.dragUpdate();
+          if (_this19.changeValue !== _this19.value) _this19.dispatchChange();
+          _this19.changeValue = _this19.value;
         });
-      } else {
-        ticksContainer.style.display = 'none';
+        this.drag(select(this.background));
+        this.addEventListener('focusin', function () {
+          if (!_this19.mouseEvent) {
+            _this19.background.classList.add('focus');
+          }
+        });
+        this.addEventListener('focusout', function () {
+          _this19.background.classList.remove('focus');
+        });
+        this.addEventListener('keydown', this.onKeyDown);
       }
-    }
-  }
+    }, {
+      key: "attributeChangedCallback",
+      value: function attributeChangedCallback(attr, oldValue, newValue) {
+        if (isNaN(newValue) || newValue === undefined || newValue === null) return;
+        if (attr == 'min') {
+          this.min = +newValue;
+          this.setAttribute('aria-valuemin', this.min);
+        }
+        if (attr == 'max') {
+          this.max = +newValue;
+          this.setAttribute('aria-valuemax', this.max);
+        }
+        if (attr == 'value') {
+          this.update(+newValue);
+        }
+        if (attr == 'origin') {
+          this.origin = +newValue;
+          // this.update(this.value);
+        }
+        if (attr == 'step') {
+          if (newValue > 0) {
+            this.step = +newValue;
+          }
+        }
+        if (attr == 'ticks') {
+          this.ticks = newValue === '' ? true : newValue;
+        }
+      }
+    }, {
+      key: "onKeyDown",
+      value: function onKeyDown(event) {
+        this.changeValue = this.value;
+        var stopPropagation = false;
+        switch (event.keyCode) {
+          case keyCodes.left:
+          case keyCodes.down:
+            this.update(this.value - this.step);
+            stopPropagation = true;
+            break;
+          case keyCodes.right:
+          case keyCodes.up:
+            this.update(this.value + this.step);
+            stopPropagation = true;
+            break;
+          case keyCodes.pageUp:
+            this.update(this.value + this.step * 10);
+            stopPropagation = true;
+            break;
+          case keyCodes.pageDown:
+            this.update(this.value + this.step * 10);
+            stopPropagation = true;
+            break;
+          case keyCodes.home:
+            this.update(this.min);
+            stopPropagation = true;
+            break;
+          case keyCodes.end:
+            this.update(this.max);
+            stopPropagation = true;
+            break;
+        }
+        if (stopPropagation) {
+          this.background.classList.add('focus');
+          event.preventDefault();
+          event.stopPropagation();
+          if (this.changeValue !== this.value) this.dispatchChange();
+        }
+      }
+    }, {
+      key: "validateValueRange",
+      value: function validateValueRange(min, max, value) {
+        return Math.max(Math.min(max, value), min);
+      }
+    }, {
+      key: "quantizeValue",
+      value: function quantizeValue(value, step) {
+        return Math.round(value / step) * step;
+      }
+    }, {
+      key: "dragUpdate",
+      value: function dragUpdate() {
+        var bbox = this.background.getBoundingClientRect();
+        var x = event.x;
+        var width = bbox.width;
+        this.update(this.scale.invert(x / width));
+      }
+    }, {
+      key: "update",
+      value: function update(value) {
+        var v = value;
+        if (this.step !== 'any') {
+          v = this.quantizeValue(value, this.step);
+        }
+        v = this.validateValueRange(this.min, this.max, v);
+        if (this.connected) {
+          this.knob.style.left = this.scale(v) * 100 + '%';
+          this.trackFill.style.width = this.scale(this.min + Math.abs(v - this.origin)) * 100 + '%';
+          this.trackFill.style.left = this.scale(Math.min(v, this.origin)) * 100 + '%';
+        }
+        if (this.value !== v) {
+          this.value = v;
+          this.setAttribute('aria-valuenow', this.value);
+          this.dispatchInput();
+        }
+      }
+
+      // Dispatches only on a committed change (basically only on mouseup).
+    }, {
+      key: "dispatchChange",
+      value: function dispatchChange() {
+        var e = new Event('change');
+        this.dispatchEvent(e, {});
+      }
+
+      // Dispatches on each value change.
+    }, {
+      key: "dispatchInput",
+      value: function dispatchInput() {
+        var e = new Event('input');
+        this.dispatchEvent(e, {});
+      }
+    }, {
+      key: "renderTicks",
+      value: function renderTicks() {
+        var _this20 = this;
+        var ticksContainer = this.root.querySelector('.ticks');
+        if (this.ticks !== false) {
+          var tickData = [];
+          if (this.ticks > 0) {
+            tickData = this.scale.ticks(this.ticks);
+          } else if (this.step === 'any') {
+            tickData = this.scale.ticks();
+          } else {
+            tickData = range(this.min, this.max + 1e-6, this.step);
+          }
+          tickData.forEach(function (d) {
+            var tick = document.createElement('div');
+            tick.classList.add('tick');
+            tick.style.left = _this20.scale(d) * 100 + '%';
+            ticksContainer.appendChild(tick);
+          });
+        } else {
+          ticksContainer.style.display = 'none';
+        }
+      }
+    }], [{
+      key: "observedAttributes",
+      get: function get() {
+        return ['min', 'max', 'value', 'step', 'ticks', 'origin', 'tickValues', 'tickLabels'];
+      }
+    }]);
+    return Slider;
+  }(T$a(HTMLElement));
   var logo = "<svg viewBox=\"-607 419 64 64\">\n  <path d=\"M-573.4,478.9c-8,0-14.6-6.4-14.6-14.5s14.6-25.9,14.6-40.8c0,14.9,14.6,32.8,14.6,40.8S-565.4,478.9-573.4,478.9z\"/>\n</svg>\n";
-  var headerTemplate = `
-<style>
-distill-header {
-  position: relative;
-  height: 60px;
-  background-color: hsl(200, 60%, 15%);
-  width: 100%;
-  box-sizing: border-box;
-  z-index: 2;
-  color: rgba(0, 0, 0, 0.8);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
-}
-distill-header .content {
-  height: 70px;
-  grid-column: page;
-}
-distill-header a {
-  font-size: 16px;
-  height: 60px;
-  line-height: 60px;
-  text-decoration: none;
-  color: rgba(255, 255, 255, 0.8);
-  padding: 22px 0;
-}
-distill-header a:hover {
-  color: rgba(255, 255, 255, 1);
-}
-distill-header svg {
-  width: 24px;
-  position: relative;
-  top: 4px;
-  margin-right: 2px;
-}
-@media(min-width: 1080px) {
-  distill-header {
-    height: 70px;
-  }
-  distill-header a {
-    height: 70px;
-    line-height: 70px;
-    padding: 28px 0;
-  }
-  distill-header .logo {
-  }
-}
-distill-header svg path {
-  fill: none;
-  stroke: rgba(255, 255, 255, 0.8);
-  stroke-width: 3px;
-}
-distill-header .logo {
-  font-size: 17px;
-  font-weight: 200;
-}
-distill-header .nav {
-  float: right;
-  font-weight: 300;
-}
-distill-header .nav a {
-  font-size: 12px;
-  margin-left: 24px;
-  text-transform: uppercase;
-}
-</style>
-<div class="content">
-  <a href="/" class="logo">
-    ${logo}
-    Distill
-  </a>
-  <nav class="nav">
-    <a href="/about/">About</a>
-    <a href="/prize/">Prize</a>
-    <a href="/journal/">Submit</a>
-  </nav>
-</div>
-`;
+  var headerTemplate = "\n<style>\ndistill-header {\n  position: relative;\n  height: 60px;\n  background-color: hsl(200, 60%, 15%);\n  width: 100%;\n  box-sizing: border-box;\n  z-index: 2;\n  color: rgba(0, 0, 0, 0.8);\n  border-bottom: 1px solid rgba(0, 0, 0, 0.08);\n  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);\n}\ndistill-header .content {\n  height: 70px;\n  grid-column: page;\n}\ndistill-header a {\n  font-size: 16px;\n  height: 60px;\n  line-height: 60px;\n  text-decoration: none;\n  color: rgba(255, 255, 255, 0.8);\n  padding: 22px 0;\n}\ndistill-header a:hover {\n  color: rgba(255, 255, 255, 1);\n}\ndistill-header svg {\n  width: 24px;\n  position: relative;\n  top: 4px;\n  margin-right: 2px;\n}\n@media(min-width: 1080px) {\n  distill-header {\n    height: 70px;\n  }\n  distill-header a {\n    height: 70px;\n    line-height: 70px;\n    padding: 28px 0;\n  }\n  distill-header .logo {\n  }\n}\ndistill-header svg path {\n  fill: none;\n  stroke: rgba(255, 255, 255, 0.8);\n  stroke-width: 3px;\n}\ndistill-header .logo {\n  font-size: 17px;\n  font-weight: 200;\n}\ndistill-header .nav {\n  float: right;\n  font-weight: 300;\n}\ndistill-header .nav a {\n  font-size: 12px;\n  margin-left: 24px;\n  text-transform: uppercase;\n}\n</style>\n<div class=\"content\">\n  <a href=\"/\" class=\"logo\">\n    ".concat(logo, "\n    Distill\n  </a>\n  <nav class=\"nav\">\n    <a href=\"/about/\">About</a>\n    <a href=\"/prize/\">Prize</a>\n    <a href=\"/journal/\">Submit</a>\n  </nav>\n</div>\n");
 
   // Copyright 2018 The Distill Template Authors
 
   var T$b = Template('distill-header', headerTemplate, false);
-  class DistillHeader extends T$b(HTMLElement) {}
-
-  // Copyright 2018 The Distill Template Authors
-
-  var styles$2 = `
-<style>
-  distill-appendix {
-    contain: layout style;
-  }
-
-  distill-appendix .citation {
-    font-size: 11px;
-    line-height: 15px;
-    border-left: 1px solid rgba(0, 0, 0, 0.1);
-    padding-left: 18px;
-    border: 1px solid rgba(0,0,0,0.1);
-    background: rgba(0, 0, 0, 0.02);
-    padding: 10px 18px;
-    border-radius: 3px;
-    color: rgba(150, 150, 150, 1);
-    overflow: hidden;
-    margin-top: -12px;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-  }
-
-  distill-appendix > * {
-    grid-column: text;
-  }
-</style>
-`;
+  var DistillHeader = /*#__PURE__*/function (_T$b) {
+    _inherits(DistillHeader, _T$b);
+    function DistillHeader() {
+      _classCallCheck(this, DistillHeader);
+      return _callSuper(this, DistillHeader, arguments);
+    }
+    return _createClass(DistillHeader);
+  }(T$b(HTMLElement)); // Copyright 2018 The Distill Template Authors
+  var styles$2 = "\n<style>\n  distill-appendix {\n    contain: layout style;\n  }\n\n  distill-appendix .citation {\n    font-size: 11px;\n    line-height: 15px;\n    border-left: 1px solid rgba(0, 0, 0, 0.1);\n    padding-left: 18px;\n    border: 1px solid rgba(0,0,0,0.1);\n    background: rgba(0, 0, 0, 0.02);\n    padding: 10px 18px;\n    border-radius: 3px;\n    color: rgba(150, 150, 150, 1);\n    overflow: hidden;\n    margin-top: -12px;\n    white-space: pre-wrap;\n    word-wrap: break-word;\n  }\n\n  distill-appendix > * {\n    grid-column: text;\n  }\n</style>\n";
   function appendixTemplate(frontMatter) {
-    let html = styles$2;
+    var html = styles$2;
     if (typeof frontMatter.githubUrl !== 'undefined') {
-      html += `
-    <h3 id="updates-and-corrections">Updates and Corrections</h3>
-    <p>`;
+      html += "\n    <h3 id=\"updates-and-corrections\">Updates and Corrections</h3>\n    <p>";
       if (frontMatter.githubCompareUpdatesUrl) {
-        html += `<a href="${frontMatter.githubCompareUpdatesUrl}">View all changes</a> to this article since it was first published.`;
+        html += "<a href=\"".concat(frontMatter.githubCompareUpdatesUrl, "\">View all changes</a> to this article since it was first published.");
       }
-      html += `
-    If you see mistakes or want to suggest changes, please <a href="${frontMatter.githubUrl + '/issues/new'}">create an issue on GitHub</a>. </p>
-    `;
+      html += "\n    If you see mistakes or want to suggest changes, please <a href=\"".concat(frontMatter.githubUrl + '/issues/new', "\">create an issue on GitHub</a>. </p>\n    ");
     }
     var journal = frontMatter.journal;
     if (typeof journal !== 'undefined' && journal.title === 'Distill') {
-      html += `
-    <h3 id="reuse">Reuse</h3>
-    <p>Diagrams and text are licensed under Creative Commons Attribution <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> with the <a class="github" href="${frontMatter.githubUrl}">source available on GitHub</a>, unless noted otherwise. The figures that have been reused from other sources don’t fall under this license and can be recognized by a note in their caption: “Figure from …”.</p>
-    `;
+      html += "\n    <h3 id=\"reuse\">Reuse</h3>\n    <p>Diagrams and text are licensed under Creative Commons Attribution <a href=\"https://creativecommons.org/licenses/by/4.0/\">CC-BY 4.0</a> with the <a class=\"github\" href=\"".concat(frontMatter.githubUrl, "\">source available on GitHub</a>, unless noted otherwise. The figures that have been reused from other sources don\u2019t fall under this license and can be recognized by a note in their caption: \u201CFigure from \u2026\u201D.</p>\n    ");
     }
     if (typeof frontMatter.publishedDate !== 'undefined') {
-      html += `
-    <h3 id="citation">Citation</h3>
-    <p>For attribution in academic contexts, please cite this work as</p>
-    <pre class="citation short">${frontMatter.concatenatedAuthors}, "${frontMatter.title}", Distill, ${frontMatter.publishedYear}.</pre>
-    <p>BibTeX citation</p>
-    <pre class="citation long">${serializeFrontmatterToBibtex(frontMatter)}</pre>
-    `;
+      html += "\n    <h3 id=\"citation\">Citation</h3>\n    <p>For attribution in academic contexts, please cite this work as</p>\n    <pre class=\"citation short\">".concat(frontMatter.concatenatedAuthors, ", \"").concat(frontMatter.title, "\", Distill, ").concat(frontMatter.publishedYear, ".</pre>\n    <p>BibTeX citation</p>\n    <pre class=\"citation long\">").concat(serializeFrontmatterToBibtex(frontMatter), "</pre>\n    ");
     }
     return html;
   }
-  class DistillAppendix extends HTMLElement {
-    static get is() {
-      return 'distill-appendix';
+  var DistillAppendix = /*#__PURE__*/function (_HTMLElement9) {
+    _inherits(DistillAppendix, _HTMLElement9);
+    function DistillAppendix() {
+      _classCallCheck(this, DistillAppendix);
+      return _callSuper(this, DistillAppendix, arguments);
     }
-    set frontMatter(frontMatter) {
-      this.innerHTML = appendixTemplate(frontMatter);
-    }
-  }
-  var footerTemplate = `
-<style>
-
-:host {
-  color: rgba(255, 255, 255, 0.5);
-  font-weight: 300;
-  padding: 2rem 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-  background-color: hsl(180, 5%, 15%); /*hsl(200, 60%, 15%);*/
-  text-align: left;
-  contain: content;
-}
-
-.footer-container .logo svg {
-  width: 24px;
-  position: relative;
-  top: 4px;
-  margin-right: 2px;
-}
-
-.footer-container .logo svg path {
-  fill: none;
-  stroke: rgba(255, 255, 255, 0.8);
-  stroke-width: 3px;
-}
-
-.footer-container .logo {
-  font-size: 17px;
-  font-weight: 200;
-  color: rgba(255, 255, 255, 0.8);
-  text-decoration: none;
-  margin-right: 6px;
-}
-
-.footer-container {
-  grid-column: text;
-}
-
-.footer-container .nav {
-  font-size: 0.9em;
-  margin-top: 1.5em;
-}
-
-.footer-container .nav a {
-  color: rgba(255, 255, 255, 0.8);
-  margin-right: 6px;
-  text-decoration: none;
-}
-
-</style>
-
-<div class='footer-container'>
-
-  <a href="/" class="logo">
-    ${logo}
-    Distill
-  </a> is dedicated to clear explanations of machine learning
-
-  <div class="nav">
-    <a href="https://distill.pub/about/">About</a>
-    <a href="https://distill.pub/journal/">Submit</a>
-    <a href="https://distill.pub/prize/">Prize</a>
-    <a href="https://distill.pub/archive/">Archive</a>
-    <a href="https://distill.pub/rss.xml">RSS</a>
-    <a href="https://github.com/distillpub">GitHub</a>
-    <a href="https://twitter.com/distillpub">Twitter</a>
-    &nbsp;&nbsp;&nbsp;&nbsp; ISSN 2476-0757
-  </div>
-
-</div>
-
-`;
+    _createClass(DistillAppendix, [{
+      key: "frontMatter",
+      set: function set(frontMatter) {
+        this.innerHTML = appendixTemplate(frontMatter);
+      }
+    }], [{
+      key: "is",
+      get: function get() {
+        return 'distill-appendix';
+      }
+    }]);
+    return DistillAppendix;
+  }( /*#__PURE__*/_wrapNativeSuper(HTMLElement));
+  var footerTemplate = "\n<style>\n\n:host {\n  color: rgba(255, 255, 255, 0.5);\n  font-weight: 300;\n  padding: 2rem 0;\n  border-top: 1px solid rgba(0, 0, 0, 0.1);\n  background-color: hsl(180, 5%, 15%); /*hsl(200, 60%, 15%);*/\n  text-align: left;\n  contain: content;\n}\n\n.footer-container .logo svg {\n  width: 24px;\n  position: relative;\n  top: 4px;\n  margin-right: 2px;\n}\n\n.footer-container .logo svg path {\n  fill: none;\n  stroke: rgba(255, 255, 255, 0.8);\n  stroke-width: 3px;\n}\n\n.footer-container .logo {\n  font-size: 17px;\n  font-weight: 200;\n  color: rgba(255, 255, 255, 0.8);\n  text-decoration: none;\n  margin-right: 6px;\n}\n\n.footer-container {\n  grid-column: text;\n}\n\n.footer-container .nav {\n  font-size: 0.9em;\n  margin-top: 1.5em;\n}\n\n.footer-container .nav a {\n  color: rgba(255, 255, 255, 0.8);\n  margin-right: 6px;\n  text-decoration: none;\n}\n\n</style>\n\n<div class='footer-container'>\n\n  <a href=\"/\" class=\"logo\">\n    ".concat(logo, "\n    Distill\n  </a> is dedicated to clear explanations of machine learning\n\n  <div class=\"nav\">\n    <a href=\"https://distill.pub/about/\">About</a>\n    <a href=\"https://distill.pub/journal/\">Submit</a>\n    <a href=\"https://distill.pub/prize/\">Prize</a>\n    <a href=\"https://distill.pub/archive/\">Archive</a>\n    <a href=\"https://distill.pub/rss.xml\">RSS</a>\n    <a href=\"https://github.com/distillpub\">GitHub</a>\n    <a href=\"https://twitter.com/distillpub\">Twitter</a>\n    &nbsp;&nbsp;&nbsp;&nbsp; ISSN 2476-0757\n  </div>\n\n</div>\n\n");
 
   // Copyright 2018 The Distill Template Authors
 
   var T$c = Template('distill-footer', footerTemplate);
-  class DistillFooter extends T$c(HTMLElement) {}
-
-  // Copyright 2018 The Distill Template Authors
-
-  let templateIsLoading = false;
-  let runlevel = 0;
-  var initialize = function () {
+  var DistillFooter = /*#__PURE__*/function (_T$c) {
+    _inherits(DistillFooter, _T$c);
+    function DistillFooter() {
+      _classCallCheck(this, DistillFooter);
+      return _callSuper(this, DistillFooter, arguments);
+    }
+    return _createClass(DistillFooter);
+  }(T$c(HTMLElement)); // Copyright 2018 The Distill Template Authors
+  var templateIsLoading = false;
+  var runlevel = 0;
+  var initialize = function initialize() {
     if (window.distill.runlevel < 1) {
       throw new Error("Insufficient Runlevel for Distill Template!");
     }
@@ -8225,7 +8117,10 @@ distill-header .nav a {
 
     /* 3. Register Controller listener functions */
     /* Needs to happen before components to their connected callbacks have a controller to talk to. */
-    for (var [functionName, callback] of Object.entries(Controller.listeners)) {
+    for (var _i2 = 0, _Object$entries2 = Object.entries(Controller.listeners); _i2 < _Object$entries2.length; _i2++) {
+      var _Object$entries2$_i = _slicedToArray(_Object$entries2[_i2], 2),
+        functionName = _Object$entries2$_i[0],
+        callback = _Object$entries2$_i[1];
       if (typeof callback === "function") {
         document.addEventListener(functionName, callback);
       } else {
@@ -8243,9 +8138,18 @@ distill-header .nav a {
       throw new Error("Insufficient Runlevel for adding custom elements!");
     }
     var allComponents = components.concat(distillComponents);
-    for (var component of allComponents) {
-      console.debug("Runlevel 2: Registering custom element: " + component.is);
-      customElements.define(component.is, component);
+    var _iterator21 = _createForOfIteratorHelper(allComponents),
+      _step21;
+    try {
+      for (_iterator21.s(); !(_step21 = _iterator21.n()).done;) {
+        var component = _step21.value;
+        console.debug("Runlevel 2: Registering custom element: " + component.is);
+        customElements.define(component.is, component);
+      }
+    } catch (err) {
+      _iterator21.e(err);
+    } finally {
+      _iterator21.f();
     }
     console.debug("Runlevel 3: Distill Template finished registering custom elements.");
     console.debug("Runlevel 3->4.");
@@ -8261,9 +8165,9 @@ distill-header .nav a {
     window.distill.templateHasLoaded = true;
   };
   window.distill = {
-    runlevel,
-    initialize,
-    templateIsLoading
+    runlevel: runlevel,
+    initialize: initialize,
+    templateIsLoading: templateIsLoading
   };
 
   /* 0. Check browser feature support; synchronously polyfill if needed */

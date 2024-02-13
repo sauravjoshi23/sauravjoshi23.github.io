@@ -1,3 +1,5 @@
+"use strict";
+
 $(document).ready(function () {
   // Override styles of the footnotes.
   document.querySelectorAll("d-footnote").forEach(function (footnote) {
