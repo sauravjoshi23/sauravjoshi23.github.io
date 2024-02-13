@@ -32,7 +32,7 @@
     var hours = date.getUTCHours().toString();
     var minutes = date.getUTCMinutes().toString();
     var seconds = date.getUTCSeconds().toString();
-    return `${day}, ${paddedDate} ${month} ${year} ${hours}:${minutes}:${seconds} Z`;
+    return day + ", " + paddedDate + " " + month + " " + year + " " + hours + ":" + minutes + ":" + seconds + " Z";
   };
 
   var objectFromMap = function(map) {
