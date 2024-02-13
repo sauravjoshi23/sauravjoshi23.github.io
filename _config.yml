@@ -1,3 +1,5 @@
 # _config.yml
 exclude:
   - vendor
+
+repository: sauravjoshi23/sauravjoshi23.github.io
