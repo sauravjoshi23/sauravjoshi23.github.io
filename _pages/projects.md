@@ -11,7 +11,7 @@ nav: true
     <ul class="post-list">
       {% for project in sorted_projects %}
         <li>
-          <h3><a class="project-title">{{ project.title }}</a></h3>
+          <h3>{{ project.title }}</h3>
           <p class="project-meta">{{ project.date | date: '%B %-d, %Y' }}</p>
           {{ project.description | safe }}
           {% if project.button_url %}
