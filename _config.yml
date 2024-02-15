@@ -2,20 +2,19 @@
 # Site settings
 # -----------------------------------------------------------------------------
 
-repository: sauravjoshi23/sauravjoshi23.github.io
 title: blank # the website title (if blank, full name will be used instead)
 first_name: Saurav
 middle_name:
 last_name: Joshi
 email: syjoshi@usc.edu
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
-  Website for Saurav Joshi, USC
+  Website for Saurav Joshi, University of Southern California
 footer_text: >
   Powered by <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
   Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
 
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
-icon: 🌐 # the emoji used as the favicon
+icon: 🏌️‍♂️ # the emoji used as the favicon
 url: https://sauravjoshi23.github.io # the base hostname & protocol for your site
 baseurl: # the subpath of your site, e.g. /blog/
 last_updated: true # set to true if you want to display last updated in the footer
@@ -51,11 +50,11 @@ og_image: # The site-wide (default for all links) Open Graph preview image
 # -----------------------------------------------------------------------------
 
 github_username: sauravjoshi23 # your GitHub user name
-twitter_username: # your Twitter handle
+twitter_username: sauravjoshi23 # your Twitter handle
 linkedin_username: sauravjoshi23 # your LinkedIn user name
-scholar_userid: # your Google Scholar ID
+scholar_userid: 2IdvbCIAAAAJ # your Google Scholar ID
 orcid_id: # your ORCID ID
-medium_username: # your Medium username
+medium_username: sauravjoshi23 # your Medium username
 quora_username: # your Quora username
 publons_id: # your ID on Publons
 research_gate_profile: # your profile on ResearchGate
@@ -64,23 +63,23 @@ work_url: # work page URL
 keybase_username: # your keybase user name
 wikidata_id: # your wikidata id
 dblp_url: # your DBLP profile url
-stackoverflow_id: #your stackoverflow id
+stackoverflow_id: 11956116 #your stackoverflow id
 
 rss_icon: false
 
 contact_note: >
   The best way to reach out to me is via email!
 
-google_analytics: # out your google-analytics code
+google_analytics:  # out your google-analytics code
 panelbear_analytics: # panelbear analytics site ID
 
 # -----------------------------------------------------------------------------
 # Blog
 # -----------------------------------------------------------------------------
 
-blog_name: sauravjoshi23  # your blog must have a name for it to show up in the nav bar
+blog_name: dual-divy  # your blog must have a name for it to show up in the nav bar
 blog_description: a corner for some random and some planned musings
-permalink: /blog/:year/:title/
+# permalink: /blog/:year/:title/
 
 # Pagination
 pagination:
@@ -100,10 +99,10 @@ collections:
     output: true
     permalink: /news/:path/
   projects:
-    output: true
+    output: false
     permalink: /projects/:path/
 
-news_limit: 5
+news_limit: 20
 
 # -----------------------------------------------------------------------------
 # Jekyll settings
